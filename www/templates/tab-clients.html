@@ -1,0 +1,22 @@
+<ion-view  cache-view="false" view-title="Clients">
+  <ion-nav-buttons side="secondary">
+        <button class="button icon ion-plus" ng-click="addClient()"></button>
+    </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="client in clients" type="item-text-wrap" href="#/tab/clients/{{client.clientId}}">
+        <h2>{{client.clientDesc}}</h2>
+        <p><span ng-repeat="(index, kid) in client.kids">{{kid.kidFirstname + ((index !== client.kids.length -1)?', ': '')}}</span></p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-balanced" ng-click="editClientDescription($index)">
+          Edit
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteClient($index)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+

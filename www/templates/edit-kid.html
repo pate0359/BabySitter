@@ -1,0 +1,89 @@
+<ion-view view-title="Edit Kid">
+  <ion-nav-buttons side="secondary">
+
+    <button class="button correctSize" ng-click="saveKid()">Save</button>
+
+  </ion-nav-buttons>
+  <ion-nav-buttons side="primary">
+    <button class="button correctSize secondary" ng-click="cancelKid()">Cancel</button>
+
+  </ion-nav-buttons>
+  <ion-content>
+
+<div id="kid" class="card">
+
+      <div class="item item-text-wrap">
+        <div id="profile-info">
+              <img id="profile-image" ng-src="img/{{kid.kidPicture}}">
+          <button class="button button-positive button-clear" ng-click="editKidPicture()" ng-hide="toggleVisibility">Edit</button>
+
+      </div>
+
+
+        <div style="margin-bottom:15px;">
+        <h2>First Name</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="kid.kidFirstname" style="font-weight:600;" class="item-input textDisable ios-blue" type="text" placeholder="First Name" value="{{kid.kidFirstname}}">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Last Name</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="kid.kidLastname" class="item-input textDisable" type="text" placeholder="Last Name" value="{{kid.kidLastName}}">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Birthday</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="kid.kidBirthday" class="item-input textDisable" type="date" placeholder="Birthday" value="{{kid.kidBirthday}}">
+
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Gender</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="kid.kidGender" class="item-input textDisable" type="text" placeholder="Gender" value="{{kid.kidGender}}">
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>Allergies</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="kid.allergyDescription" class="item-input textDisable" type="text" placeholder="Allergies" value="{{kid.allergyDescription}}">
+
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>Disabilities</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="kid.disabilityDescription" class="item-input textDisable" type="text" placeholder="Disabilities" value="{{kid.disabilityDescription}}">
+
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Medications</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="kid.medicationDescription" class="item-input textDisable" type="text" placeholder="Medications" value="{{kids.medicationDescription}}">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Notes</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="kid.kidNotes" class="item-input textDisable" type="text" placeholder="Notes" value="{{kid.kidNotes}}">
+        </div>
+
+  </div>
+</div>
+
+    <div class="padding" ng-hide="toggleVisibility">
+
+      <button class="button button-assertive button-block" ng-click="deleteKid()" ng-hide="toggleVisibility">
+        Delete Kid
+      </button>
+    </div>
+
+  </ion-content>
+</ion-view>                    

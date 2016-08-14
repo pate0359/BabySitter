@@ -1,0 +1,139 @@
+/********************** Nehmat Css ***********************************/
+
+.button-energized{
+  
+}
+.ios-blue{
+  color: #007aff !important;
+}
+.correctSize{
+  font-size: 17px !important;
+}
+.customOrange{
+  color: #f79520 !important;
+
+}
+
+/* Nune code for emergency page to float messaging and phone icons side by side */
+#position {
+    bottom: 0;
+    width: 40px;
+}
+
+
+
+/********************** iframe *******************************/
+
+.iframe-wrapper iframe {
+   width: 100%;
+   height: 100%;
+ }
+.webPage{
+    width: 100%;
+    height: 100%;
+    /*orange border surrounding website*/
+    border: 2px solid #f79520;
+}
+ion-content div.scroll{
+    height: 100%;
+}
+
+#profile-bg {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 150px;
+    text-align: center;
+      }
+
+      #content {
+        margin-top: -30px;
+      }
+
+      #profile-info {
+        width: 100%;
+        z-index: 2;
+        text-align: center;
+    margin-bottom: 10px;
+      }
+      #profile-name {
+        color: #444;
+        font-size: 15px;
+      }
+      #profile-description {
+        font-size: 15px;
+        color: #888;
+      }
+      #profile-description a {
+        color: #888;
+      }
+
+      #profile-image {
+        display: block;
+        border-radius: 100px;
+        border: 1px solid #fff;
+        width: 128px;
+        height: 128px;
+        margin: 30px auto 0;
+        box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+        margin-bottom: 5px;     
+      }
+
+      .ionicon{
+
+        color: blue;
+      }
+
+#profile-image-small{
+        width: 70px;
+        height: 70px;
+        float:left;
+}
+
+#myChange {
+    clear: both;
+    padding-top:20px;
+}
+
+#addPhoto {
+    float:left;
+}
+
+.tab-item-active {
+    icon-on = ""
+}
+
+/*
+h3 {
+  border-bottom: 1px solid black;
+  display: inline;
+}
+*/
+     
+/********************** Padding *******************************/
+/*
+input:disabled {
+background-color: #a2ddf4;
+    color: #999;
+}
+*/
+
+/*
+.textDisable[disabled] {
+   background-color: #fff;
+}
+*/
+
+.textDisable {
+  background-color: #fff;
+}
+.textDisable[disabled] {
+  background-color: #fff;
+}
+
+.my-changes{
+
+text-align: right;
+}
+

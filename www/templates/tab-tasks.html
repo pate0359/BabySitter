@@ -1,0 +1,30 @@
+<ion-view cache-view="false" view-title="Tasks">
+    <ion-nav-buttons side="secondary">
+      <button class="button icon ion-plus" ng-click="addTask()"></button>
+    </ion-nav-buttons>
+    
+  <ion-content>       
+      <ion-list class="item-icon-right">
+ 
+ <div ng-repeat="task in tasks" >
+ 
+ <div class="item item-divider">
+   {{task.taskStartdate}}
+  </div>
+
+  <ion-item type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
+      
+       
+
+      <h2>{{task.clientDesc}}</h2>
+      <span class="item-note">
+      {{task.taskStarttime}}
+    </span>
+      <div>{{task.taskTitle}}</div>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>             
+ </div>
+ 
+</ion-list>
+  </ion-content>
+</ion-view> 

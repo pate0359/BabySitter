@@ -1,0 +1,190 @@
+<ion-view cache-view="false" view-title="{{selectedClient.clientDesc}}">
+	<ion-content class="padding">
+		<ti-segmented-control on-select="buttonClicked($index)" class="padding-bottom">
+			<ti-segmented-control-button class="button-energized" title="'Parents'" ng-selected="selectedParent">
+			</ti-segmented-control-button>
+
+			<ti-segmented-control-button class="button-energized" title="'Kids'" ng-selected="selectedKid">
+			</ti-segmented-control-button>
+
+			<ti-segmented-control-button class="button-energized" title="'Tasks'" ng-selected="selectedTask">
+			</ti-segmented-control-button>
+		</ti-segmented-control>
+
+		<div ng-switch on="selectedIndex">
+
+			<!-- ******************************** Parent sub-page ******************************** -->
+			<div id="parent" ng-repeat="parent in selectedClient.parents" class="card" ng-switch-when="0">
+
+
+				<div class="item item-divider item-icon-right">
+					{{parent.parentFirstname + " " + parent.parentLastname}}
+					
+					<div class="icon">
+						 <button class="button button-icon" style="padding-left:30px;" ng-click="editParent($index)">
+							<i class = "icon ion-edit"></i>
+						</button>
+        			</div>	
+					
+				</div>
+				<div class="item item-text-wrap">
+					<div style="margin-bottom:15px;">
+							<h2>Address</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{parent.parentStreet}}</p>
+							<p>{{parent.parentCity +", "+ parent.parentState}}</p>
+							<p>{{parent.parentZipcode}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Primary Phone</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{parent.parentPrimaryphone}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Secondary Phone</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{parent.parentSecondaryphone}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Email</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{parent.parentEmailid}}</p>
+						</div>
+					
+						<div style="margin-bottom:15px;">
+							<h2>Notes</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{parent.parentNotes}}</p>
+						</div>
+				</div>
+
+			</div>
+
+			<div ng-switch-when="0">
+				 <button class="button button-balanced button-block" ng-click="addNewParent()" ng-hide="toggleVisibility">Add New Parent</button>
+    		</div>
+
+			
+			<!-- ******************************** Kid sub-page ******************************** -->
+			<div id="kid" ng-repeat="kid in selectedClient.kids" class="card" ng-switch-when="1">
+				
+				<div class="item item-divider item-icon-right ">
+					{{kid.kidFirstname}}
+					
+					<div class="icon">
+						 <button class="button button-icon" style="padding-left:30px;" ng-click="editKid($index)">
+							<i class = "icon ion-edit"></i>
+						</button>
+        			</div>										
+				</div>
+
+				<div class="item item-text-wrap">
+					<!--		 <div id="profile-bg"></div>-->
+					<div id="content">
+						<div id="profile-info">
+							<img id="profile-image" ng-src="img/{{kid.kidPicture}}">
+
+							<h4 id="profile-name">
+				  <i class="fa fa-birthday-cake" aria-hidden="true"></i> {{ kid.kidBirthdate}}
+				</h4>
+							<h4 id="profile-name">
+				  <i class="icon ion-male"></i> {{kid.kidGender}}
+				</h4>
+				</div>
+						<div style="margin-bottom:15px;">
+							<h2>Allergies</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.allergyDescription}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Disabilities</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.disabilityDescription}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Medications</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.medicationDescription}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Notes</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.kidNotes}}</p>
+						</div>
+					</div>
+				</div>
+						
+			</div>
+			<div id="kid" ng-switch-when="1">
+				 <button class="button button-balanced button-block" ng-click="addNewKid()" ng-hide="toggleVisibility">Add New Kid</button>
+    			</div>
+
+			<!-- ******************************** Task sub-page ******************************** -->
+			<div id="task" ng-repeat="task in selectedClient.tasks" class="card" ng-switch-when="2">
+
+				<div class="item item-divider item-icon-right">
+					{{task.taskStartdate}}
+					
+					<div class="icon">
+						 <button class="button button-icon" style="padding-left:30px;" ng-click="editTask($index)">
+							<i class = "icon ion-edit"></i>
+						</button>
+        			</div>	
+				</div>
+				<div class="item item-text-wrap">
+					
+					<div style="margin-bottom:25px;">
+							<h2 style="font-weight:600;" class="ios-blue">{{task.taskTitle}}</h2>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Description</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{task.taskDescription}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>Start Date</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{task.taskStartdate}}</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2>End Date</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{task.taskEnddate}}</p>
+						</div>
+					<div style="margin-bottom:15px;">
+							<h2>Start time</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{task.taskStarttime}}</p>
+						</div>
+					<div style="margin-bottom:15px;">
+							<h2>End time</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{task.taskEndtime}}</p>
+						</div>
+					<div style="margin-bottom:15px;">
+							<h2>Notes</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{task.taskNotes}}</p>
+						</div>
+				</div>
+
+			</div>
+
+			<div id="task" ng-switch-when="2">
+				 <button class="button button-balanced button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
+    		</div>
+			<!-- ******************************** Task sub-page ******************************** -->
+		</div>
+		
+
+	</ion-content>
+</ion-view>

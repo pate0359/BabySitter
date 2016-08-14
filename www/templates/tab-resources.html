@@ -1,0 +1,30 @@
+<ion-view view-title="Resources" cache-view="false">
+	<ion-content>
+		<ion-list class="item-icon-right">
+			<div class="item item-divider">
+				Checklists
+			</div>
+			<ion-item type="item-text-wrap" href="#/tab/resources/resourcesId">
+				<h2>Potential Job Checklist</h2>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			<ion-item type="item-text-wrap" href="#/tab/resources/prejobId">
+				<h2>Pre Job Checklist</h2>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			<ion-item type="item-text-wrap" href="#/tab/resources/locationId">
+				<h2>Location Checlkist</h2>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			<div class="item item-divider">
+				Resources from WTDWTK website
+
+			</div>
+			<ion-item type="item-text-wrap" ng-repeat="resource in resources" ng-click="openWebsite($index)">
+				<h2>{{ resource.title }}</h2>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+
+		</ion-list>
+	</ion-content>
+</ion-view>

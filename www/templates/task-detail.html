@@ -1,0 +1,87 @@
+<ion-view view-title="{{pageTitle}}">
+    <ion-nav-buttons side="secondary">
+        <button class="button correctSize" ng-click="editTaskDetails()"  ng-hide="toggleVisibility">Edit</button>
+        <button class="button correctSize" ng-click="saveTaskDetails()"  ng-hide="!toggleVisibility">Save</button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="primary">
+        <button class="button correctSize secondary" ng-click="cancelTaskDetails()" ng-hide="!toggleVisibility">Cancel</button>
+    </ion-nav-buttons>
+    <ion-content>
+        <!-- ******************************** Task sub-page ******************************** -->
+        <div id="task" class="card">
+            
+            <div class="item item-text-wrap">
+                
+                <div style="margin-bottom:15px;">
+                    
+                    <h2 ng-show="disableEnableForm">Task Title</h2>
+                    <hr ng-show="disableEnableForm" style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    <input ng-model="task.taskTitle" ng-show="disableEnableForm" class="item-input textDisable" type="text" placeholder="Task Title" >
+                        
+                        <p style="font-weight:600;" class="ios-blue" ng-show="!disableEnableForm">{{task.taskTitle}}</p>
+                        </div>
+				<div style="margin-bottom:15px;">
+                    
+                    <h2 >Client Description</h2>
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />        <p>{{task.clientDesc}}</p>
+                        </div>
+                
+                <div style="margin-bottom:15px;">
+                    <h2>Description</h2>
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    
+                    <input ng-model="task.taskDescription" name="taskDescription" ng-show="disableEnableForm" class="item-input textDisable" type="text" placeholder="Description">
+                        <p ng-show="!disableEnableForm">{{task.taskDescription}}</p>
+                        </div>
+                
+                <div style="margin-bottom:15px;">
+                    <h2>Start Date</h2>
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    
+                    <input ng-model="task.taskStartdate" name="taskStartdate" ng-show="disableEnableForm" class="item-input textDisable" type="date" placeholder="Start Date">
+                        <p ng-show="!disableEnableForm">{{task.taskStartdate}}</p>
+                        
+                        </div>
+                
+                <div style="margin-bottom:15px;">
+                    <h2>End Date</h2>
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    
+                    <input ng-model="task.taskEnddate" name="taskEnddate" ng-show="disableEnableForm" class="item-input textDisable" type="date" placeholder="End Date">
+                        <p ng-show="!disableEnableForm">{{task.taskEnddate}}</p>
+                        </div>
+                <div style="margin-bottom:15px;">
+                    <h2>Start time</h2>
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    
+                    <input ng-model="task.taskStarttime" name="taskStarttime" ng-show="disableEnableForm" class="item-input textDisable" type="time" placeholder="Start time">
+                        <p ng-show="!disableEnableForm">{{task.taskStarttime}}</p>
+                        
+                        </div>
+                <div style="margin-bottom:15px;">
+                    <h2>End time</h2>
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    
+                    <input ng-model="task.taskEndtime" name="taskEndtime" ng-show="disableEnableForm" class="item-input textDisable" type="time" placeholder="End Time">
+                        <p ng-show="!disableEnableForm">{{task.taskEndtime}}</p>
+                        
+                        </div>
+                <div style="margin-bottom:15px;">
+                    <h2>Notes</h2>
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    <input ng-model="task.taskNotes" name="taskNotes" ng-show="disableEnableForm" class="item-input textDisable" type="text" placeholder="Notes">
+                        <p ng-show="!disableEnableForm">{{task.taskNotes}}</p>
+                        
+                        </div>
+            </div>
+        </div>
+        
+        <div class="padding" ng-show="toggleVisibility">
+            
+            <button class="button button-assertive button-block" ng-click="deleteTaskDetails()" ng-show="toggleVisibility">
+                Delete Task
+            </button>
+        </div>
+        
+    </ion-content>
+</ion-view>

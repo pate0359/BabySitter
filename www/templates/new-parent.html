@@ -1,0 +1,92 @@
+<ion-view view-title="New Parent">
+  <ion-nav-buttons side="secondary">
+
+    <button class="button correctSize" ng-click="saveParent()">Save</button>
+
+  </ion-nav-buttons>
+  <ion-nav-buttons side="primary">
+    <button class="button correctSize secondary" ng-click="cancelParent()">Cancel</button>
+
+  </ion-nav-buttons>
+  <ion-content>
+
+<div id="parent" class="card">
+
+      <div class="item item-text-wrap">
+
+        <div style="margin-bottom:15px;">
+        <h2>First Name</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="params.parentFirstname" style="font-weight:600;" class="item-input textDisable" type="text" placeholder="First Name">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Last Name</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="params.parentLastname" class="item-input textDisable" type="text" placeholder="Last Name">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Street</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="params.parentStreet" class="item-input textDisable" type="text" placeholder="Street">
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>Unit</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="params.parentUnit" class="item-input textDisable" type="text" placeholder="Unit">
+
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>City</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input  ng-model="params.parentCity" class="item-input textDisable" type="text" placeholder="City">
+
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>State</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="params.parentState" class="item-input textDisable" type="text" placeholder="State">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Zip Code</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="params.parentZipcode" class="item-input textDisable" type="text" placeholder="Zip Code">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Primary Phone</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="params.parentPrimaryphone" class="item-input textDisable" type="text" placeholder="Primary Phone">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Secondary Phone</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="params.parentSecondaryphone" class="item-input textDisable" type="text" placeholder="Secondary Phone">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Email</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="params.parentEmailid" class="item-input textDisable" type="text" placeholder="Email" >
+      </div>
+       <div style="margin-bottom:15px;">
+          <h2>Notes</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="params.parentNotes" class="item-input textDisable" type="text" placeholder="Notes">
+
+        </div>
+    </div>
+    </div>
+
+  </ion-content>
+</ion-view>                    

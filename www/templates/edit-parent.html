@@ -1,0 +1,98 @@
+<ion-view view-title="Edit Parent">
+  <ion-nav-buttons side="secondary">
+
+    <button class="button correctSize" ng-click="saveParent()" ng-hide="toggleVisibility">Save</button>
+
+  </ion-nav-buttons>
+  <ion-nav-buttons side="primary">
+    <button class="button correctSize secondary" ng-click="cancelParent()" ng-hide="toggleVisibility">Cancel</button>
+
+  </ion-nav-buttons>
+  <ion-content>
+
+<div id="parent" class="card">
+
+      <div class="item item-text-wrap">
+
+        <div style="margin-bottom:15px;">
+        <h2>First Name</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="parent.parentFirstname" style="font-weight:600;" class="item-input textDisable" type="text" placeholder="First Name" value="{{parent.parentFirstname}}">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Last Name</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="parent.parentLastname" class="item-input textDisable" type="text" placeholder="Last Name" value="{{parent.parentLastname}}">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Street</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="parent.parentStreet" class="item-input textDisable" type="text" placeholder="Street" value="{{parent.parentStreet}}">
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>Unit</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="parent.parentUnit" class="item-input textDisable" type="text" placeholder="Unit" value="{{parent.parentUnit}}">
+
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>City</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="parent.parentCity" class="item-input textDisable" type="text" placeholder="City" value="{{parent.parentCity}}">
+
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>State</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="parent.parentState" class="item-input textDisable" type="text" placeholder="State" value="{{parent.parentState}}">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Zip Code</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="parent.parentZipcode" class="item-input textDisable" type="text" placeholder="Zip Code" value="{{parent.parentZipcode}}">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Primary Phone</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="parent.parentPrimaryphone" class="item-input textDisable" type="text" placeholder="Primary Phone" value="{{parent.parentPrimaryphone}}">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Secondary Phone</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="parent.parentSecondaryphone" class="item-input textDisable" type="text" placeholder="Secondary Phone" value="{{parent.parentSecondaryphone}}">
+        </div>
+
+      <div style="margin-bottom:15px;">
+          <h2>Email</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="parent.parentEmailid" class="item-input textDisable" type="text" placeholder="Email" value="{{parent.parentEmailid}}">
+      </div>
+        <div style="margin-bottom:15px;">
+          <h2>Notes</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="parent.parentNotes" class="item-input textDisable" type="text" placeholder="Notes" value="{{parent.parentNotes}}">
+        </div>
+
+    </div>
+    </div>
+
+    <div class="padding" ng-hide="toggleVisibility">
+
+      <button class="button button-assertive button-block" ng-click="deleteParent()" ng-hide="toggleVisibility">
+        Delete Parent
+      </button>
+    </div>
+
+  </ion-content>
+</ion-view>                    

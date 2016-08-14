@@ -1,0 +1,82 @@
+<ion-view view-title="Potential Job" cache-view ="false">
+  <ion-content>
+
+  <div class="list card">
+
+  <div class="item item-body item-divider" style="padding-top:0px;">
+        <h2>The following is a list of questions you should ask yourself when you are asked to be a sitter</h2>
+  </div>
+  
+  <div class="item item-body">
+    <p> <i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150, padding-right:50px;"> Do you know these people?</span> </p>
+      <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Do your parents know them?</span> </p>
+      <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Does someone you know, know them?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> How many kids will you look after?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> What else would they like you to do?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> When do they need you?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Start time?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> End time?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Address?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> How will you get there?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> How will you get back home?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> How much did they offer to pay you?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Did you tell them your rate of pay?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Will you meet for a pre-job meeting?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> If so, when?</span> 
+  </div>
+
+</div>
+
+<p style="font-size:15px;font-weight:150;color:#666;padding-left:15px;padding-right:15px;">Another hard part for babysitters is telling parents what they won’t do.  Although you really want the job, there may be times when you have never done those things or you are not able to do them safely while looking after the kids.  After all, the safety of the kids is your first responsibility and the parents will appreciate your honesty.</p>
+
+ <div class="list card">
+
+  <div class="item item-body item-divider" style="padding-top:0px;">
+        <h2>You must also be aware of things you ARE NOT comfortable with before you meet such as</h2>
+  </div>
+  
+  <div class="item item-body">
+    <p> <i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150, padding-right:50px;"> Do you know these people?</span> </p>
+      <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Cooking on a stove    </span> </p>
+      <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Cooking with a gas stove    </span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Doing their laundry</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Taking the kids to the park</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Taking the kids to the park with a dog</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Giving the kids a bath</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Housework</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Taking them swimming</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Changing diapers</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Lifting the kid if they are physically disabled</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Using emergency tools such as an Epipen</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Staying past a certain time</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Having people you don’t know come over while you are there with the kids</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Dogs, cats or other pets</span> 
+  </div>
+</div>
+
+<div class="list card">
+
+  <div class="item item-body item-divider" style="padding-top:0px;">
+        <h2>Things to ask yourself during the pre-meeting</h2>
+  </div>
+  
+  <div class="item item-body">
+    <p> <i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150, padding-right:50px;"> Would you feel comfortable in their home?</span> </p>
+      <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Would you feel comfortable with these kids?    </span> </p>
+      <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Are you confident in what the parents expect from you?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Are you able to work when they need you?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Are you able to work longer if they are delayed getting back?</span> </p>
+     <p><i class="ion-android-checkbox-blank" style="color:#4a87ee;font-size:15px;"></i> <span style="font-size:15px;font-weight:150"> Is the pay they are offering acceptable?</span> </p>
+  </div>
+  </div>
+
+  <p style="font-size:15px;font-weight:150;color:#666;padding-left:15px;padding-right:15px;"> <span style="color:#4a87ee;">IF YOU ARE COMFORTABLE</span> with everything, you may agree to take the job.  If you are underage, you may need your parents to approve the job first in the event they have some concerns. </p>
+   <p style="font-size:15px;font-weight:150;color:#666;padding-left:15px;padding-right:15px;"><span style="color:#4a87ee;">IF YOU ARE NOT COMFORTABLE</span> with something then let them know RIGHT AWAY.  If you don’t want to say anything to the parents at this point, tell them that you have to speak with your parents or that you will have to check your schedule first.  DO NOT take the job if you are not comfortable. </p>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+
+</ion-content>
+</ion-view>
+
+
+          

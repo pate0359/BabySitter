@@ -1,0 +1,11 @@
+ Emergency plugins by Anna 
+commands:
+bower install ngCordova 
+
+ionic plugin add cordova-plugin-whitelist // used for geolocation permissions from Google website
+
+cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git // this would all text messaging from the app 
+
+cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-geolocation.git // this would allow geolocation in the app 
+
+cordova plugin add org.apache.cordova.inappbrowser // this would allow phone calls from the app 

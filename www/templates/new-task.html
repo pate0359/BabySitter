@@ -1,0 +1,72 @@
+<ion-view view-title="New Task">
+  <ion-nav-buttons side="secondary">
+        <button class="button correctSize secondary" ng-click="saveNewTask()" ng-hide="toggleVisibility">Save</button>
+
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="primary">
+    <button class="button correctSize" ng-click="cancelNewTask()" ng-hide="toggleVisibility">Cancel</button>
+
+  </ion-nav-buttons>
+  <ion-content>
+    <!-- ******************************** Task sub-page ******************************** -->
+    <div id="task" class="card">
+
+      <div class="item item-text-wrap">
+
+           <label ng-hide="isHideClientDescr" style="padding-left:0px; margin-bottom:50px;margin-top:25px;" class="item item-input item-select">
+             <h2>Client Description</h2>
+                <select name="selectClientOption" ng-model="selectClientOption"  ng-options="client as client.clientDesc for client in clientArray" ng-change="getSelectedValue(selectClientOption)">                  
+                </select>
+          </label>
+
+        <div style="margin-bottom:15px;">
+         <h2>Task Title</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="newTaskParams.taskTitle" class="item-input textDisable ios-blue" type="text" placeholder="Task Title">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Task Description</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="newTaskParams.taskDesc" class="item-input textDisable" type="text" placeholder="Description">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>Start Date</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="newTaskParams.taskStartDate" class="item-input textDisable" type="date" placeholder="Start Date">
+
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h2>End Date</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="newTaskParams.taskEndDate" class="item-input textDisable" type="date" placeholder="End Date">
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>Start time</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="newTaskParams.taskStartTime" class="item-input textDisable" type="time" placeholder="Start time">
+
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>End time</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="newTaskParams.taskEndTime" class="item-input textDisable" type="time" placeholder="End Time">
+
+        </div>
+        <div style="margin-bottom:15px;">
+          <h2>Notes</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+          <input ng-model="newTaskParams.taskNotes" class="item-input textDisable" type="text" placeholder="Notes">
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>                    
