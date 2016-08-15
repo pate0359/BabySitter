@@ -25,7 +25,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 .controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory",
   function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate,$ionicHistory) {
 
-  		$ionicNavBarDelegate.showBackButton(false);
+  		$ionicNavBarDelegate.showBackButton(false);	  
 
 	  if ($stateParams.pageFrom == 1){
 
@@ -116,6 +116,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 	Tasks.getTaskById($stateParams.taskId).then(function (task) {
 				  if (!task) return;
 				  $scope.task = task;
+//					$scope.taskStartdate = $scope.task.taskStartdate.toISOString().substring(0, 10);
+//					$scope.taskEnddate = $scope.task.taskEnddate.toISOString().substring(0, 10);
+//					$scope.taskStarttime = $scope.task.taskStarttime.toISOString().substring(0, 10);
+//					$scope.taskEndtime = $scope.task.taskEndtime.toISOString().substring(0, 10);
+
 			});
 	
 	$scope.editTaskDetails = function (e) {

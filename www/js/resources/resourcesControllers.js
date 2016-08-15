@@ -1,6 +1,7 @@
 angular.module('SitterAdvantage.resourcesControllers', [])
 .controller('ResourcesCtrl', ["$scope", "Tasks", "$state", "$cordovaInAppBrowser",
 	function ($scope, Tasks, $state,$cordovaInAppBrowser ) {
+		
 		$scope.resources= [
 			{
 				"title": "Games",
@@ -27,8 +28,6 @@ angular.module('SitterAdvantage.resourcesControllers', [])
 			        console.log('failed to load openWebsite');
 			        console.log(event);
 			      });
-
-
 		}
 
   	}]);

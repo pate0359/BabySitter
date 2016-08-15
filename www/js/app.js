@@ -52,7 +52,7 @@ angular.module('SitterAdvantage',
 })
 
 
-.config(function ($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider,$ionicConfigProvider) {
 
   //inappbrowser to allow loading the website pages within the resource tab
   // var defaultOptions = {
@@ -60,6 +60,8 @@ angular.module('SitterAdvantage',
   //   clearcache: 'no',
   //   toolbar: 'yes'
   // };
+	
+	$ionicConfigProvider.backButton.previousTitleText(false);
 
   // $cordovaInAppBrowserProvider.setDefaultOptions(defaultOptions);
 
