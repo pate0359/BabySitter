@@ -18,7 +18,21 @@
         <h2>Parent Name</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="parent.parentFirstname" style="font-weight:600;" class="item-input textDisable" type="text" placeholder="Parent Name" value="{{parent.parentFirstname}}">
+          <input ng-model="parent.parentFirstname" 
+                 style="font-weight:600;" 
+                 class="item-input textDisable" 
+                 type="text" 
+                 placeholder="Parent Name" 
+                 value="{{parent.parentFirstname}}"
+                 name="parentName"
+                 ng-pattern="stringval">
+            <p style="color:red;"
+                 ng-show="myForm.parentName.$invalid && myForm.parentName.$touched">* This field is required</p>
+<!--
+            <p style="color:red;"
+                 ng-show="myForm.parentName.$invalid">* This field is must contain letters only</p>
+-->
+            
         </div>
           
         <div style="margin-bottom:15px;">

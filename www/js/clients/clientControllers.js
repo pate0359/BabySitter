@@ -304,6 +304,15 @@ angular.module('SitterAdvantage.clientControllers', [])
  function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory,$ionicActionSheet) {
 
         $ionicNavBarDelegate.showBackButton(false);
+     
+     
+     //check if the user input is an integer value
+     $scope.integerval = /^\d*$/;
+     
+     //check if the user input is a string value
+     $scope.stringval = /^[a-zA-Z\s]*$/;
+
+     
 
      //$scope.params = {};
      
@@ -461,6 +470,12 @@ angular.module('SitterAdvantage.clientControllers', [])
  function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory, $ionicActionSheet) {
 
         $ionicNavBarDelegate.showBackButton(false);
+     
+     //check if the user input is an integer value
+     $scope.integerval = /^\d*$/;
+     
+     //check if the user input is a string value
+     $scope.stringval = /^[a-zA-Z\s]*$/;
 
      $scope.kid = {};
      $scope.addPhoto = function () {

@@ -10,7 +10,7 @@
   </ion-nav-buttons>
   <ion-content>
 
-  <div id="kid" class="card">
+  <form id="kid" class="card" name="myForm" novalidate>
 
       <div class="item item-text-wrap">
           
@@ -22,17 +22,22 @@
           </div>
 
         <div style="margin-bottom:15px;" id="myChange">
-        <h2>First Name</h2>
+        <h2>Kid Name</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="kid.kidFirstname" style="font-weight:600;" class="item-input textDisable" type="text" placeholder="First Name">
-        </div>
-
-        <div style="margin-bottom:15px;">
-          <h2>Last Name</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="kid.kidLastname" class="item-input textDisable" type="text" placeholder="Last Name">
+          <input ng-model="kid.kidFirstname"  
+                 class="item-input textDisable" 
+                 type="text" 
+                 placeholder="Kid Name"
+                 name="kidName"
+                 ng-pattern="stringval"
+                 ng-required="true">
+        <p style="color:red;"
+             ng-show="myForm.kidName.$invalid && myForm.kidName.$touched">* This field is required.</p>
+<!--
+            <p style="color:red;"
+             ng-show="myForm.kidName.$invalid">* This field must contain letters only.</p>
+-->
         </div>
 
         <div style="margin-bottom:15px;">
@@ -47,8 +52,16 @@
           <h2>Gender</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="kid.kidGender" class="item-input textDisable" type="text" placeholder="Gender">
+          <input ng-model="kid.kidGender" 
+                 class="item-input textDisable" 
+                 type="text" 
+                 placeholder="Gender"
+                 name="gender"
+                 ng-pattern="stringval">
+            <p style="color:red;"
+               ng-show="myForm.gender.$invalid">* This field must contain letters only.</p>
         </div>
+          
         <div style="margin-bottom:15px;">
           <h2>Allergies</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
@@ -77,6 +90,6 @@
         </div>
 
   </div>
-</div>
+</form>
   </ion-content>
 </ion-view>
