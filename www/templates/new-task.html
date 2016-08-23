@@ -12,18 +12,22 @@
     <!-- ******************************** Task sub-page ******************************** -->
     <div id="task" class="card">
 
-      <div class="item item-text-wrap">
+      <form class="item item-text-wrap" name="myForm" novalidate>
 
            <label ng-hide="isHideClientDescr" style="padding-left:0px; margin-bottom:50px;margin-top:25px;" class="item item-input item-select">
              <h2>Family Name</h2>
-                <select name="selectClientOption" ng-model="selectClientOption"  ng-options="client as client.clientDesc for client in clientArray" ng-change="getSelectedValue(selectClientOption)">                  
+                <select name="selectClientOption" ng-model="selectClientOption"  ng-required="true" ng-options="client as client.clientDesc for client in clientArray" ng-change="getSelectedValue(selectClientOption)" required>  
                 </select>
           </label>
+           <p style="color: red;" class="error" ng-show="myForm.selectClientOption.$invalid && myForm.selectClientOption.$touched">Family name is required.</p>
 
         <div style="margin-bottom:15px;">
-         <h2>Task Title</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="newTaskParams.taskTitle" class="item-input textDisable ios-blue" type="text" placeholder="Task Title">
+            
+            <h2>Task Title</h2>
+            <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;background-color:#ddd;" />
+            <input name="taskTitle" ng-model="newTaskParams.taskTitle" class="item-input textDisable" type="text" placeholder="Task Title" ng-required="true">           
+            <p style="color: red;" class="error" ng-show="myForm.taskTitle.$invalid && myForm.taskTitle.$touched">Task title is required.</p>
+
         </div>
 
         <div style="margin-bottom:15px;">
@@ -37,7 +41,15 @@
           <h2>Start Date</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="newTaskParams.taskStartDate" class="item-input textDisable" type="date" placeholder="Start Date">
+          <input ng-model="newTaskParams.taskStartDate" class="item-input textDisable" type="date" placeholder="Please insert starting date" for="startDate">
+        </div>
+          <p style="color:red;">{{errMessage2}}</p>
+          
+          <div style="margin-bottom:15px;">
+          <h2>Start time</h2>
+          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+
+          <input ng-model="newTaskParams.taskStartTime" class="item-input textDisable" type="time" placeholder="Start time">
 
         </div>
 
@@ -45,15 +57,10 @@
           <h2>End Date</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="newTaskParams.taskEndDate" class="item-input textDisable" type="date" placeholder="End Date">
+          <input ng-model="newTaskParams.taskEndDate" class="item-input textDisable" type="date" placeholder="End Date" ng-change="checkErr(newTaskParams.taskStartDate,newTaskParams.taskEndDate)" for="endDate">
         </div>
-        <div style="margin-bottom:15px;">
-          <h2>Start time</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="newTaskParams.taskStartTime" class="item-input textDisable" type="time" placeholder="Start time">
-
-        </div>
+          <p style="color:red;">{{errMessage1}}</p>
+        
         <div style="margin-bottom:15px;">
           <h2>End time</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
@@ -66,7 +73,7 @@
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
           <input ng-model="newTaskParams.taskNotes" class="item-input textDisable" type="text" placeholder="Notes">
         </div>
-      </div>
+      </form>
     </div>
   </ion-content>
 </ion-view>                    

@@ -10,24 +10,17 @@
   </ion-nav-buttons>
   <ion-content>
 
-<div id="parent" class="card">
+<form id="parent" class="card" name="myForm">
 
       <div class="item item-text-wrap">
 
         <div style="margin-bottom:15px;">
-        <h2>First Name</h2>
+        <h2>Parent Name</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="parent.parentFirstname" style="font-weight:600;" class="item-input textDisable" type="text" placeholder="First Name" value="{{parent.parentFirstname}}">
+          <input ng-model="parent.parentFirstname" style="font-weight:600;" class="item-input textDisable" type="text" placeholder="Parent Name" value="{{parent.parentFirstname}}">
         </div>
-
-        <div style="margin-bottom:15px;">
-          <h2>Last Name</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="parent.parentLastname" class="item-input textDisable" type="text" placeholder="Last Name" value="{{parent.parentLastname}}">
-        </div>
-
+          
         <div style="margin-bottom:15px;">
           <h2>Street</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
@@ -85,7 +78,7 @@
         </div>
 
     </div>
-    </div>
+    </form>
 
     <div class="padding" ng-hide="toggleVisibility">
 

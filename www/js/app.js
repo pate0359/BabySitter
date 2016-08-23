@@ -8,7 +8,7 @@ angular.module('SitterAdvantage',
 .run(function(Tasks, Clients, dbService,$ionicPlatform, $cordovaSQLite) {
   
     $ionicPlatform.ready(function() {
-		
+
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
                      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                      cordova.plugins.Keyboard.disableScroll(true);
@@ -19,17 +19,8 @@ angular.module('SitterAdvantage',
             StatusBar.styleDefault();
         }
     
-    if (window.cordova && window.SQLitePlugin) { // because Cordova is platform specific and doesn't work when you run ionic serve
-                         
-		window.sqlitePlugin.echoTest(function() {
-			console.log('ECHO test OK');
-		  });
-		
-		 window.sqlitePlugin.selfTest(function() {
-			console.log('SELF test OK');
-		  });
-		
-		 	db = window.sqlitePlugin.openDatabase({name: 'sitter.db', location: 'default'});            
+    if (window.cordova && window.SQLitePlugin) { // because Cordova is platform specific and doesn't work when you run ionic serve               
+            db = window.sqlitePlugin.openDatabase({ "name": "sitter.db" }); //device - SQLite
             //alert("device db (SQLite) loaded");
         } else {
 
@@ -44,15 +35,12 @@ angular.module('SitterAdvantage',
             dbService.insertTestData();
             //Tasks.loadFromDB();
             //Clients.loadFromDB();
-                         }else{
-                         
-                            alert("db not loaded");
-                         }
+    }
     });
 })
 
 
-.config(function ($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider,$ionicConfigProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider) {
 
   //inappbrowser to allow loading the website pages within the resource tab
   // var defaultOptions = {
@@ -60,8 +48,6 @@ angular.module('SitterAdvantage',
   //   clearcache: 'no',
   //   toolbar: 'yes'
   // };
-	
-	$ionicConfigProvider.backButton.previousTitleText(false);
 
   // $cordovaInAppBrowserProvider.setDefaultOptions(defaultOptions);
 

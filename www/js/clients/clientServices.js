@@ -1,7 +1,15 @@
 angular.module('SitterAdvantage.clientServices', [])
 
 .factory('Clients', ['dbService', '$q', function (dbService, $q) {
+
+    var clients = [];
+    var parents = [];
+    var kids = [];
+    var tasks = [];
+
     return {
+
+        //var clientId;
 
         //// ********************* Client  ********************* ////
 

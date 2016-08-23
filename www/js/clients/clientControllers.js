@@ -37,7 +37,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 
                 var popUp = $ionicPopup.show({
                     template: '<input type="text" ng-model="selectedClient.clientDesc" />',
-                    title: 'Edit Client Description',
+                    title: 'Edit Family Name',
                     scope: $scope,
                     buttons: [
                         {
@@ -431,9 +431,15 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 .controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory",
  function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory) {
+     
+     //check if the user input is an integer value
+     $scope.integerval = /^\d*$/;
+     
+     //check if the user input is a string value
+     $scope.stringval = /^[a-zA-Z\s]*$/;
 
         $ionicNavBarDelegate.showBackButton(false);
-
+     
      $scope.params = {};
 
         $scope.saveParent = function () {
@@ -449,8 +455,6 @@ angular.module('SitterAdvantage.clientControllers', [])
         $scope.cancelParent = function () {
             $ionicHistory.goBack();
         }
-
-
 }])
 
 .controller('NewKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory","$ionicActionSheet",
