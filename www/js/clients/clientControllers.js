@@ -302,6 +302,13 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 .controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory","$ionicActionSheet",
  function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory,$ionicActionSheet) {
+    
+     
+     //check if the user input is an integer value
+     $scope.integerval = /^\d*$/;
+     
+     //check if the user input is a string value
+     $scope.stringval = /^[a-zA-Z\s]*$/;
 
         $ionicNavBarDelegate.showBackButton(false);
      
