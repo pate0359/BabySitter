@@ -372,6 +372,12 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 .controller('EditKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicActionSheet", "$ionicHistory",
  function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicActionSheet, $ionicHistory) {
+     
+      //check if the user input is an integer value
+     $scope.integerval = /^\d*$/;
+     
+     //check if the user input is a string value
+     $scope.stringval = /^[a-zA-Z\s]*$/;
 
 
         Clients.getKidById($stateParams.kidId).then(function (kid) {
