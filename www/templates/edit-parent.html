@@ -28,10 +28,6 @@
                  ng-required="true">
                 <p style="color:red;"
                  ng-show="myForm.parentName.$invalid && myForm.parentName.$touched">* This field is required</p>
-<!--
-            <p style="color:red;"
-                 ng-show="myForm.parentName.$invalid">* This field is must contain letters only</p>
--->
             
         </div>
           
@@ -137,7 +133,7 @@
 
     <div class="padding" ng-hide="toggleVisibility">
 
-      <button class="button button-assertive button-block" ng-click="deleteParent()" ng-hide="toggleVisibility">
+      <button class="button myred button-block" ng-click="deleteParent()" ng-hide="toggleVisibility">
         Delete Parent
       </button>
     </div>
