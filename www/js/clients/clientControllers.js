@@ -1,7 +1,8 @@
 angular.module('SitterAdvantage.clientControllers', [])
     .controller('ClientsCtrl', ["$scope", "Clients", "$ionicPopup", "$state", "$ionicActionSheet", "$ionicHistory",
  function ($scope, Clients, $ionicPopup, $state,$ionicActionSheet, $ionicHistory) {
-
+     
+     
             console.log("ClientsCtrl is loaded");
             $scope.clients = [];
 
@@ -153,9 +154,10 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 
                     $state.go("tab.client-detail", {
-                        clientId: clientId
+                        clientId: clientId,
                     });
-                    //$state.go("#/tab/clients/"+clientId);
+                    
+                    
                 }, function (error) { //"error" --> deferred.reject(err);
 
                     console.log(error)

@@ -25,9 +25,9 @@
             
             <h2>Task Title</h2>
             <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;background-color:#ddd;" />
-            <input name="taskTitle" ng-model="newTaskParams.taskTitle" class="item-input textDisable" type="text" placeholder="Task Title" ng-required="true">           
-            <p style="color: red;" class="error" ng-show="myForm.taskTitle.$invalid && myForm.taskTitle.$touched">Task title is required.</p>
-
+            <input name="taskTitle" ng-model="newTaskParams.taskTitle" class="item-input textDisable" type="text" placeholder="Task Title" ng-required="true"
+                   ng-pattern="stringval">           
+            <p style="color: red;" class="error" ng-show="myForm.taskTitle.$invalid && myForm.taskTitle.$touched">This field is required.</p>
         </div>
 
         <div style="margin-bottom:15px;">

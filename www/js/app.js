@@ -10,7 +10,7 @@ angular.module('SitterAdvantage',
     $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-                     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
                      cordova.plugins.Keyboard.disableScroll(true);
                      
         }
@@ -232,8 +232,16 @@ angular.module('SitterAdvantage',
             }
           }
         })
-
-
+  
+  .state('tab.instructions', {
+          url: '/resources/instructions',
+          views: {
+            'tab-resources': {
+              templateUrl: 'templates/instructions.html',
+              controller: 'InstructionsCtrl'
+            }
+          }
+        })
     ;
 
   // if none of the above states are matched, use this as the fallback

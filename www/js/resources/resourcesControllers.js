@@ -7,13 +7,14 @@ angular.module('SitterAdvantage.resourcesControllers', [])
 				"url": "http://www.whattodowiththekids.com/games/"
 			},
 			{
-				"title": "Activities",
-				"url": "http://www.whattodowiththekids.com/activities/"
+				"title": "Crafts",
+				"url": "http://www.whattodowiththekids.com/crafts/"
 
 			},
 			{
-				"title": "Crafts",
-				"url": "http://www.whattodowiththekids.com/crafts/"
+				
+                "title": "Activities",
+				"url": "http://www.whattodowiththekids.com/activities/"
 			}
 		]
 		$scope.openWebsite = function(index){
@@ -31,5 +32,16 @@ angular.module('SitterAdvantage.resourcesControllers', [])
 
 		}
 
-  	}]);
+  	}])
+
+.controller('InstructionsCtrl', ["$scope", "Tasks", "$state", "$cordovaInAppBrowser", "$stateParams", "$ionicNavBarDelegate", "$ionicHistory",
+	function ($scope, Tasks, $state,$cordovaInAppBrowser, $stateParams, $ionicNavBarDelegate, $ionicHistory ) {
+               
+        $ionicNavBarDelegate.showBackButton(true);
+        
+        $scope.goBack = function(){
+            $ionicHistory.goBack();
+        }
+	
+}]);
 

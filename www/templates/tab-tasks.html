@@ -13,9 +13,6 @@
   </div>
 
   <ion-item type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
-      
-       
-
       <h2>{{task.clientDesc}}</h2>
       <span class="item-note">
       {{task.taskStarttime}}
@@ -26,5 +23,11 @@
  </div>
  
 </ion-list>
+      <div class="padding">
+
+      <button class="button button-balanced button-block" ng-click="goToInstructions()">
+        How to Use SitterAdvantage™
+      </button>
+    </div>
   </ion-content>
-</ion-view> 
+</ion-view>

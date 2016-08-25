@@ -14,10 +14,20 @@ angular.module('SitterAdvantage.taskControllers', [])
 			var item = $scope.tasks[$index];
 			$state.go('tab.task-detail' + item.taskId);
 		}
+        
+        $scope.goToInstructions = function(){
+            $state.go('tab.instructions');
+        }
       }])
 
 .controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory",
   function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate,$ionicHistory) {
+      
+      //check if the user input is an integer value
+     $scope.integerval = /^\d*$/;
+     
+     //check if the user input is a string value
+     $scope.stringval = /^[a-zA-Z\s]*$/;
       
       //validating start and end dates
       
