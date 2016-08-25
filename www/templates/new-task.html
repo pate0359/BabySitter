@@ -38,36 +38,21 @@
         </div>
 
         <div style="margin-bottom:15px;">
-          <h2>Start Date</h2>
+          <h2>Start Date&amp;Time</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="newTaskParams.taskStartDate" class="item-input textDisable" type="date" placeholder="Please insert starting date" for="startDate">
+          <input ng-model="newTaskParams.taskStartDateTime" class="item-input textDisable" type="date" placeholder="Please insert starting date" for="startDate">
         </div>
           <p style="color:red;">{{errMessage2}}</p>
           
-          <div style="margin-bottom:15px;">
-          <h2>Start time</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="newTaskParams.taskStartTime" class="item-input textDisable" type="time" placeholder="Start time">
-
-        </div>
-
         <div style="margin-bottom:15px;">
-          <h2>End Date</h2>
+          <h2>End Date&amp;Time</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="newTaskParams.taskEndDate" class="item-input textDisable" type="date" placeholder="End Date" ng-change="checkErr(newTaskParams.taskStartDate,newTaskParams.taskEndDate)" for="endDate">
+          <input ng-model="newTaskParams.taskEndDateTime" class="item-input textDisable" type="date" placeholder="End Date" ng-change="checkErr(newTaskParams.taskStartDateTime,newTaskParams.taskEndDateTime)" for="endDate">
         </div>
           <p style="color:red;">{{errMessage1}}</p>
         
-        <div style="margin-bottom:15px;">
-          <h2>End time</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="newTaskParams.taskEndTime" class="item-input textDisable" type="time" placeholder="End Time">
-
-        </div>
         <div style="margin-bottom:15px;">
           <h2>Notes</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />

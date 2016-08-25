@@ -37,37 +37,21 @@
                         </div>
                 
                 <div style="margin-bottom:15px;">
-                    <h2>Start Date</h2>
+                    <h2>Start Date&amp;Time</h2>
                     <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
                     
-                    <input ng-model="task.taskStartdate" name="taskStartdate" ng-show="disableEnableForm" class="item-input textDisable" type="date" placeholder="Start Date">
-                        <p ng-show="!disableEnableForm">{{task.taskStartdate}}</p>
+                    <input ng-model="task.taskStartDateTime" name="taskStartdate" ng-show="disableEnableForm" class="item-input textDisable" type="date" placeholder="Start Date">
+                        <p ng-show="!disableEnableForm">{{task.taskStartDateTime}}</p>
                         
                         </div>
                 
                 <div style="margin-bottom:15px;">
-                    <h2>End Date</h2>
+                    <h2>End Date&amp;Time</h2>
                     <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
                     
-                    <input ng-model="task.taskEnddate" name="taskEnddate" ng-show="disableEnableForm" class="item-input textDisable" type="date" placeholder="End Date">
-                        <p ng-show="!disableEnableForm">{{task.taskEnddate}}</p>
-                        </div>
-                <div style="margin-bottom:15px;">
-                    <h2>Start time</h2>
-                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-                    
-                    <input ng-model="task.taskStarttime" name="taskStarttime" ng-show="disableEnableForm" class="item-input textDisable" type="time" placeholder="Start time">
-                        <p ng-show="!disableEnableForm">{{task.taskStarttime}}</p>
-                        
-                        </div>
-                <div style="margin-bottom:15px;">
-                    <h2>End time</h2>
-                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-                    
-                    <input ng-model="task.taskEndtime" name="taskEndtime" ng-show="disableEnableForm" class="item-input textDisable" type="time" placeholder="End Time">
-                        <p ng-show="!disableEnableForm">{{task.taskEndtime}}</p>
-                        
-                        </div>
+                    <input ng-model="task.taskEndDateTime" name="taskEnddate" ng-show="disableEnableForm" class="item-input textDisable" type="date" placeholder="End Date">
+                        <p ng-show="!disableEnableForm">{{task.taskEndDateTime}}</p>
+                        </div>                
                 <div style="margin-bottom:15px;">
                     <h2>Notes</h2>
                     <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />

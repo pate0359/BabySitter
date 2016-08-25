@@ -41,10 +41,8 @@ angular.module('SitterAdvantage.taskServices', [])
         
         console.log("inside createNewTask");
         console.log(params);
-
-        var query = "INSERT INTO tasks (taskTitle, taskDescription, taskStartdate, taskEnddate, taskStarttime, taskEndtime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?,?,?)";
-        // var query = "INSERT INTO tasks (taskTitle, taskDescription, taskStartdate, taskEnddate, taskStarttime, taskEndtime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?,?,?)";
-
+	  
+        var query = "INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime,taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)";
         var querySuccessCallback = function(tx, res) {
           // console.log(res.insertId);   
             // // get task id for new client after adding it.
@@ -58,11 +56,9 @@ angular.module('SitterAdvantage.taskServices', [])
             tasks.push({
               "taskId":res.insertId, 
                 "taskTitle":params.taskTitle, 
-                "taskDescription":params.taskDescription, 
-                "taskStartdate":params.startDate, 
-                "taskEnddate":params.endDate, 
-                "taskStarttime":params.startTime, 
-                "taskEndtime":params.endTime, 
+                "taskDescription":params.taskDescription, 				
+                "taskStartDateTime":params.startDateTime, 
+                "taskEndDateTime":params.endDateTime,                 
                 "taskNotes":params.taskNotes, 
                 "clientId" :params.clientId,
                 "kidId" :params.kidId
@@ -88,7 +84,7 @@ angular.module('SitterAdvantage.taskServices', [])
    
     //dbService.executeStatement(query,[description, id], querySuccessCallback, queryErrorCallback );
 	  
-        var query = "UPDATE tasks SET taskTitle = ?, taskDescription = ?, taskStartdate = ?, taskEnddate = ?, taskStarttime = ?, taskEndtime = ?, taskNotes = ?, clientId = ? WHERE taskId = ? ";
+        var query = "UPDATE tasks SET taskTitle = ?, taskDescription = ?, taskStartDateTime = ?, taskEndDateTime = ?, taskNotes = ?, clientId = ? WHERE taskId = ? ";
 	  
         var querySuccessCallback = function(tx, res) {
           // console.log(res.insertId);   

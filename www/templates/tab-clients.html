@@ -8,7 +8,7 @@
     <ion-list>
       <ion-item class="item-icon-right" ng-repeat="client in clients" type="item-text-wrap" href="#/tab/clients/{{client.clientId}}">
         <h2>{{client.clientDesc}}</h2>
-        <p><span ng-repeat="(index, kid) in client.kids">{{kid.kidFirstname + ((index !== client.kids.length -1)?', ': '')}}</span></p>
+        <p><span ng-repeat="(index, kid) in client.kids">{{kid.kidName + ((index !== client.kids.length -1)?', ': '')}}</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-balanced" ng-click="editClientDescription($index)">
@@ -21,4 +21,3 @@
     </ion-list>
   </ion-content>
 </ion-view>
-

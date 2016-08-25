@@ -222,7 +222,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
 
-            var query = "INSERT INTO kids (kidFirstname, kidLastname, kidBirthdate, kidGender, kidNotes, kidPicture,clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            var query = "INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture,clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)";
             var queryErrorCallback = function (err) {
                 console.error(err);
                 d.resolve(err);
@@ -246,7 +246,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
             var id = kidInfo.kidId;
-            var query = 'UPDATE kids SET kidFirstname = ?, kidLastname = ?, kidBirthdate = ?, kidGender = ?, kidNotes = ?, kidPicture = ?,  allergyDescription = ?,disabilityDescription = ?, medicationDescription = ? WHERE kidId=?';
+            var query = 'UPDATE kids SET kidName = ?, kidBirthdate = ?, kidGender = ?, kidNotes = ?, kidPicture = ?,  allergyDescription = ?,disabilityDescription = ?, medicationDescription = ? WHERE kidId=?';
             
             var queryErrorCallback = function (err) {
                 console.error(err);
@@ -258,7 +258,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
                 d.resolve(res);
             };
-            dbService.executeStatement(query, [kidInfo.kidFirstname , kidInfo.kidLastname , kidInfo.kidBirthdate, kidInfo.kidGender, kidInfo.kidNotes, kidInfo.kidPicture,  kidInfo.allergyDescription,kidInfo.disabilityDescription, kidInfo.medicationDescription, id], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [kidInfo.kidName , kidInfo.kidBirthdate, kidInfo.kidGender, kidInfo.kidNotes, kidInfo.kidPicture,  kidInfo.allergyDescription,kidInfo.disabilityDescription, kidInfo.medicationDescription, id], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },
@@ -339,7 +339,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
 
-            var query = "INSERT INTO parents (parentFirstname, parentLastname, parentNotes, parentStreet, parentUnit, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            var query = "INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)";
             var queryErrorCallback = function (err) {
                 console.error(err);
                 d.resolve(err);
@@ -351,7 +351,7 @@ angular.module('SitterAdvantage.clientServices', [])
                 d.resolve(res.insertId);
             };
 
-            dbService.executeStatement(query, [params.parentFirstname, params.parentLastname, params.parentNotes, params.parentStreet, params.parentUnit, params.parentCity, params.parentState, params.parentZipcode, params.parentPrimaryphone, params.parentSecondaryphone, params.parentEmailid, params.clientId], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [params.parentName, params.parentNotes, params.parentStreet, params.parentCity, params.parentState, params.parentZipcode, params.parentPrimaryphone, params.parentSecondaryphone, params.parentEmailid, params.clientId], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },
@@ -361,7 +361,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
             var id = parentInfo.parentId;
-            var query = 'UPDATE parents SET parentFirstname = ?, parentLastname = ?, parentNotes = ?, parentStreet = ?, parentUnit = ?, parentCity = ?, parentState = ?, parentZipcode = ?, parentPrimaryphone = ?, parentSecondaryphone = ?, parentEmailid = ?, clientId = ? WHERE parentId=?';
+            var query = 'UPDATE parents SET parentName = ?, parentNotes = ?, parentStreet = ?, parentUnit = ?, parentCity = ?, parentState = ?, parentZipcode = ?, parentPrimaryphone = ?, parentSecondaryphone = ?, parentEmailid = ?, clientId = ? WHERE parentId=?';
             
             var queryErrorCallback = function (err) {
                 console.log(err);
@@ -373,7 +373,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
                 d.resolve(res);
             };
-            dbService.executeStatement(query, [parentInfo.parentFirstname , parentInfo.parentLastname, parentInfo.parentNotes, parentInfo.parentStreet, parentInfo.parentUnit, parentInfo.parentCity, parentInfo.parentState, parentInfo.parentZipcode, parentInfo.parentPrimaryphone, parentInfo.parentSecondaryphone, parentInfo.parentEmailid, parentInfo.clientId, id], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [parentInfo.parentName, parentInfo.parentNotes, parentInfo.parentStreet,  parentInfo.parentCity, parentInfo.parentState, parentInfo.parentZipcode, parentInfo.parentPrimaryphone, parentInfo.parentSecondaryphone, parentInfo.parentEmailid, parentInfo.clientId, id], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },
