@@ -144,7 +144,25 @@ text-align: right;
     background-color: #28903A;
 }
 
+/*
 .myblue {
     color: white;
     background-color: #214687;
 }
+*/
+
+.bar.bar-positive {
+color: white;
+  background-color: #3b5998;
+}
+
+/*
+.bar.bar-positive {
+    border-color: red;
+    background-color: red;
+    background-image: linear-gradient(0deg, #0c60ee, #0c60ee 50%, transparent 50%);
+    color: #fff; }
+    .bar.bar-positive .title {
+      color: #fff; 
+}
+*/

@@ -245,17 +245,17 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 					templateUrl: 'templates/pre-job-checklist.html'
 				}
 			}
-		})
+		});
 
-	.state('tab.instructions', {
-		url: '/resources/instructions',
-		views: {
-			'tab-resources': {
-				templateUrl: 'templates/instructions.html',
-				controller: 'InstructionsCtrl'
-			}
-		}
-	});
+//	.state('tab.instructions', {
+//		url: '/resources/instructions',
+//		views: {
+//			'tab-resources': {
+//				templateUrl: 'templates/instructions.html',
+//				controller: 'InstructionsCtrl'
+//			}
+//		}
+//	});
 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/tab/tasks');
