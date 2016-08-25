@@ -1,4 +1,5 @@
 <ion-view view-title="{{pageTitle}}">
+    <ion-nav-bar class="myblue">
     <ion-nav-buttons side="secondary">
         <button class="button correctSize" ng-click="editTaskDetails()"  ng-hide="toggleVisibility">Edit</button>
         <button class="button correctSize" ng-click="saveTaskDetails()"  ng-hide="!toggleVisibility">Save</button>
@@ -6,6 +7,7 @@
     <ion-nav-buttons side="primary">
         <button class="button correctSize secondary" ng-click="cancelTaskDetails()" ng-hide="!toggleVisibility">Cancel</button>
     </ion-nav-buttons>
+    </ion-nav-bar>
     <ion-content>
         <!-- ******************************** Task sub-page ******************************** -->
         <form id="task" class="card" name="myForm" novalidate>

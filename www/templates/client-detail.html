@@ -1,4 +1,7 @@
-<ion-view cache-view="false" view-title="{{selectedClient.clientDesc}}">
+<ion-view cache-view="false">
+    <ion-nav-title>{{selectedClient.clientDesc}}</ion-nav-title>
+        <ion-nav-bar class="myblue">
+    </ion-nav-bar>
 	<ion-content class="padding">
 		<ti-segmented-control on-select="buttonClicked($index)" class="padding-bottom">
 			<ti-segmented-control-button class="button-energized" title="'Parents'" ng-selected="selectedParent">
@@ -64,7 +67,7 @@
 			</div>
 
 			<div ng-switch-when="0">
-				 <button class="button button-balanced button-block" ng-click="addNewParent()" ng-hide="toggleVisibility">Add New Parent</button>
+				 <button class="button mygreen button-block" ng-click="addNewParent()" ng-hide="toggleVisibility">Add New Parent</button>
     		</div>
 
 			
@@ -122,7 +125,7 @@
 						
 			</div>
 			<div id="kid" ng-switch-when="1">
-				 <button class="button button-balanced button-block" ng-click="addNewKid()" ng-hide="toggleVisibility">Add New Kid</button>
+				 <button class="button mygreen button-block" ng-click="addNewKid()" ng-hide="toggleVisibility">Add New Kid</button>
     			</div>
 
 			<!-- ******************************** Task sub-page ******************************** -->
@@ -180,7 +183,7 @@
 			</div>
 
 			<div id="task" ng-switch-when="2">
-				 <button class="button button-balanced button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
+				 <button class="button mygreen button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
     		</div>
 			<!-- ******************************** Task sub-page ******************************** -->
 		</div>
