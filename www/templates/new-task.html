@@ -38,18 +38,35 @@
         </div>
 
         <div style="margin-bottom:15px;">
-          <h2>Start Date&amp;Time</h2>
+          <h2>Start Date and Time</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="newTaskParams.taskStartDateTime" class="item-input textDisable" type="date" placeholder="Please insert starting date" for="startDate">
+<!--			<input ion-datetime-picker ng-model="datetimeValue"/>-->
+<!--			<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>-->
+<!--
+			<ion-item>
+  <ion-label>Date</ion-label>
+  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+</ion-item>
+-->
+        
+			<div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="start_date_time" name="start_date_time" ng-model="newTaskParams.startdatetimeValue" required="required" for="startDate">
+                <p ng-show="newTaskParams.startdatetimeValue == null">Pick Start Date Time</p>
+				<p ng-show="newTaskParams.startdatetimeValue != null" style="color:black;">{{newTaskParams.startdatetimeValue| date: "yyyy MMM dd HH:mm:a"}}</p>
+            </div>
+			
         </div>
           <p style="color:red;">{{errMessage2}}</p>
           
         <div style="margin-bottom:15px;">
-          <h2>End Date&amp;Time</h2>
+          <h2>End Date and Time</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="newTaskParams.taskEndDateTime" class="item-input textDisable" type="date" placeholder="End Date" ng-change="checkErr(newTaskParams.taskStartDateTime,newTaskParams.taskEndDateTime)" for="endDate">
+			<div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="end_date_time" name="end_date_time" ng-model="newTaskParams.enddatetimeValue" required="required" ng-change="checkErr(newTaskParams.startdatetimeValue,newTaskParams.enddatetimeValue)" for="endDate">
+                <p ng-show="newTaskParams.enddatetimeValue == null">Pick End Date Time</p>
+				<p ng-show="newTaskParams.enddatetimeValue != null" style="color:black;">{{newTaskParams.enddatetimeValue| date: "yyyy MMM dd HH:mm:a"}}</p>
+            </div>
+						
         </div>
           <p style="color:red;">{{errMessage1}}</p>
         

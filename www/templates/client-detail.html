@@ -6,13 +6,13 @@
 -->
 	<ion-content class="padding">
 		<ti-segmented-control on-select="buttonClicked($index)" class="padding-bottom">
-			<ti-segmented-control-button class="button-energized" title="'Parents'" ng-selected="selectedParent">
+			<ti-segmented-control-button class="button-assertive" title="'Parents'" ng-selected="selectedParent">
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button class="button-energized" title="'Kids'" ng-selected="selectedKid">
+			<ti-segmented-control-button class="button-assertive" title="'Kids'" ng-selected="selectedKid">
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button class="button-energized" title="'Tasks'" ng-selected="selectedTask">
+			<ti-segmented-control-button class="button-assertive" title="'Tasks'" ng-selected="selectedTask">
 			</ti-segmented-control-button>
 		</ti-segmented-control>
 
@@ -155,13 +155,13 @@
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>Start Date</h2>
+							<h2>Start Date and Time</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{task.taskStartDateTime}}</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>End Date</h2>
+							<h2>End Date and Time</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{task.taskEndDateTime}}</p>
 						</div>

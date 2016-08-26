@@ -236,7 +236,7 @@ angular.module('SitterAdvantage.clientServices', [])
                 //TO:DO - Insert Kid in client array
 
             };
-            dbService.executeStatement(query, [params.kidFirstname, params.kidLastname, params.kidBirthdate, params.kidGender, params.kidNotes, params.kidPicture, params.clientId, params.allergyDescription, params.disabilityDescription, params.medicationDescription], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [params.kidName, params.kidBirthdate, params.kidGender, params.kidNotes, params.kidPicture, params.clientId, params.allergyDescription, params.disabilityDescription, params.medicationDescription], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },
@@ -361,7 +361,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
             var id = parentInfo.parentId;
-            var query = 'UPDATE parents SET parentName = ?, parentNotes = ?, parentStreet = ?, parentUnit = ?, parentCity = ?, parentState = ?, parentZipcode = ?, parentPrimaryphone = ?, parentSecondaryphone = ?, parentEmailid = ?, clientId = ? WHERE parentId=?';
+            var query = 'UPDATE parents SET parentName = ?, parentNotes = ?, parentStreet = ?, parentCity = ?, parentState = ?, parentZipcode = ?, parentPrimaryphone = ?, parentSecondaryphone = ?, parentEmailid = ?, clientId = ? WHERE parentId=?';
             
             var queryErrorCallback = function (err) {
                 console.log(err);
@@ -433,28 +433,5 @@ angular.module('SitterAdvantage.clientServices', [])
 
             return d.promise;
         }
-
     }
-
-    /* ---------------------------------------------------------------
-  ____________________Update/Edit new client ____________________________
-  Update data for each new client including kid, parent and tasks */
-
-
-    //    return {
-    //        loadFromDB: loadFromDB,
-    //        all: function () {
-    //            return clients;
-    //        },
-    //        remove: function (client) {
-    //            clients.splice(clients.indexOf(client), 1);
-    //        },
-    //        hasAlert: function () {
-    //            return true;
-    //        },
-    //        createNewClient: createNewClient,
-    //        editClient: editClient,
-    //        addNewClient: addNewClient
-    //
-    //    };
 }]);

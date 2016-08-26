@@ -1,165 +1,119 @@
 var db;
 angular.module('SitterAdvantage.taskServices', [])
 
-.factory('Tasks', function(dbService) {
+.factory('Tasks', function(dbService,$q) {
   var tasks = [];
   var taskId;
   var myTasks = {};
+	 return {
 
-  var loadFromDB = function(){
+        //// ********************* Client  ********************* ////
 
-    tasks = [];
-    
-    var query = "SELECT * FROM tasks t INNER JOIN clients c WHERE t.clientId = c.clientId";
-    var querySuccessCallback = function(tx, res) {
-       console.log("select statement for tasks succeeded");
-       console.log( "task count " + res.rows.length );
+        //Get all task
+        getAllTask: function () {
 
-       console.log(res.rows);
+			var d = $q.defer();
+			var query = "SELECT * FROM tasks t INNER JOIN clients c WHERE t.clientId = c.clientId";
+			var querySuccessCallback = function (tx, res) {
+				console.log("select statement for tasks succeeded");
+				console.log("task count " + res.rows.length);
 
-       for (var t = 0; t < res.rows.length; t++){
-        tasks.push(res.rows.item(t));
-       }
+				var tasks = [];
+				for (var t = 0; t < res.rows.length; t++) {
+					tasks.push(res.rows.item(t));
+				}
 
-       console.log(tasks);
-       // call create new task([]);
-       
-    };
-    var queryErrorCallback = function (err) {
-       console.log("select statement for tasks failed");
-       console.error(err);
-    };
+				console.log(tasks);
+				d.resolve(tasks);
+			};
+			var queryErrorCallback = function (err) {
+				console.error(err);
+				d.resolve(err);
+			};
+			dbService.executeStatement(query, [], querySuccessCallback, queryErrorCallback);
+			return d.promise;
+		},
+		 
+		 getTaskById: function (taskId) {
 
-    dbService.executeStatement(query, [], querySuccessCallback, queryErrorCallback ); 
-  }
+            var d = $q.defer();
 
+            var query = "SELECT * FROM tasks WHERE taskId = ?";
+            var queryErrorCallback = function (err) {
+                console.error(err);
+                d.resolve(err);
+            }
+            var querySuccessCallback = function (tx, res) {
+                console.log(res.rows.item(0));
+                
+                var task = res.rows.item(0);
+                d.resolve(task);
+            };
 
-/*---------------------------------------------------------------
-  ____________________Insert new task ____________________________
-  Save data for each new task______________________________________ */
-  var createNewTask = function(params){
-        
-        console.log("inside createNewTask");
-        console.log(params);
+            dbService.executeStatement(query, [taskId], querySuccessCallback, queryErrorCallback);
+
+            return d.promise;
+        },
+		 
+		 //create New task
+        createNewTask: function (params) {
+
+			var d = $q.defer();
+			 var query = "INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime,taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)";
+
+			var querySuccessCallback = function(tx, res) {
+				// // get task id for new client after adding it.
+				console.log("insert statement for adding a newTask succeeded");  
+				console.log(res);
+				d.resolve(res.insertId);
+			};
+
+			var queryErrorCallback = function (err) {
+			   console.log("insert statement for tasks failed");
+				d.resolve(err);
+			};
+
+   			 dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.taskStartDateTime, params.taskEndDateTime, params.taskNotes, params.clientId,params.kidId], querySuccessCallback, queryErrorCallback );
+			
+			return d.promise;
+		},
+		 //update task
+        updateTask: function (params) {
+
+			var d = $q.defer();
+			 var query = "UPDATE tasks SET taskTitle = ?, taskDescription = ?, taskStartDateTime = ?, taskEndDateTime = ?, taskNotes = ?, clientId = ? WHERE taskId = ? ";
 	  
-        var query = "INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime,taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)";
-        var querySuccessCallback = function(tx, res) {
-          // console.log(res.insertId);   
-            // // get task id for new client after adding it.
-            // taskId = res.insertId; 
-            console.log("insert statement for adding a newTask succeeded");  
-            console.log(params);
-            console.log(res);
+			var querySuccessCallback = function(tx, res) {
+				// // get task id for new client after adding it.
+				console.log("update statement for task " +taskId);              
+				console.log(res);
+				d.resolve(res);
+			};
+			var queryErrorCallback = function (err) {
+			   console.log("insert statement for tasks failed");
+				d.resolve(err);
+			};
 
-            console.log("should add new task to list of tasks");
+   			 dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.taskStartDateTime, params.taskEndDateTime, params.taskNotes, params.clientId,params.taskId], querySuccessCallback, queryErrorCallback );
+			
+			return d.promise;
+		},
+		 //update task
+        deleteTask: function (taskId) {
 
-            tasks.push({
-              "taskId":res.insertId, 
-                "taskTitle":params.taskTitle, 
-                "taskDescription":params.taskDescription, 				
-                "taskStartDateTime":params.startDateTime, 
-                "taskEndDateTime":params.endDateTime,                 
-                "taskNotes":params.taskNotes, 
-                "clientId" :params.clientId,
-                "kidId" :params.kidId
-            });
-        };
-
-    var queryErrorCallback = function (err) {
-       console.log("insert statement for tasks failed");
-       console.error(err);
-    };
-
-    dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.startDate, params.endDate, params.startTime, params.endTime, params.taskNotes, params.clientId,params.kidId], querySuccessCallback, queryErrorCallback );
-  }
-  
-  /*---------------------------------------------------------------
-  ____________________Update task ____________________________
-  ---------------------------------------------------------------*/
-  
-  var updateTask = function(params){
-        
-        console.log("inside createNewTask");
-        console.log(params);
-   
-    //dbService.executeStatement(query,[description, id], querySuccessCallback, queryErrorCallback );
-	  
-        var query = "UPDATE tasks SET taskTitle = ?, taskDescription = ?, taskStartDateTime = ?, taskEndDateTime = ?, taskNotes = ?, clientId = ? WHERE taskId = ? ";
-	  
-        var querySuccessCallback = function(tx, res) {
-          // console.log(res.insertId);   
-            // // get task id for new client after adding it.
-            // taskId = res.insertId; 
-            console.log("update statement for task " +taskId);  
-            console.log(params);
-            console.log(res);
-            console.log("should add new task to list of tasks");
-
-//            tasks.push({
-//              "taskId":res.insertId, 
-//                "taskTitle":params.taskTitle, 
-//                "taskDescription":params.taskDescription, 
-//                "taskStartdate":params.startDate, 
-//                "taskEnddate":params.endDate, 
-//                "taskStarttime":params.startTime, 
-//                "taskEndtime":params.endTime, 
-//                "taskNotes":params.taskNotes, 
-//                "clientId" :params.clientId
-//			});
-        };
-
-    var queryErrorCallback = function (err) {
-       console.log("update statement for tasks failed");
-       console.error(err);
-    };
-
-    dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.startDate, params.endDate, params.startTime, params.endTime, params.taskNotes, params.clientId,params.taskId], querySuccessCallback, queryErrorCallback );
-  }
-  
-  /*---------------------------------------------------------------
-  ____________________Delete task ____________________________
-  ---------------------------------------------------------------*/
-   var deleteTask = function(taskId) {
-	   
-    var query = "DELETE FROM tasks where taskId = ?";
-    var querySuccessCallback = function(tx, res) {
-        console.log("delete task succeeded");
-        console.log(res);  
-
-      //tasks = $filter('filter')(tasks, {taskId: '!taskId'})        
-
-    };
-
-	 var queryErrorCallback = function (err) {
-       console.log("delete task failed");
-       console.error(err);
-    };
-	   
-    dbService.executeStatement(query,[taskId], querySuccessCallback, queryErrorCallback );
-  };
-
-  return {
-    loadFromDB: loadFromDB,
-    all: function() {
-
-      loadFromDB();
-      //tasks.splice(0, tasks.length);
-      return tasks;
-    },
-    remove: function(task) {
-      tasks.splice(tasks.indexOf(task), 1);
-    },
-    get: function(taskId) {
-      for (var i = 0; i < tasks.length; i++) {
-        if (tasks[i].taskId === parseInt(taskId)) {
-          return tasks[i];
-        }
-      }
-      return null;
-    },
-    createNewTask: createNewTask,
-	updateTask: updateTask,
-	deleteTask: deleteTask
-  };
-
+			var d = $q.defer();
+			var query = "DELETE FROM tasks where taskId = ?";
+			var querySuccessCallback = function(tx, res) {
+				console.log("delete task succeeded");
+				console.log(res);  
+				d.resolve(res);
+			};
+			var queryErrorCallback = function (err) {
+			   console.log("insert statement for tasks failed");
+				d.resolve(err);
+			};
+   			dbService.executeStatement(query,[taskId], querySuccessCallback, queryErrorCallback );
+			return d.promise;
+		}
+	 }
 }); 
