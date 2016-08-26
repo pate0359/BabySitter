@@ -11,7 +11,7 @@
         <p><span ng-repeat="(index, kid) in client.kids">{{kid.kidName + ((index !== client.kids.length -1)?', ': '')}}</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-balanced" ng-click="editClientDescription($index)">
+        <ion-option-button class="mygreen" ng-click="editClientDescription($index)">
           Edit
         </ion-option-button>
         <ion-option-button class="myred" ng-click="deleteClient($index)">

@@ -1,8 +1,5 @@
 /********************** Nehmat Css ***********************************/
 
-.button-energized{
-  
-}
 .ios-blue{
   color: #007aff !important;
 }
@@ -101,10 +98,6 @@ ion-content div.scroll{
     float:left;
 }
 
-.tab-item-active {
-    icon-on = ""
-}
-
 /*
 h3 {
   border-bottom: 1px solid black;
@@ -155,9 +148,42 @@ color: white;
     
 }
 
-.tab-item.tab-item-active {
+.tab-item.tab-item-active  {
     color: #3b5998 !important;}
 
-.button.button.icon.ion-plus, button.button.correctSize {
+.button.button.icon.ion-plus, button.button.correctSize, button.button.correctSize:hover {
     background-color:#3b5998;
+}
+
+.button.button.button-icon {
+    color:#3b5998;
+}
+
+a.button-energized.button.ti-segmented-control.active {
+    background-color:coral;
+    border-color: coral;
+}
+
+a.button-energized.button.ti-segmented-control {
+    border-color: coral;
+    color:coral;
+}
+
+a.button-energized.button:target {
+    border-color: coral;
+    color:coral;
+}
+
+/*
+a.icon.ion-ios-medkit {
+    color: #BF272D;
+}
+*/
+
+.tabs-icon-top .tab {
+    color: #BF272D;
+}
+
+.tab-item.activated {
+    color:#3b5998;
 }

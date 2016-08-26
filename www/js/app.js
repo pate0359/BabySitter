@@ -7,6 +7,13 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 .run(function (Tasks, Clients, dbService, $ionicPlatform, $cordovaSQLite) {
 
 	$ionicPlatform.ready(function () {
+        
+         // Hide splash screen
+    setTimeout(function() {
+        navigator.splashscreen.hide();
+    }, 100);
+        
+        
 
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
