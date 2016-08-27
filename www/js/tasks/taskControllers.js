@@ -1,7 +1,7 @@
 angular.module('SitterAdvantage.taskControllers', [])
 
-.controller('TaskCtrl', ["$scope", "Tasks", "$state",
-      function ($scope, Tasks, $state) {
+.controller('TaskCtrl', ["$scope", "Tasks", "$state","$filter",
+      function ($scope, Tasks, $state,$filter) {
 
 		console.log("TaskCtrl is loaded");
 		$scope.tasks = [];		 
@@ -9,23 +9,49 @@ angular.module('SitterAdvantage.taskControllers', [])
           Tasks.getAllTask().then(function (taskList) {
                 if (!taskList) return;
                 console.log(taskList);
-                $scope.tasks = taskList;
+			  $scope.changeDateFormat(taskList);
+			  
            });
+		  
+		  $scope.changeDateFormat = function(taskList){
+			  
+			  angular.forEach(taskList, function (task) {
+				  
+				  var newTask = {};
+				  
+				    newTask.taskId = task.taskId;
+					newTask.taskTitle = task.taskTitle;
+					newTask.taskDescription = task.taskDescription;
+					newTask.taskStartDateTime = task.taskStartDateTime;
+					newTask.taskEndDateTime = task.taskEndDateTime;
+					newTask.taskNotes = task.taskNotes;
+					newTask.clientId = task.clientId;
+					newTask.kidId = task.kidId;
+				    newTask.clientDesc = task.clientDesc;
+				  
+				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
+				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
+				  
+				  $scope.tasks.push(newTask);
+				  
+				});
+		  }
 		  
 		$scope.addTask = function () {
 			$state.go("tab.new-task");
 		}
-
+		
 		$scope.taskClicked = function ($index) {
 			var item = $scope.tasks[$index];
 			$state.go('tab.task-detail' + item.taskId);
 		}
       }])
 
-.controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory",
-  function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate,$ionicHistory) {
+.controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory","$filter",
+  function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate,$ionicHistory,$filter) {
 
   		$ionicNavBarDelegate.showBackButton(false);
+	  
 
 	  if ($stateParams.pageFrom == 1){
 
@@ -62,11 +88,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 			  }
 			 
 			var params = {};
-
+			
 			params.taskTitle = $scope.newTaskParams.taskTitle;
 			params.taskDescription = $scope.newTaskParams.taskDesc;
-			params.taskStartDateTime = $scope.newTaskParams.startdatetimeValue;
-			params.taskEndDateTime = $scope.newTaskParams.enddatetimeValue;			
+			params.taskStartDateTime = $filter('date')($scope.newTaskParams.startdatetimeValue, 'medium');	
+			params.taskEndDateTime = $filter('date')($scope.newTaskParams.enddatetimeValue, 'medium');			
 			params.taskNotes = $scope.newTaskParams.taskNotes;
 			params.clientId = $scope.selectedClientId;
 			params.kidId = 0;

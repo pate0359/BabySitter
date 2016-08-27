@@ -11,13 +11,15 @@
  <div ng-repeat="task in tasks" >
  
  <div class="item item-divider">
-   {{task.taskStartDateTime}}
+   {{task.startDate}}
   </div>
 
   <ion-item type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
       <h2>{{task.clientDesc}}</h2>
       <span class="item-note">
-      {{task.taskStartDateTime}}
+		  
+	{{task.startTime}}
+      
     </span>
       <div>{{task.taskTitle}}</div>
       <i class="icon ion-chevron-right icon-accessory"></i>
