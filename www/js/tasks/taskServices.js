@@ -87,7 +87,9 @@ angular.module('SitterAdvantage.taskServices', [])
 				// // get task id for new client after adding it.
 				console.log("update statement for task " +taskId);              
 				console.log(res);
-				d.resolve(res);
+				console.log(res.insertId);
+				d.resolve(res.insertId);
+				
 			};
 			var queryErrorCallback = function (err) {
 			   console.log("insert statement for tasks failed");

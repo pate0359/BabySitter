@@ -66,17 +66,17 @@ angular.module('SitterAdvantage.dbService', [])
 	    console.log("----- TASK -----");
 
 	    tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)", 
-	      ["Lunch for Rohn","Nutritious lunch with a blend of vegetables", "Aug 27, 2016 8:09:00 PM","2016/03/28","Favourite vegetables: Avocado, Potatoes and Tomatoes","1","1"], function(res){ }, function(error){ });
+	      ["Lunch for Rohn","Nutritious lunch with a blend of vegetables", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Favourite vegetables: Avocado, Potatoes and Tomatoes","1","1"], function(res){ }, function(error){ });
 	    tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)", 
-	      ["Homework for Samuel","Help Samuel complete all his homework", "Aug 27, 2016 8:09:00 PM","2016/03/29","Homework details: Read a short story and complete 3 exercises","1","2"], function(){ }, function(){});
+	      ["Homework for Samuel","Help Samuel complete all his homework", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Homework details: Read a short story and complete 3 exercises","1","2"], function(){ }, function(){});
 	    tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)", 
-	      ["Drawing time for Jane","Prepare crayons and an album for Jane and give her some picture to duplicate", "2016/03/30","2016/03/30","Help her to start and make sure to check her progress","1","3"], function(){}, function(){});
+	      ["Drawing time for Jane","Prepare crayons and an album for Jane and give her some picture to duplicate", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Help her to start and make sure to check her progress","1","3"], function(){}, function(){});
 	     tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)", 
-	      ["Play time for Judy","Help Judy decorate her dollhouse", "Aug 27, 2016 8:09:00 PM","2016/03/30","Ask her to bring all her furniture for dollhouse","3","5"], function(){ }, function(){});
+	      ["Play time for Judy","Help Judy decorate her dollhouse", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Ask her to bring all her furniture for dollhouse","3","5"], function(){ }, function(){});
 	      tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)", 
-	      ["Babysit Robert","Give him dinner and put him to sleep", "Aug 27, 2016 8:09:00 PM","2016/04/15","Do not let Robert fall asleep on the sofa.","3","6"], function(){ }, function(){});
+	      ["Babysit Robert","Give him dinner and put him to sleep", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Do not let Robert fall asleep on the sofa.","3","6"], function(){ }, function(){});
 	      tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)", 
-	      ["iPad game time for Fred","Give iPad to Fred for 1 hour to play a game.", "Aug 27, 2016 8:09:00 PM","2016/04/15","Make sure he has finished his dinner and monitor the time","2","4"], function(){}, function(){});
+	      ["iPad game time for Fred","Give iPad to Fred for 1 hour to play a game.", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Make sure he has finished his dinner and monitor the time","2","4"], function(){}, function(){});
 	  }, 
 	    function(){
 	      console.error("Failed to insert items into database");   

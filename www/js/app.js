@@ -1,7 +1,7 @@
 var db = null;
 angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers', 'SitterAdvantage.clientServices',
                 'ti-segmented-control', 'SitterAdvantage.taskServices',
-                'SitterAdvantage.taskControllers', 'SitterAdvantage.emergencyControllers',
+                'SitterAdvantage.taskControllers', 'SitterAdvantage.emergencyControllers','SitterAdvantage.notificationServices',
                 'SitterAdvantage.emergencyServices', 'SitterAdvantage.resourcesControllers', 'SitterAdvantage.dbService', 'ngCordova','ion-datetime-picker'])
 
 .run(function (Tasks, Clients, dbService, $ionicPlatform, $cordovaSQLite) {

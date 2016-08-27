@@ -47,8 +47,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		}
       }])
 
-.controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory","$filter",
-  function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate,$ionicHistory,$filter) {
+.controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory","$filter","Notification",
+  function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate,$ionicHistory,$filter,Notification) {
 
   		$ionicNavBarDelegate.showBackButton(false);
 	  
@@ -99,9 +99,15 @@ angular.module('SitterAdvantage.taskControllers', [])
 
 			console.log("params "+params);
 			//Call service function to add new task			
-			Tasks.createNewTask(params).then(function (task) {
-				  if (!task) return;
-				  $ionicHistory.goBack();
+			Tasks.createNewTask(params).then(function (taskId) {
+				  if (!taskId) return;
+				
+				Tasks.getTaskById(taskId).then(function (task) {
+					if (!task) return;
+					//Schedule task
+					Notification.scheduleNotification(task);
+					$ionicHistory.goBack();
+				});
 			});
 		};
 
@@ -111,7 +117,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 	    };
   }])
 
-.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients","$ionicHistory","$ionicActionSheet", function ($scope, Tasks, $stateParams, $state, $rootScope, $ionicNavBarDelegate, Clients,$ionicHistory,$ionicActionSheet) {
+.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients","$ionicHistory","$ionicActionSheet","Notification", function ($scope, Tasks, $stateParams, $state, $rootScope, $ionicNavBarDelegate, Clients,$ionicHistory,$ionicActionSheet,Notification) {
 
 	if ($stateParams.pageFrom == 1){
 
@@ -170,6 +176,10 @@ angular.module('SitterAdvantage.taskControllers', [])
 		Tasks.updateTask(param).then(function (task) {
 				  if (!task) return;
 				  	//$scope.disableEnableForm = function(e){ return false;} 
+			
+					//Update notification
+					Notification.updateNotification(param);
+			
 					$scope.disableEnableForm = false;
 					$scope.toggleVisibility = false;
 					$ionicNavBarDelegate.showBackButton(true);
@@ -208,6 +218,10 @@ angular.module('SitterAdvantage.taskControllers', [])
                     //Delete task
 		              Tasks.deleteTask($scope.task.taskId).then(function (res) {
 						  if (!res) return;
+						  
+						  //Cancel notification
+							Notification.cancelNotification($scope.task);
+						  
 							hideSheet();
 						  	$ionicHistory.goBack();
 					});
