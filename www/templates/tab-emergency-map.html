@@ -1,17 +1,22 @@
 <meta content="initial-scale=1, maximum-scale=1, user-scalable=no, width=500px">
 <ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Your Location</h1>
+  <ion-header-bar id="hello">
+    <h1 class="title" style="color:white;">Your Location</h1>
     <div class="buttons">
-      <button class="button myblue" ng-click="closeLogin()">Close</button>
+      <button style="color:white;"class="button-clear" ng-click="closeLogin()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
     <form ng-submit="doLogin()">
       <div class="list">
          <div id="map" width=device-width height="297"></div>
+          <div>
+              <p>{{lattitude}}</p>
+              <p>{{longitude}}<p>
+          
+          </div>
         <label class="item">
-          <button class="button button-block myblue icon-left ion-location" ng-click="showStaticMap()">Update Location</button>
+          <button class="button button-block mygreen" ng-click="showStaticMap()">Update Location</button>
         </label>
       </div>
     </form>

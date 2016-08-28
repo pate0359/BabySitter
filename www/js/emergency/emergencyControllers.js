@@ -2,6 +2,11 @@
 angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 ////////////////// Anna's code //////////////////
 .controller('EmergencyCtrl', ["$scope", "$ionicModal", "$cordovaSms",  "GPSMap","Clients", function ($scope, $ionicModal, $cordovaSms, GPSMap,Clients) {
+    
+    $scope.latitude = "";
+    $scope.longitude = "";
+    
+    
   console.log("entering emergency");
   $scope.sosMessage = "I am in trouble! Come home now!\n";
 
@@ -63,7 +68,7 @@ $scope.mapCoords = {
         //var url = "https://maps.googleapis.com/maps/api/staticmap?center=" + $scope.mapCoords.lat + "," + $scope.mapCoords.lng + "&zoom=14&size=400x400&markers=color:blue%7Clabel:S%7C11211%7C11206%7C11222key=AIzaSyCezZBLJ125BLFZNSAkbGMdEr9to010Cbk";
         //var url = "https://maps.googleapis.com/maps/api/staticmap?center=45.3024718,-75.8563826&zoom=14&size=400x400&markers=color:blue%7Clabel:S%7C11211%7C11206%7C11222key=AIzaSyCezZBLJ125BLFZNSAkbGMdEr9to010Cbk";
         var div = document.getElementById("map");
-  div.innerHTML = "Loading your image...please wait!";
+        div.innerHTML = "Loading your image...please wait!";
         var dimensions = 400; 
         var url = "https://maps.googleapis.com/maps/api/staticmap?center="
         var mapUrl = url + $scope.mapCoords.lat + "," + $scope.mapCoords.lng 

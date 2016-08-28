@@ -131,7 +131,7 @@ background-color: #a2ddf4;
 text-align: right;
 }
 
-.mygreen {
+.mygreen, .mygreen.activated {
     
     color: white;
     background-color: #28903A;
@@ -146,6 +146,14 @@ color: white;
     background-color:#BF272D;
     color:white;
     
+}
+
+ion-header-bar.bar.bar-header {
+    background-color:#3b5998;
+}
+
+.mybluebackground {
+    background-color:#3b5998;
 }
 
 .tab-item.tab-item-active  {
@@ -174,16 +182,21 @@ a.button-energized.button:target {
     color:coral;
 }
 
-/*
-a.icon.ion-ios-medkit {
-    color: #BF272D;
-}
-*/
-
 .tabs-icon-top .tab {
     color: #BF272D;
 }
 
 .tab-item.activated {
     color:#3b5998;
+}
+input.item-input {
+    font-size:16px;
+}
+
+.item h2 {
+    font-size:14px;
+} 
+
+button.button.button-icon {
+    font-size: 30px;
 }
