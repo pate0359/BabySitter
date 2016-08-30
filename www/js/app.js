@@ -11,7 +11,7 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
          // Hide splash screen
     setTimeout(function() {
         navigator.splashscreen.hide();
-    }, 100);
+    }, 2000);
         
         
 

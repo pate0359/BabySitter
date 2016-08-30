@@ -51,4 +51,4 @@ angular.module('SitterAdvantage.notificationServices', [])
 		}
 	 }
 	}
-}); 
+); 
