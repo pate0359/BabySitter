@@ -169,8 +169,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 }])
 
-.controller('ClientDetailCtrl', ["$scope", "$stateParams", "$rootScope", "Clients", "$ionicNavBarDelegate", "$state",
- function ($scope, $stateParams, $rootScope, Clients, $ionicNavBarDelegate, $state) {
+.controller('ClientDetailCtrl', ["$scope", "$stateParams", "$rootScope", "Clients", "$ionicNavBarDelegate", "$state","$filter",
+ function ($scope, $stateParams, $rootScope, Clients, $ionicNavBarDelegate, $state,$filter) {
 
 
         //Show nav back button
@@ -199,8 +199,35 @@ angular.module('SitterAdvantage.clientControllers', [])
      //Get Tasks
         Clients.getTasksForClient($stateParams.clientId).then(function (tasks) {
                 if (!tasks) return;
-                $scope.selectedClient.tasks = tasks;
+                //$scope.selectedClient.tasks = tasks;
+			
+				$scope.changeDateFormat(tasks);
             });
+	 
+	  $scope.changeDateFormat = function(taskList){
+			  
+		  	$scope.selectedClient.tasks = [];
+			  angular.forEach(taskList, function (task) {
+				  
+				  var newTask = {};
+				  
+				    newTask.taskId = task.taskId;
+					newTask.taskTitle = task.taskTitle;
+					newTask.taskDescription = task.taskDescription;
+					newTask.taskStartDateTime = task.taskStartDateTime;
+					newTask.taskEndDateTime = task.taskEndDateTime;
+					newTask.taskNotes = task.taskNotes;
+					newTask.clientId = task.clientId;
+					newTask.kidId = task.kidId;
+				    newTask.clientDesc = task.clientDesc;
+				  
+				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
+				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
+				  
+				  $scope.selectedClient.tasks.push(newTask);
+				  
+				});
+		  }
                                                               
         //create functions to show and hide different subpages based on active segmented controls
 
@@ -219,6 +246,13 @@ angular.module('SitterAdvantage.clientControllers', [])
             $scope.selectedIndex = index;
             $rootScope.segmentIndex = index;
             $scope.$apply();
+        }
+		
+		$scope.taskItemClicked = function ($index) {
+
+			$state.go("tab.task-detail_client", {
+                taskId: $scope.selectedClient.tasks[$index].taskId
+            });
         }
 
         $scope.updateSelection = function (index) {

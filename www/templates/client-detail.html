@@ -131,63 +131,31 @@
     			</div>
 
 			<!-- ******************************** Task sub-page ******************************** -->
-			<div id="task" ng-repeat="task in selectedClient.tasks" class="card" ng-switch-when="2">
+			
+			<div id="task" ng-repeat="task in selectedClient.tasks" ng-switch-when="2" ng-click="taskItemClicked($index)">
 
 				<div class="item item-divider item-icon-right">
-					{{task.taskStartDateTime}}
-					
-					<div class="icon">
-						 <button class="button button-icon" style="padding-left:30px;" ng-click="editTask($index)">
-							<i class = "icon ion-edit"></i>
-						</button>
-        			</div>	
+					{{task.startDate}}
 				</div>
+				
 				<div class="item item-text-wrap">
-					
-					<div style="margin-bottom:25px;">
-							<h2 style="font-weight:600;" class="ios-blue">{{task.taskTitle}}</h2>
+					<div style="padding-bottom:10px;">
+						<span style="font-size: 17px">{{task.taskTitle}}</span>
+						<div class="item-note" >
+							<span >		  
+								Completed
+							</span>
+						<br/>
+<!--							<span style="font-size: 14px;">{{task.taskDescription}}</span>-->
+						<span >		  
+								{{task.startTime}}
+						</span>	
 						</div>
-
-						<div style="margin-bottom:15px;">
-							<h2>Description</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{task.taskDescription}}</p>
-						</div>
-
-						<div style="margin-bottom:15px;">
-							<h2>Start Date and Time</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{task.taskStartDateTime}}</p>
-						</div>
-
-						<div style="margin-bottom:15px;">
-							<h2>End Date and Time</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{task.taskEndDateTime}}</p>
-						</div>
-					<div style="margin-bottom:15px;">
-<!--
-							<h2>Start time</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{task.taskStarttime}}</p>
-						</div>
-					<div style="margin-bottom:15px;">
-							<h2>End time</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{task.taskEndtime}}</p>
-						</div>
--->
-					<div style="margin-bottom:15px;">
-							<h2>Notes</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{task.taskNotes}}</p>
-						</div>
+											
+					</div>
 				</div>
-
 			</div>
 
-			
-		</div>
             <div id="task" ng-switch-when="2">
 				 <button class="button mygreen button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
     		</div>

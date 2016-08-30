@@ -190,7 +190,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 				  	//$scope.disableEnableForm = function(e){ return false;} 
 			
 					//Update notification
-					Notification.updateNotification(param);
+					//Notification.updateNotification(param);
 			
 					$scope.disableEnableForm = false;
 					$scope.toggleVisibility = false;

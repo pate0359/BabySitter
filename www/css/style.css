@@ -2,6 +2,7 @@
 
 .ios-blue{
   color: #007aff !important;
+	font-size: 17px !important;
 }
 .correctSize{
   font-size: 17px !important;
@@ -25,6 +26,7 @@
 .iframe-wrapper iframe {
    width: 100%;
    height: 100%;
+	
  }
 .webPage{
     width: 100%;
