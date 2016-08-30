@@ -9,10 +9,10 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 	$ionicPlatform.ready(function () {
         
          // Hide splash screen
-    setTimeout(function() {
-        navigator.splashscreen.hide();
-    }, 2000);
-        
+		setTimeout(function() {
+			navigator.splashscreen.hide();
+		}, 2000);
+		
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			cordova.plugins.Keyboard.disableScroll(true);
@@ -59,7 +59,7 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 })
 
 
-.config(function ($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider, $ionicConfigProvider) {
 
 	//inappbrowser to allow loading the website pages within the resource tab
 	// var defaultOptions = {
@@ -68,8 +68,16 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 	//   toolbar: 'yes'
 	// };
 
-	// $cordovaInAppBrowserProvider.setDefaultOptions(defaultOptions);
+	// remove back button text completely
+  	//$ionicConfigProvider.backButton.previousTitleText(false).text('back');
+	//$ionicConfigProvider.backButton.text('back').icon('ion-ios7-arrow-left');
 
+	$ionicConfigProvider.backButton.previousTitleText(false);
+
+
+	
+	// $cordovaInAppBrowserProvider.setDefaultOptions(defaultOptions);
+	
 	//using state provider to route the different pages in the app
 	$stateProvider
 

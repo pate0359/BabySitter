@@ -138,7 +138,7 @@ text-align: right;
 }
 
 .bar.bar-positive {
-color: white;
+	color: white;
   background-color: #3b5998;
 }
 
@@ -152,19 +152,11 @@ ion-header-bar.bar.bar-header {
     background-color:#3b5998;
 }
 
-.mybluebackground {
-    background-color:#3b5998;
-}
-
 .tab-item.tab-item-active  {
     color: #3b5998 !important;}
 
 .button.button.icon.ion-plus, button.button.correctSize, button.button.correctSize:hover {
     background-color:#3b5998;
-}
-
-.button.button.button-icon {
-    color:#3b5998;
 }
 
 a.button-energized.button.ti-segmented-control.active {
@@ -182,9 +174,11 @@ a.button-energized.button:target {
     color:coral;
 }
 
+/*
 .tabs-icon-top .tab {
     color: #BF272D;
 }
+*/
 
 .tab-item.activated {
     color:#3b5998;
