@@ -154,6 +154,11 @@ ion-header-bar.bar.bar-header {
     background-color:#3b5998;
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 .tab-item.tab-item-active  {
     color: #3b5998 !important;}
 
@@ -161,6 +166,10 @@ ion-header-bar.bar.bar-header {
     background-color:#3b5998;
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 a.button-energized.button.ti-segmented-control.active {
     background-color:coral;
     border-color: coral;
@@ -196,3 +205,4 @@ input.item-input {
 button.button.button-icon {
     font-size: 30px;
 }
+
