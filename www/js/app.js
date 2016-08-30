@@ -13,8 +13,6 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
         navigator.splashscreen.hide();
     }, 2000);
         
-        
-
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			cordova.plugins.Keyboard.disableScroll(true);
@@ -252,17 +250,27 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 					templateUrl: 'templates/pre-job-checklist.html'
 				}
 			}
-		});
+		})
 
-//	.state('tab.instructions', {
-//		url: '/resources/instructions',
-//		views: {
-//			'tab-resources': {
-//				templateUrl: 'templates/instructions.html',
-//				controller: 'InstructionsCtrl'
-//			}
-//		}
-//	});
+	.state('tab.instructions_tasks', {
+		url: '/instructions',
+		views: {
+			'tab-tasks': {
+				templateUrl: 'templates/instructions.html',
+				controller: 'InstructionsCtrl'
+			}
+		}
+	})
+	
+	.state('tab.instructions_resources', {
+		url: '/instructions',
+		views: {
+			'tab-resources': {
+				templateUrl: 'templates/instructions.html',
+				controller: 'InstructionsCtrl'
+			}
+		}
+	});
 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/tab/tasks');

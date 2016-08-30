@@ -29,7 +29,11 @@ angular.module('SitterAdvantage.resourcesControllers', [])
 			        console.log(event);
 			      });
 
-
+		}
+		
+		$scope.goToInstruction = function(index){
+			
+			$state.go("tab.instructions_resources");
 		}
 
   	}])

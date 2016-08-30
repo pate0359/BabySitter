@@ -5,13 +5,19 @@ angular.module('SitterAdvantage.taskControllers', [])
 
 		console.log("TaskCtrl is loaded");
 		$scope.tasks = [];		 
-		  // get all task from database
-          Tasks.getAllTask().then(function (taskList) {
-                if (!taskList) return;
-                console.log(taskList);
-			  $scope.changeDateFormat(taskList);
-			  
-           });
+		  
+		  $scope.$on('$ionicView.afterEnter', function(){
+			  // Any thing you can think of			  
+			  // get all task from database
+			  Tasks.getAllTask().then(function (taskList) {
+				  //alert("sucess");
+					if (!taskList) return;
+					console.log(taskList);
+				  //alert("task list loaded");
+				  $scope.changeDateFormat(taskList);
+
+			   });
+			});
 		  
 		  $scope.changeDateFormat = function(taskList){
 			  
@@ -41,10 +47,16 @@ angular.module('SitterAdvantage.taskControllers', [])
 			$state.go("tab.new-task");
 		}
 		
+		$scope.goToInstructions = function () {
+			$state.go("tab.instructions_tasks");
+		}
+		
 		$scope.taskClicked = function ($index) {
 			var item = $scope.tasks[$index];
 			$state.go('tab.task-detail' + item.taskId);
 		}
+		
+		
       }])
 
 .controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory","$filter","Notification",
