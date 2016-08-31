@@ -103,24 +103,28 @@
 							<h2>Allergies</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.allergyDescription}}</p>
+							<p ng-show="kid.allergyDescription == undefined || kid.allergyDescription == '' ">None</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
 							<h2>Disabilities</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.disabilityDescription}}</p>
+							<p ng-show="kid.disabilityDescription == undefined || kid.disabilityDescription == '' ">None</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
 							<h2>Medications</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.medicationDescription}}</p>
+							<p ng-show="kid.medicationDescription == undefined || kid.medicationDescription == ''">None</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
 							<h2>Notes</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.kidNotes}}</p>
+							<p ng-show="kid.kidNotes == undefined || kid.kidNotes == ''>None</p>
 						</div>
 					</div>
 				</div>
