@@ -34,6 +34,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 					newTask.clientId = task.clientId;
 					newTask.kidId = task.kidId;
 				    newTask.clientDesc = task.clientDesc;
+				  	newTask.isCompleted = task.isCompleted;
 				  
 				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
 				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
@@ -54,9 +55,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		$scope.taskClicked = function ($index) {
 			var item = $scope.tasks[$index];
 			$state.go('tab.task-detail' + item.taskId);
-		}
-		
-		
+		}		
       }])
 
 .controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory","$filter","Notification",
@@ -108,6 +107,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			params.taskNotes = $scope.newTaskParams.taskNotes;
 			params.clientId = $scope.selectedClientId;
 			params.kidId = 0;
+			param.isCompleted = false;
 
 			console.log("params "+params);
 			//Call service function to add new task			
@@ -183,6 +183,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		param.taskEndDateTime = $scope.task.taskEndDateTime;		
 		param.taskNotes = $scope.task.taskNotes;
 		param.clientId = $scope.task.clientId;
+		//param.isCompleted = false;
 		
 		console.log("EditTask param : "+param);
 		Tasks.updateTask(param).then(function (task) {
@@ -215,6 +216,42 @@ angular.module('SitterAdvantage.taskControllers', [])
 		$ionicNavBarDelegate.showBackButton(true);
 	}
 
+	$scope.completeTask = function(){
+		
+		var hideSheet = $ionicActionSheet.show({
+         
+                destructiveText: 'Complete Task',
+                cancelText: 'Cancel',
+                cancel: function () {
+                    hideSheet();
+                },
+            
+                destructiveButtonClicked: function () {
+                    // update task with new params
+					var param = {};
+					param.taskId = $scope.task.taskId;
+					param.taskTitle = $scope.task.taskTitle;
+					param.taskDescription = $scope.task.taskDescription;
+					param.taskStartDateTime = $scope.task.taskStartDateTime;
+					param.taskEndDateTime = $scope.task.taskEndDateTime;		
+					param.taskNotes = $scope.task.taskNotes;
+					param.clientId = $scope.task.clientId;
+					param.isCompleted = true;
+
+					console.log("EditTask param : "+param);
+					Tasks.updateTask(param).then(function (task) {
+							  if (!task) return;
+
+								//Cancel notification
+								//Notification.cancelNotification(param);
+
+								hideSheet();
+								$ionicHistory.goBack();
+						});
+                }
+            });		
+	}
+	
 	$scope.deleteTaskDetails = function () {
         
         var hideSheet = $ionicActionSheet.show({

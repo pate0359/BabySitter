@@ -16,11 +16,16 @@
 
   <ion-item type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
       <h2>{{task.clientDesc}}</h2>
-      <span class="item-note">
-		  
-	{{task.startTime}}
-      
-    </span>
+      <div class="item-note" >
+							<span style="color:green;" ng-hide="task.isCompleted == 'true'">		  
+								Completed
+							</span>
+						<br/>
+<!--							<span style="font-size: 14px;">{{task.taskDescription}}</span>-->
+						<span >		  
+								{{task.startTime}}
+						</span>	
+						</div>
       <div>{{task.taskTitle}}</div>
       <i class="icon ion-chevron-right icon-accessory"></i>
     </ion-item>             

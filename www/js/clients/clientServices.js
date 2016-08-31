@@ -222,7 +222,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
 
-            var query = "INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture,clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)";
+            var query = "INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture,clientId,allergyDescription,disabilityDescription, medicationDescription,isCompleted) VALUES (?,?,?,?,?,?,?,?,?,?)";
             var queryErrorCallback = function (err) {
                 console.error(err);
                 d.resolve(err);
@@ -236,7 +236,7 @@ angular.module('SitterAdvantage.clientServices', [])
                 //TO:DO - Insert Kid in client array
 
             };
-            dbService.executeStatement(query, [params.kidName, params.kidBirthdate, params.kidGender, params.kidNotes, params.kidPicture, params.clientId, params.allergyDescription, params.disabilityDescription, params.medicationDescription], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [params.kidName, params.kidBirthdate, params.kidGender, params.kidNotes, params.kidPicture, params.clientId, params.allergyDescription, params.disabilityDescription, params.medicationDescription,params.isCompleted], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },
@@ -246,7 +246,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
             var id = kidInfo.kidId;
-            var query = 'UPDATE kids SET kidName = ?, kidBirthdate = ?, kidGender = ?, kidNotes = ?, kidPicture = ?,  allergyDescription = ?,disabilityDescription = ?, medicationDescription = ? WHERE kidId=?';
+            var query = 'UPDATE kids SET kidName = ?, kidBirthdate = ?, kidGender = ?, kidNotes = ?, kidPicture = ?,  allergyDescription = ?,disabilityDescription = ?, medicationDescription = ?, isCompleted = ? WHERE kidId=?';
             
             var queryErrorCallback = function (err) {
                 console.error(err);
@@ -258,7 +258,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
                 d.resolve(res);
             };
-            dbService.executeStatement(query, [kidInfo.kidName , kidInfo.kidBirthdate, kidInfo.kidGender, kidInfo.kidNotes, kidInfo.kidPicture,  kidInfo.allergyDescription,kidInfo.disabilityDescription, kidInfo.medicationDescription, id], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [kidInfo.kidName , kidInfo.kidBirthdate, kidInfo.kidGender, kidInfo.kidNotes, kidInfo.kidPicture,  kidInfo.allergyDescription,kidInfo.disabilityDescription, kidInfo.medicationDescription,kidInfo.isCompleted, id], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },

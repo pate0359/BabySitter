@@ -220,6 +220,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 					newTask.clientId = task.clientId;
 					newTask.kidId = task.kidId;
 				    newTask.clientDesc = task.clientDesc;
+				  	newTask.isCompleted = task.isCompleted;
+				  
 				  
 				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
 				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
