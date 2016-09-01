@@ -185,11 +185,9 @@ a.button-energized.button:target {
     color:coral;
 }
 
-/*
-.tabs-icon-top .tab {
-    color: #BF272D;
+.tab-item-active {
+    color:#3b5998;
 }
-*/
 
 .tab-item.activated {
     color:#3b5998;
@@ -198,11 +196,16 @@ input.item-input {
     font-size:16px;
 }
 
-.item h2 {
+ h2 {
     font-size:14px;
 } 
 
 button.button.button-icon {
     font-size: 30px;
+}
+
+.myblue {
+    color:#3b5998;
+    
 }
 
