@@ -90,8 +90,9 @@
 					<!--		 <div id="profile-bg"></div>-->
 					<div id="content">
 						<div id="profile-info">
-							<img id="profile-image" ng-src="img/{{kid.kidPicture}}">
-
+							<img ng-show="imgURI !== undefined && imgURI !== ''" id="profile-image" ng-src="{{imgURI}}">
+			  				<img ng-show="imgURI == undefined ||  imgURI == ''"  id="profile-image" ng-src="img/Fred.jpg">
+							
 							<h4 id="profile-name">
 				  <i class="fa fa-birthday-cake" aria-hidden="true"></i> {{ kid.kidBirthdate}}
 				</h4>

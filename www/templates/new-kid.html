@@ -14,8 +14,10 @@
 
       <div class="item item-text-wrap">
           
-          <div id="profile-info">
-							<img id="profile-image" ng-src="img/{{kid.kidPicture}}">
+          <div id="profile-info">			   
+				<img ng-show="imgURI !== undefined && imgURI !== ''" id="profile-image" ng-src="{{imgURI}}">
+			  <img ng-show="imgURI == undefined ||  imgURI == ''"  id="profile-image" ng-src="img/Fred.jpg">
+			  
               <button  class="button button-positive button-clear" ng-click="addPhoto()">
 							Add photo
               </button>
@@ -43,9 +45,13 @@
         <div style="margin-bottom:15px;">
           <h2>Birthday</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="kid.kidBirthdate" class="item-input textDisable" type="date" placeholder="Birthday">
-
+<!--          <input ng-model="kid.kidBirthdate" class="item-input textDisable" type="date" placeholder="Birthday">-->
+			
+			<div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker date id="birthDay" name="birthDay" ng-model="kid.kidBirthdate" required="required" for="birthDate">
+                <p ng-show="kid.kidBirthdate == null">Choose Birthday</p>
+				<p ng-show="kid.kidBirthdate != null" style="color:black;">{{kid.kidBirthdate | date: 'dd MMMM, yyyy'}}</p>
+            </div>
+			
         </div>
 
         <div style="margin-bottom:15px;">

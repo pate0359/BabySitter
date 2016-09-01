@@ -110,7 +110,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			params.taskNotes = $scope.newTaskParams.taskNotes;
 			params.clientId = $scope.selectedClientId;
 			params.kidId = 0;
-			param.isCompleted = false;
+			params.isCompleted = false;
 
 			console.log("params "+params);
 			//Call service function to add new task			
@@ -182,8 +182,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		param.taskId = $scope.task.taskId;
 		param.taskTitle = $scope.task.taskTitle;
 		param.taskDescription = $scope.task.taskDescription;
-		param.taskStartDateTime = $scope.task.taskStartDateTime;
-		param.taskEndDateTime = $scope.task.taskEndDateTime;		
+		param.taskStartDateTime = $filter('date')($scope.task.startdatetimeValue, 'medium');
+		param.taskEndDateTime =$filter('date')($scope.task.taskEndDateTime, 'medium');		
 		param.taskNotes = $scope.task.taskNotes;
 		param.clientId = $scope.task.clientId;
 		//param.isCompleted = false;

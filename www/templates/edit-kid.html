@@ -13,13 +13,12 @@
 <form id="kid" class="card" name="myForm" novalidate>
 
       <div class="item item-text-wrap">
-        <div id="profile-info">
-              <img id="profile-image" ng-src="img/{{kid.kidPicture}}">
+        <div id="profile-info">              
+			<img ng-show="imgURI !== undefined && imgURI !== ''" id="profile-image" ng-src="{{imgURI}}">
+			  <img ng-show="imgURI == undefined ||  imgURI == ''"  id="profile-image" ng-src="img/Fred.jpg">
+			
           <button class="button button-positive button-clear" ng-click="editKidPicture()" ng-hide="toggleVisibility">Edit</button>
-
       </div>
-
-
         <div style="margin-bottom:15px;">
         <h2>Kid Name</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
@@ -40,7 +39,12 @@
           <h2>Birthday</h2>
           <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 
-          <input ng-model="kid.kidBirthday" class="item-input textDisable" type="date" placeholder="Birthday" value="{{kid.kidBirthday}}">
+<!--          <input ng-model="kid.kidBirthday" class="item-input textDisable" type="date" placeholder="Birthday" value="{{kid.kidBirthday}}">-->
+			
+			<div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker date id="birthDay" name="birthDay" ng-model="kid.kidBirthdate" required="required" for="birthDate">
+                <p ng-show="kid.kidBirthdate == null">Choose Birthday</p>
+				<p ng-show="kid.kidBirthdate != null" style="color:black;">{{kid.kidBirthdate | date: 'dd MMMM, yyyy'}}</p>
+            </div>
 
         </div>
 

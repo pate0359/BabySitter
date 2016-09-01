@@ -13,7 +13,7 @@ angular.module('SitterAdvantage.dbService', [])
 	      tx.executeSql("CREATE TABLE IF NOT EXISTS clients (clientId integer primary key , clientDesc text)",[], function(){}, function(){});
 	      tx.executeSql("CREATE TABLE IF NOT EXISTS parents(parentId integer primary key , parentName text, parentStreet text, parentCity text, parentState text, parentZipcode text, parentPrimaryphone text, parentSecondaryphone text, parentEmailid text, parentNotes text, clientId integer)",[], function(){}, function(){});  
 	      tx.executeSql("CREATE TABLE IF NOT EXISTS tasks(taskId integer primary key , taskTitle text, taskDescription text, taskStartDateTime text, taskEndDateTime text, taskNotes text,clientId integer, kidId integer, isCompleted bool)" , [], function(){}, function(){});
-	      tx.executeSql("CREATE TABLE IF NOT EXISTS kids(kidId integer primary key, kidName text, kidBirthdate numeric, kidGender text, kidPicture text, kidNotes text,clientId integer, allergyDescription text,disabilityDescription text, medicationDescription text)" , [], function(){}, function(){});
+	      tx.executeSql("CREATE TABLE IF NOT EXISTS kids(kidId integer primary key, kidName text, kidBirthdate text, kidGender text, kidPicture text, kidNotes text,clientId integer, allergyDescription text,disabilityDescription text, medicationDescription text)" , [], function(){}, function(){});
           
 	  },
 
@@ -60,7 +60,7 @@ angular.module('SitterAdvantage.dbService', [])
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
 	      ["Judy Jetson", "12/12/2012", "Female", "She likes reading books.", "Judy.jpg", "3","","",""], function(){}, function(){});
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
-	      ["Robert", "Jetson", "11/October/2015", "Male", "No meat is allowed", "Robert.jpg","3","","",""], function(){}, function(){});
+	      ["Robert Jetson", "12/12/2012", "Male", "No meat is allowed", "Robert.jpg","3","","",""], function(){}, function(){});
 	    //4 tasks
 
 	    console.log("----- TASK -----");
