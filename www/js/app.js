@@ -14,7 +14,7 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 //		}, 2000);
 		
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 			cordova.plugins.Keyboard.disableScroll(true);
 
 		}

@@ -22,9 +22,9 @@
                         
                         <p style="font-weight:600;" class="ios-blue" ng-show="!disableEnableForm">{{task.taskTitle}}</p>
                         </div>
-				<div style="margin-bottom:15px;">
+				<div ng-hide="toggleVisibility" style="margin-bottom:15px;">
                     
-                    <h2 >Client Description</h2>
+                    <h2 >Family Name</h2>
                     <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />        <p>{{task.clientDesc}}</p>
                         </div>
                 
@@ -62,7 +62,7 @@
             </div>
         </form>
 		
-		<div class="padding" ng-show="task.isCompleted == 'true'">
+		<div class="padding" ng-show="task.isCompleted == 'true' && !toggleVisibility">
             <button class="button mygreen button-block" ng-click="completeTask()">
                 Complete Task
             </button>

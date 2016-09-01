@@ -76,8 +76,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 	  // client in database
 	  Clients.getClientsList().then(function (clientList) {
 		  if (!clientList) return;
+		  
+		  console.log(clientList);
 		  $scope.clientArray = clientList;
-
+		  
+		  $scope.selectClientOption = $scope.clientArray[0];
 	  });
 
 
