@@ -137,13 +137,13 @@
 
 			<!-- ******************************** Task sub-page ******************************** -->
 			
-			<div id="task" ng-repeat="task in selectedClient.tasks" ng-switch-when="2" ng-click="taskItemClicked($index)">
+			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" ng-click="taskItemClicked($index)">
 
 				<div class="item item-divider item-icon-right">
-					{{task.startDate}}
+					{{startDate}}
 				</div>
 				
-				<div class="item item-text-wrap">
+				<div ng-repeat="task in taskItems | orderBy: 'startTime'" class="item item-text-wrap">
 					<div style="padding-bottom:10px;">
 						<span style="font-size: 17px">{{task.taskTitle}}</span>
 						<div ng-hide="task.isCompleted == 'true'" class="item-note" >
