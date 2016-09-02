@@ -66,7 +66,7 @@ angular.module('SitterAdvantage.dbService', [])
 	    console.log("----- TASK -----");
 
 	    tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId,isCompleted) VALUES (?,?,?,?,?,?,?,?)", 
-	      ["Lunch for Rohn","Nutritious lunch with a blend of vegetables", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Favourite vegetables: Avocado, Potatoes and Tomatoes","1","1",true], function(res){ }, function(error){ });
+	      ["Lunch for Rohn","Nutritious lunch with a blend of vegetables", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Favourite vegetables: Avocado, Potatoes and Tomatoes","1","1",true], function(res){ console.log("res :"+res)}, function(error){ console.log("error"+error)});
 	    tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId,isCompleted) VALUES (?,?,?,?,?,?,?,?)", 
 	      ["Homework for Samuel","Help Samuel complete all his homework", "Aug 27, 2016 8:09:00 PM","Aug 27, 2016 8:09:00 PM","Homework details: Read a short story and complete 3 exercises","1","2",false], function(){ }, function(){});
 	    tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId,isCompleted) VALUES (?,?,?,?,?,?,?,?)", 
