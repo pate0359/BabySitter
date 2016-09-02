@@ -8,13 +8,23 @@
   <ion-content>       
       <ion-list class="item-icon-right">
  
- <div ng-repeat="task in tasks" >
+<!--
+		  
+		  <ul ng-repeat="(startDate, taskItems) in tasks | groupBy: 'startDate'">
+  Group name: {{ key }}
+  <li ng-repeat="task in taskItems">
+    player: {{ task.name }} 
+  </li>
+</ul>
+-->
+		  
+ <div ng-repeat="(startDate, taskItems) in tasks | groupBy: 'startDate'" >
  
  <div class="item item-divider">
-   {{task.startDate}}
+   {{startDate}}
   </div>
 
-  <ion-item type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
+  <ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
       <h2>{{task.clientDesc}}</h2>
 	  <span class="item-note" style="color:green;" ng-hide="task.isCompleted == 'true'">		  
 								Completed
