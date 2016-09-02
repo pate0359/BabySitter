@@ -40,14 +40,14 @@
                     <h2>Start Date and Time</h2>
                     <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
 					<div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="start_date_time" name="start_date_time" ng-model="task.taskStartDateTime" required="required" for="startDate">				
-					<p>{{task.taskStartDateTime}}</p>		
+					<p>{{task.taskStartDateTime | date: 'medium'}}</p>		
 
-				</div>
+					</div>
 					
 					<div ng-show="disableEnableForm" style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="start_date_time" name="start_date_time" ng-model="task.taskStartDateTime" required="required" for="startDate">
 
 						<p ng-show="task.taskStartDateTime == null">Pick Start Date Time</p>
-					<p ng-show="task.taskStartDateTime != null" style="color:black;">{{task.taskStartDateTime| date: 'medium'}}</p>
+					<p ng-show="task.taskStartDateTime != null" style="color:black;">{{task.taskStartDateTime | date: 'medium'}}</p>
 				</div>
                         </div>
                 
@@ -59,12 +59,12 @@
 <!--                        <p ng-show="!disableEnableForm">{{task.taskEndDateTime}}</p>-->
 					
 					<div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="end_date_time" name="end_date_time" ng-model="task.taskEndDateTime" required="required" for="endDate">				
-						<p>{{task.taskEndDateTime}}</p>		
+						<p>{{task.taskEndDateTime | date: 'medium'}}</p>		
 					</div>
 					
 					<div ng-show="disableEnableForm" style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="end_date_time" name="end_date_time" ng-model="task.taskEndDateTime" required="required" for="endDate">
 						<p ng-show="task.taskEndDateTime == null">Pick Start Date Time</p>
-						<p ng-show="task.taskEndDateTime != null" style="color:black;">{{task.taskEndDateTime| date: 'medium'}}</p>
+						<p ng-show="task.taskEndDateTime != null" style="color:black;">{{task.taskEndDateTime | date: 'medium'}}</p>
 					</div>
 					
                 </div>                

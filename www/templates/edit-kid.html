@@ -15,7 +15,7 @@
       <div class="item item-text-wrap">
         <div id="profile-info">              
 			<img ng-show="imgURI !== undefined && imgURI !== ''" id="profile-image" ng-src="{{imgURI}}">
-			  <img ng-show="imgURI == undefined ||  imgURI == ''"  id="profile-image" ng-src="img/Fred.jpg">
+			  <img ng-show="imgURI == undefined ||  imgURI == ''"  id="profile-image" ng-src="img/default.png">
 			
           <button class="button button-positive button-clear" ng-click="editKidPicture()" ng-hide="toggleVisibility">Edit</button>
       </div>
@@ -43,7 +43,7 @@
 			
 			<div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker date id="birthDay" name="birthDay" ng-model="kid.kidBirthdate" required="required" for="birthDate">
                 <p ng-show="kid.kidBirthdate == null">Choose Birthday</p>
-				<p ng-show="kid.kidBirthdate != null" style="color:black;">{{kid.kidBirthdate | date: 'dd MMMM, yyyy'}}</p>
+				<p ng-show="kid.kidBirthdate != null" style="color:black;">{{kid.kidBirthdate | date: 'MMMM dd, yyyy'}}</p>
             </div>
 
         </div>

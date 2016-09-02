@@ -50,17 +50,17 @@ angular.module('SitterAdvantage.dbService', [])
 	
 	    //6 kids
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,  allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
-	      ["Rohn Smith", "2011-03-12", "Male", "No iPads or phones allowed", "Rohn.jpg", "1","","",""], function(){}, function(){});
+	      ["Rohn Smith", "2011-03-12", "Male", "No iPads or phones allowed", "", "1","","",""], function(){}, function(){});
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
-	      ["Samuel Smith", "17/June/2006", "Male", "Video games off at 8:00", "Samuel.jpg", "1","","",""], function(){}, function(){});
+	      ["Samuel Smith", "17/June/2006", "Male", "Video games off at 8:00", "", "1","","",""], function(){}, function(){});
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
-	      ["Jane Smith", "09/March/2008", "Female", "Sensitive to high volume sounds or music", "Jane.jpg","1","","",""], function(){}, function(){});
+	      ["Jane Smith", "09/March/2008", "Female", "Sensitive to high volume sounds or music", "","1","","",""], function(){}, function(){});
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
-	      ["Fred Jones", "06/July/2011", "Male", "Limit watching TV to 2 hours maximum.", "Fred.jpg", "2","","",""], function(){}, function(){});
+	      ["Fred Jones", "06/July/2011", "Male", "Limit watching TV to 2 hours maximum.", "", "2","","",""], function(){}, function(){});
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
-	      ["Judy Jetson", "12/12/2012", "Female", "She likes reading books.", "Judy.jpg", "3","","",""], function(){}, function(){});
+	      ["Judy Jetson", "12/12/2012", "Female", "She likes reading books.", "", "3","","",""], function(){}, function(){});
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 
-	      ["Robert Jetson", "12/12/2012", "Male", "No meat is allowed", "Robert.jpg","3","","",""], function(){}, function(){});
+	      ["Robert Jetson", "12/12/2012", "Male", "No meat is allowed", "","3","","",""], function(){}, function(){});
 	    //4 tasks
 
 	    console.log("----- TASK -----");

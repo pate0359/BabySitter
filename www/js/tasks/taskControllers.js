@@ -120,7 +120,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 				Tasks.getTaskById(taskId).then(function (task) {
 					if (!task) return;
 					//Schedule task
-					Notification.scheduleNotification(task);
+					//Notification.scheduleNotification(task);
 					$ionicHistory.goBack();
 				});
 			});
@@ -132,7 +132,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 	    };
   }])
 
-.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients","$ionicHistory","$ionicActionSheet","Notification", function ($scope, Tasks, $stateParams, $state, $rootScope, $ionicNavBarDelegate, Clients,$ionicHistory,$ionicActionSheet,Notification) {
+.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients","$ionicHistory","$ionicActionSheet","Notification","$filter", function ($scope, Tasks, $stateParams, $state, $rootScope, $ionicNavBarDelegate, Clients,$ionicHistory,$ionicActionSheet,Notification,$filter) {
 
 	if ($stateParams.pageFrom == 1){
 
@@ -182,7 +182,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		param.taskId = $scope.task.taskId;
 		param.taskTitle = $scope.task.taskTitle;
 		param.taskDescription = $scope.task.taskDescription;
-		param.taskStartDateTime = $filter('date')($scope.task.startdatetimeValue, 'medium');
+		param.taskStartDateTime = $filter('date')($scope.task.taskStartDateTime, 'medium');
 		param.taskEndDateTime =$filter('date')($scope.task.taskEndDateTime, 'medium');		
 		param.taskNotes = $scope.task.taskNotes;
 		param.clientId = $scope.task.clientId;

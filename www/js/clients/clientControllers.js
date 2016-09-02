@@ -410,7 +410,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 					});
 				}
 			});
-
 		}
 }])
 
@@ -437,7 +436,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 				$scope.imgURI = "";
 			}
 			$scope.kid.kidPicture = $scope.imgURI;
-			$scope.kid.kidBirthdate = $filter('date')($scope.kid.kidBirthdate, 'dd MMMM, yyyy');
+			$scope.kid.kidBirthdate = $filter('date')($scope.kid.kidBirthdate, 'MMMM dd, yyyy');
 
 			Clients.editKidInfo($scope.kid).then(function (res) {
 				if (!res) return;
@@ -631,7 +630,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 				$scope.imgURI = "";
 			}			
 			$scope.kid.kidPicture = $scope.imgURI;
-			$scope.kid.kidBirthdate = $filter('date')($scope.kid.kidBirthdate, 'dd MMMM, yyyy');
+			$scope.kid.kidBirthdate = $filter('date')($scope.kid.kidBirthdate, 'MMMM dd, yyyy');
 			
 			Clients.addkidForClient($scope.kid).then(function (res) {
 				if (!res) return;
