@@ -1,4 +1,4 @@
-<ion-view view-title="Emergency">
+<ion-view view-title="Emergency" cache-view="false">
 <!--    <ion-nav-bar class="myblue"></ion-nav-bar>-->
   <ion-content>
     <div class="item item-divider">
@@ -20,6 +20,9 @@
  <div class="list">
 	 
 	 <!-- ******************************** Parent sub-page ******************************** -->
+	 <div ng-show="parents.lenght == 0">
+		 <p>You dont have any task at this moment!</p>
+	 </div>
 			<div id="parent" ng-repeat="parent in parents" class="card">
 
 				<div class="item item-divider item-icon-right">
@@ -50,7 +53,7 @@
                     </div>
                     <div>
                             <h2>Notes</h2>
-                        <hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;"
+                        <hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd" />
                         <p>{{parent.parentNotes}}</p>
                         
 						</div>
