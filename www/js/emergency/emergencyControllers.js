@@ -1,7 +1,7 @@
 
 angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 ////////////////// Anna's code //////////////////
-.controller('EmergencyCtrl', ["$scope", "$ionicModal", "$cordovaSms",  "GPSMap","Clients", function ($scope, $ionicModal, $cordovaSms, GPSMap,Clients) {
+.controller('EmergencyCtrl', ["$scope", "$ionicModal", "$cordovaSms",  "GPSMap","Clients","Tasks", function ($scope, $ionicModal, $cordovaSms, GPSMap,Clients,Tasks) {
     
     $scope.latitude = "";
     $scope.longitude = "";
@@ -14,12 +14,46 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
     enableFriends: true
   };
 	
+	$scope.currentTasks = [];
+	$scope.parents = [];
+	
     // get client in database
-            Clients.getParentsForClient(1).then(function (parentList) {
-                if (!parentList) return;
-                $scope.parents = parentList;
-            });
+	Tasks.getAllTask().then(function (taskList) {		
+		if (!taskList) return;
+        $scope.getCurrentTask(taskList);
+	});
+	
+	$scope.getCurrentTask = function(taskList){
+		
+		angular.forEach(taskList, function (task) {
 
+				var startDateTime = new Date(task.taskStartDateTime)
+				var endDateTime = new Date(task.taskEndDateTime)
+				var now = new Date();
+			
+				if (now >= startDateTime && now < endDateTime) { // Task is running
+					
+					$scope.currentTasks.push(task);
+				  }
+			});
+		
+		$scope.getParentsForCurrentTasks();
+	};
+	
+	$scope.getParentsForCurrentTasks = function(){
+		
+		angular.forEach($scope.currentTasks, function (task) {
+			
+			if (!task.clientId){
+				return;
+			}
+				Clients.getParentsForClient(task.clientId).then(function (parentList) {
+				
+					if (!parentList) return;
+					$scope.parents = parentList;
+            	});
+			});
+	};
  
   
   var showGPS = "Show my location"; 

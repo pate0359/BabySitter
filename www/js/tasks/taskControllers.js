@@ -76,8 +76,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 	  // client in database
 	  Clients.getClientsList().then(function (clientList) {
 		  if (!clientList) return;
+		  
+		  console.log(clientList);
 		  $scope.clientArray = clientList;
-
+		  
+		  $scope.selectClientOption = $scope.clientArray[0];
 	  });
 
 
@@ -107,7 +110,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			params.taskNotes = $scope.newTaskParams.taskNotes;
 			params.clientId = $scope.selectedClientId;
 			params.kidId = 0;
-			param.isCompleted = false;
+			params.isCompleted = false;
 
 			console.log("params "+params);
 			//Call service function to add new task			
@@ -117,7 +120,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 				Tasks.getTaskById(taskId).then(function (task) {
 					if (!task) return;
 					//Schedule task
-					Notification.scheduleNotification(task);
+					//Notification.scheduleNotification(task);
 					$ionicHistory.goBack();
 				});
 			});
@@ -129,7 +132,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 	    };
   }])
 
-.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients","$ionicHistory","$ionicActionSheet","Notification", function ($scope, Tasks, $stateParams, $state, $rootScope, $ionicNavBarDelegate, Clients,$ionicHistory,$ionicActionSheet,Notification) {
+.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients","$ionicHistory","$ionicActionSheet","Notification","$filter", function ($scope, Tasks, $stateParams, $state, $rootScope, $ionicNavBarDelegate, Clients,$ionicHistory,$ionicActionSheet,Notification,$filter) {
 
 	if ($stateParams.pageFrom == 1){
 
@@ -179,8 +182,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		param.taskId = $scope.task.taskId;
 		param.taskTitle = $scope.task.taskTitle;
 		param.taskDescription = $scope.task.taskDescription;
-		param.taskStartDateTime = $scope.task.taskStartDateTime;
-		param.taskEndDateTime = $scope.task.taskEndDateTime;		
+		param.taskStartDateTime = $filter('date')($scope.task.taskStartDateTime, 'medium');
+		param.taskEndDateTime =$filter('date')($scope.task.taskEndDateTime, 'medium');		
 		param.taskNotes = $scope.task.taskNotes;
 		param.clientId = $scope.task.clientId;
 		//param.isCompleted = false;
