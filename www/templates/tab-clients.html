@@ -7,7 +7,7 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-icon-right" ng-repeat="client in clients" type="item-text-wrap" href="#/tab/clients/{{client.clientId}}">
-        <h2 style="font-size:16px;">{{client.clientDesc}}</h2>
+        <h2 style="font-size:16px;color:black">{{client.clientDesc}}</h2>
         <p><span ng-repeat="(index, kid) in client.kids">{{kid.kidName + ((index !== client.kids.length -1)?', ': '')}}</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 

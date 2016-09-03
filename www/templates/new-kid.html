@@ -40,7 +40,7 @@
         <div style="margin-bottom:15px;">
             <div style="padding:0px;" ion-datetime-picker date id="birthDay" name="birthDay" ng-model="kid.kidBirthdate" required="required" for="birthDate">
                 <p style="color: #c7c7c7;font-size:16px; margin-top:0px;" ng-show="kid.kidBirthdate == null">Select Birthday</p>
-				<p ng-show="kid.kidBirthdate != null" style="color:black;">{{kid.kidBirthdate | date: 'dd MMMM, yyyy'}}</p>
+				<p ng-show="kid.kidBirthdate != null" style="color:black;font-size:16px;margin-bottom:5px;">{{kid.kidBirthdate | date: 'dd MMMM, yyyy'}}</p>
             </div>
             <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />	
           <h2 style="margin-top:5px; margin-bottom:10px;">Birthday</h2>
@@ -60,8 +60,6 @@
                 </select>
               </label>
             </div>
-            <p style="color:red;"
-               ng-show="myForm.gender.$invalid">* This field must contain letters only.</p>
           <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd; margin-bottom:30px;"  />
         </div>
           

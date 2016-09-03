@@ -15,66 +15,95 @@
             <div class="item item-text-wrap">
                 
                 <div style="margin-bottom:15px;">
-                    
-                    <h2 ng-show="disableEnableForm">Task Title</h2>
-                    <hr ng-show="disableEnableForm" style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-                    <input ng-model="task.taskTitle" ng-show="disableEnableForm" class="item-input textDisable" type="text" placeholder="Task Title" >
-                        
-                        <p style="font-weight:600;" class="ios-blue" ng-show="!disableEnableForm">{{task.taskTitle}}</p>
-                        </div>
+                    <input style="padding:0px;margin-top:15px;"
+                           ng-model="task.taskTitle" 
+                           ng-show="disableEnableForm" 
+                           class="item-input textDisable" 
+                           type="text" 
+                           placeholder="Task Title" >
+                    <p style="font-size:16px;color:black;margin-top:20px;" 
+                       ng-show="!disableEnableForm">{{task.taskTitle}}</p>
+                   <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+                    <h2 style="margin-top:5px; margin-bottom:20px;">Task Title</h2>
+                </div>
+                
+                
 				<div ng-hide="toggleVisibility" style="margin-bottom:15px;">
-                    
-                    <h2 >Family Name</h2>
-                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />        <p>{{task.clientDesc}}</p>
-                        </div>
+                    <p style="font-size:16px; color:black">{{task.clientDesc}}</p>
+                   <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+                    <h2 style="margin-top:5px; margin-bottom:20px;" >Family Name</h2>
+                </div>
                 
                 <div style="margin-bottom:15px;">
-                    <h2>Description</h2>
-                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-                    
-                    <input ng-model="task.taskDescription" name="taskDescription" ng-show="disableEnableForm" class="item-input textDisable" type="text" placeholder="Description">
-                        <p ng-show="!disableEnableForm">{{task.taskDescription}}</p>
-                        </div>
+                    <input style="padding:0px;color:black;margin-top:-10px;"
+                           ng-model="task.taskDescription" 
+                           name="taskDescription" 
+                           ng-show="disableEnableForm" 
+                           class="item-input textDisable" 
+                           type="text" 
+                           placeholder="Description">
+                        <p style="color:black; font-size:16px;"
+                           ng-show="!disableEnableForm">{{task.taskDescription}}</p>
+                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+                    <h2 style="margin-top:5px; margin-bottom:20px;">Task Description</h2>
+                </div>
                 
                 <div style="margin-bottom:15px;">
-                    <h2>Start Date and Time</h2>
-                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-					<div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="start_date_time" name="start_date_time" ng-model="task.taskStartDateTime" required="required" for="startDate">				
-					<p>{{task.taskStartDateTime | date: 'medium'}}</p>		
+    
+                     <div ng-show="disableEnableForm" 
+                          style="margin-top:10px;margin-bottom:25px;" 
+                          ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="start_date_time" 
+                          name="start_date_time" 
+                          ng-model="task.taskStartDateTime" 
+                          required="required" for="startDate">
 
-					</div>
-					
-					<div ng-show="disableEnableForm" style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="start_date_time" name="start_date_time" ng-model="task.taskStartDateTime" required="required" for="startDate">
-
-						<p ng-show="task.taskStartDateTime == null">Pick Start Date Time</p>
-					<p ng-show="task.taskStartDateTime != null" style="color:black;">{{task.taskStartDateTime | date: 'medium'}}</p>
-				</div>
+                        <p style="color:#c7c7c7; font-size:16px;"ng-show="task.taskStartDateTime == null">Select Start Date  and Time</p>
+                        <p style="color:black; font-size:16px; padding:0px;margin-bottom:-20px;"ng-show="task.taskStartDateTime != null" >{{task.taskStartDateTime | date: 'medium'}}</p>
+                    </div>
+                    
+                        <div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="start_date_time"  name="start_date_time" ng-model="task.taskStartDateTime" required="required" for="startDate">		
+                            <p style="color:black; font-size:16px; padding:0px; margin-bottom:-20px;" >{{task.taskStartDateTime | date: 'medium'}}</p>		
                         </div>
+                    
+                            <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+                             <h2 style="margin-top:5px; margin-bottom:20px;">Start Date and Time</h2>
+              </div>      
+                
                 
                 <div style="margin-bottom:15px;">
-                    <h2>End Date and Time</h2>
-                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+    
+                     <div ng-show="disableEnableForm" 
+                          style="margin-top:10px;margin-bottom:25px;" 
+                          ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="end_date_time" 
+                          name="end_date_time" 
+                          ng-model="task.taskEndDateTime" 
+                          required="required" for="endDate">
+
+                        <p style="color:#c7c7c7; font-size:16px;"ng-show="task.taskEndDateTime == null">Select End Date  and Time</p>
+                        <p style="color:black; font-size:16px; padding:0px;margin-bottom:-20px;"ng-show="task.taskEndDateTime != null" >{{task.taskEndDateTime | date: 'medium'}}</p>
+                    </div>
                     
-<!--                    <input ng-model="task.taskEndDateTime" name="taskEnddate" ng-show="disableEnableForm" class="item-input textDisable" type="datetime" placeholder="End Date">-->
-<!--                        <p ng-show="!disableEnableForm">{{task.taskEndDateTime}}</p>-->
-					
-					<div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="end_date_time" name="end_date_time" ng-model="task.taskEndDateTime" required="required" for="endDate">				
-						<p>{{task.taskEndDateTime | date: 'medium'}}</p>		
-					</div>
-					
-					<div ng-show="disableEnableForm" style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="end_date_time" name="end_date_time" ng-model="task.taskEndDateTime" required="required" for="endDate">
-						<p ng-show="task.taskEndDateTime == null">Pick Start Date Time</p>
-						<p ng-show="task.taskEndDateTime != null" style="color:black;">{{task.taskEndDateTime | date: 'medium'}}</p>
-					</div>
-					
-                </div>                
-                <div style="margin-bottom:15px;">
-                    <h2>Notes</h2>
-                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-                    <input ng-model="task.taskNotes" name="taskNotes" ng-show="disableEnableForm" class="item-input textDisable" type="text" placeholder="Notes">
-                        <p ng-show="!disableEnableForm">{{task.taskNotes}}</p>
-                        
+                        <div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="end_date_time"  name="end_date_time" ng-model="task.taskEndDateTime" required="required" for="endDate">		
+                            <p style="color:black; font-size:16px; padding:0px; margin-bottom:-20px;" >{{task.taskEndDateTime | date: 'medium'}}</p>		
                         </div>
+                    
+                            <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+                             <h2 style="margin-top:5px; margin-bottom:10px;">End Date and Time</h2>
+              </div>
+                   
+                <div style="margin-bottom:15px;">
+                     <input style="padding:0px;margin-bottom:-5px;"
+                            ng-model="task.taskNotes" 
+                            name="taskNotes" 
+                            ng-show="disableEnableForm" 
+                            class="item-input textDisable" 
+                            type="text" placeholder="Notes">
+                        <p style="color:black; font-size:16px;margin-top:5px;margin-bottom:0px;"
+                           ng-show="!disableEnableForm">{{task.taskNotes}}</p>   
+                    <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
+                    <h2 style="margin-top:5px; margin-bottom:25px;">Notes</h2>
+                   
+              </div>
             </div>
         </form>
 	

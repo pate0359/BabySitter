@@ -32,60 +32,69 @@
                  ng-required="true">
              <p style="color:red;"
                  ng-show="myForm.kidName.$invalid && myForm.kidName.$touched">* This field is required</p>
-        <h2 style="margin-top:5px; margin-bottom:30px;">Kid Name</h2>
+                <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+        <h2 style="margin-top:5px; margin-bottom:20px;">Kid Name</h2>
         </div>
 
         <div style="margin-bottom:15px;">
             <div style="padding:0px;" ion-datetime-picker date id="birthDay" name="birthDay" ng-model="kid.kidBirthdate" required="required" for="birthDate">
                 <p ng-show="kid.kidBirthdate == null">Select Birthday</p>
-				<p ng-show="kid.kidBirthdate != null" style="color:black;">{{kid.kidBirthdate | date: 'MMMM dd, yyyy'}}</p>
+				<p ng-show="kid.kidBirthdate != null" style="color:black;font-size:16px;margin-bottom:5px;">{{kid.kidBirthdate | date: 'MMMM dd, yyyy'}}</p>
             </div>
           <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />          
-          <h2 style="margin-top:5px; margin-bottom:30px;">Birthday</h2>
-
-<!--          <input ng-model="kid.kidBirthday" class="item-input textDisable" type="date" placeholder="Birthday" value="{{kid.kidBirthday}}">-->
-
+          <h2 style="margin-top:5px; margin-bottom:15px;">Birthday</h2>
         </div>
 
         <div style="margin-bottom:15px;">
-          <h2>Gender</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="kid.kidGender" 
-                 class="item-input textDisable" 
-                 type="text" 
-                 placeholder="Gender" 
-                 value="{{kid.kidGender}}"
-                 name="gender"
-                 ng-pattern="stringval">
-         <p style="color:red;"
-                 ng-show="myForm.gender.$invalid">* This field is must contain letters only</p>   
-        </div>
-        <div style="margin-bottom:15px;">
-          <h2>Allergies</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="kid.allergyDescription" class="item-input textDisable" type="text" placeholder="Allergies" value="{{kid.allergyDescription}}">
-
-        </div>
-        <div style="margin-bottom:15px;">
-          <h2>Disabilities</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="kid.disabilityDescription" class="item-input textDisable" type="text" placeholder="Disabilities" value="{{kid.disabilityDescription}}">
-
+          <div class="list">
+              <label class="item item-input item-select" style="padding:0px; margin-bottom:-20px;">
+                <div class="input-label" 
+                     style="color:#666;padding-bottom:0px;font-size:14px;margin-bottom:5px;"
+                     name="gender">
+                Gender
+                </div>
+                <select ng-model="kid.kidGender">
+                  <option selected>Male</option>
+                  <option>Female</option>
+                </select>
+              </label>
+            </div>
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;margin-bottom:30px;" />          
         </div>
 
         <div style="margin-bottom:15px;">
-          <h2>Medications</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="kid.medicationDescription" class="item-input textDisable" type="text" placeholder="Medications" value="{{kids.medicationDescription}}">
+             <input style="padding:0px;"
+                    ng-model="kid.allergyDescription" 
+                    class="item-input textDisable" 
+                    type="text" 
+                    placeholder="Allergies" 
+                    value="{{kid.allergyDescription}}">
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;margin-bottom:40px;" />          
+          <h2 style="margin-top:-35px; margin-bottom:15px;">Allergies</h2>
+        </div>
+          
+        <div style="margin-bottom:15px;">
+            <input style="padding:0px;"
+                   ng-model="kid.disabilityDescription" 
+                   class="item-input textDisable" 
+                   type="text" 
+                   placeholder="Disabilities" 
+                   value="{{kid.disabilityDescription}}">
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;margin-bottom:40px;" />   
+            <h2 style="margin-top:-35px; margin-bottom:15px;">Disabilities</h2>
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <input style="padding:0px;" ng-model="kid.medicationDescription" class="item-input textDisable" type="text" placeholder="Medications" value="{{kids.medicationDescription}}">
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;margin-bottom:40px;" />   
+                      <h2 style="margin-top:-35px; margin-bottom:15px;">Medications</h2>
+
         </div>
 
       <div style="margin-bottom:15px;">
-          <h2>Notes</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="kid.kidNotes" class="item-input textDisable" type="text" placeholder="Notes" value="{{kid.kidNotes}}">
+          <input stle="padding:0px;"ng-model="kid.kidNotes" class="item-input textDisable" type="text" placeholder="Notes" value="{{kid.kidNotes}}">
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;margin-bottom:40px;" />  
+        <h2 style="margin-top:-35px; margin-bottom:35px;">Notes</h2>
         </div>
 
   </div>
