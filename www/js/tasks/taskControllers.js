@@ -21,6 +21,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		  
 		  $scope.changeDateFormat = function(taskList){
 			  
+			  var array = [];
+			  
 			  angular.forEach(taskList, function (task) {
 				  
 				  var newTask = {};
@@ -36,13 +38,14 @@ angular.module('SitterAdvantage.taskControllers', [])
 				    newTask.clientDesc = task.clientDesc;
 				  	newTask.isCompleted = task.isCompleted;
 				  	newTask.isNotify = task.isNotify;
-				  
+				  newTask.start_dateObj = new Date(task.taskStartDateTime);
 				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
 				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
 				  
-				  $scope.tasks.push(newTask);
-				  
+				  array.push(newTask);
 				});
+			  
+			  $scope.tasks = $filter('orderBy')(array, 'start_dateObj');
 		  }
 		  
 		$scope.addTask = function () {
@@ -72,7 +75,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		  $scope.isHideClientDescr = true;
 	  }
 
-	 $scope.isNotify = false;
+	 //$scope.isNotify = false;
 	  
 	  // client in database
 	  Clients.getClientsList().then(function (clientList) {
@@ -91,6 +94,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		};
 
 		$scope.newTaskParams = {};
+	  
+	  //newTaskParams.isNotify = false;
 
 	  $scope.notificationChange = function() {
 		
@@ -114,7 +119,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			params.clientId = $scope.selectedClientId;
 			params.kidId = 0;
 			params.isCompleted = false;
-			params.isNotify = $scope.isNotify;
+			params.isNotify = $scope.newTaskParams.isNotify;
 
 			console.log("params "+params);
 			//Call service function to add new task			

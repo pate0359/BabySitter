@@ -7,16 +7,6 @@
     
   <ion-content>       
       <ion-list class="item-icon-right">
- 
-<!--
-		  
-		  <ul ng-repeat="(startDate, taskItems) in tasks | groupBy: 'startDate'">
-  Group name: {{ key }}
-  <li ng-repeat="task in taskItems">
-    player: {{ task.name }} 
-  </li>
-</ul>
--->
 		  
  <div ng-repeat="(startDate, taskItems) in tasks | groupBy: 'startDate'" >
  
