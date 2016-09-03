@@ -26,7 +26,7 @@
 
   <ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
       <h2>{{task.clientDesc}}</h2>
-	  <span class="item-note" style="color:green;" ng-hide="task.isCompleted == 'true'">		  
+	  <span class="item-note" style="color:green;" ng-show="task.isCompleted == 'true'">		  
 								Completed
 							</span>
 <!--

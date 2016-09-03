@@ -109,7 +109,7 @@
 	
 <!--		ion-item-->
 		
-		<div class="padding" ng-show="task.isCompleted == 'true' && !toggleVisibility">
+		<div class="padding" ng-hide="task.isCompleted == 'true' && !toggleVisibility">
             <button class="button mygreen button-block" ng-click="completeTask()">
                 Complete Task
             </button>

@@ -59,7 +59,7 @@ angular.module('SitterAdvantage.taskServices', [])
         createNewTask: function (params) {
 
 			var d = $q.defer();
-			 var query = "INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime,taskEndDateTime, taskNotes, clientId,kidId) VALUES (?,?,?,?,?,?,?)";
+			 var query = "INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime,taskEndDateTime, taskNotes, clientId,kidId,isCompleted) VALUES (?,?,?,?,?,?,?,?)";
 
 			var querySuccessCallback = function(tx, res) {
 				// // get task id for new client after adding it.
@@ -73,7 +73,7 @@ angular.module('SitterAdvantage.taskServices', [])
 				d.resolve(err);
 			};
 
-   			 dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.taskStartDateTime, params.taskEndDateTime, params.taskNotes, params.clientId,params.kidId], querySuccessCallback, queryErrorCallback );
+   			 dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.taskStartDateTime, params.taskEndDateTime, params.taskNotes, params.clientId,params.kidId,params.isCompleted], querySuccessCallback, queryErrorCallback );
 			
 			return d.promise;
 		},
@@ -81,7 +81,7 @@ angular.module('SitterAdvantage.taskServices', [])
         updateTask: function (params) {
 
 			var d = $q.defer();
-			 var query = "UPDATE tasks SET taskTitle = ?, taskDescription = ?, taskStartDateTime = ?, taskEndDateTime = ?, taskNotes = ?, clientId = ? WHERE taskId = ? ";
+			 var query = "UPDATE tasks SET taskTitle = ?, taskDescription = ?, taskStartDateTime = ?, taskEndDateTime = ?, taskNotes = ?, clientId = ?, isCompleted = ? WHERE taskId = ? ";
 	  
 			var querySuccessCallback = function(tx, res) {
 				// // get task id for new client after adding it.
@@ -95,7 +95,7 @@ angular.module('SitterAdvantage.taskServices', [])
 				d.resolve(err);
 			};
 
-   			 dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.taskStartDateTime, params.taskEndDateTime, params.taskNotes, params.clientId,params.taskId], querySuccessCallback, queryErrorCallback );
+   			 dbService.executeStatement(query, [params.taskTitle, params.taskDescription, params.taskStartDateTime, params.taskEndDateTime, params.taskNotes, params.clientId,params.isCompleted,params.taskId], querySuccessCallback, queryErrorCallback );
 			
 			return d.promise;
 		},

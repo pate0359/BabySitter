@@ -6,13 +6,13 @@
 -->
 	<ion-content class="padding">
 		<ti-segmented-control on-select="buttonClicked($index)" class="padding-bottom">
-			<ti-segmented-control-button class="button-assertive" title="'Parents'" ng-selected="selectedParent">
+			<ti-segmented-control-button id="segment_button_0" class="button-assertive" title="'Parents'">
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button class="button-assertive" title="'Kids'" ng-selected="selectedKid">
+			<ti-segmented-control-button id="segment_button_1" class="button-assertive" title="'Kids'" >
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button class="button-assertive" title="'Tasks'" ng-selected="selectedTask">
+			<ti-segmented-control-button id="segment_button_2" class="button-assertive" title="'Tasks'" >
 			</ti-segmented-control-button>
 		</ti-segmented-control>
 
@@ -137,17 +137,17 @@
 
 			<!-- ******************************** Task sub-page ******************************** -->
 			
-			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" ng-click="taskItemClicked($index)">
+			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" >
 
 				<div class="item item-divider item-icon-right">
 					{{startDate}}
 				</div>
 				
-				<div ng-repeat="task in taskItems | orderBy: 'startTime'" class="item item-text-wrap">
+				<ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" class="item item-text-wrap" href="#/tab/tasks_client/{{task.taskId}}">
 					<div style="padding-bottom:10px;">
 						<span style="font-size: 17px">{{task.taskTitle}}</span>
-						<div ng-hide="task.isCompleted == 'true'" class="item-note" >
-							<span>		  
+						<div ng-show="task.isCompleted == 'true'" class="item-note" >
+							<span style="color:green;">		  
 								Completed
 							</span>
 						<br/>
@@ -158,7 +158,7 @@
 						</div>
 											
 					</div>
-				</div>
+				</ion-item>
 			</div>
 
             <div id="task" ng-switch-when="2">

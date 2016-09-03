@@ -1,18 +1,16 @@
 angular.module('SitterAdvantage.clientControllers', [])
-	.controller('ClientsCtrl', ["$scope", "Clients", "$ionicPopup", "$state", "$ionicActionSheet", "$ionicHistory",
- function ($scope, Clients, $ionicPopup, $state, $ionicActionSheet, $ionicHistory) {
+	.controller('ClientsCtrl', ["$scope", "Clients", "$ionicPopup", "$state", "$ionicActionSheet", "$ionicHistory","$rootScope",
+ function ($scope, Clients, $ionicPopup, $state, $ionicActionSheet, $ionicHistory,$rootScope) {
 
 
 			console.log("ClientsCtrl is loaded");
 			$scope.clients = [];
-
 
 			// Insert client in database
 			Clients.getClientsList().then(function (clientList) {
 				if (!clientList) return;
 				console.log(clientList);
 				//$scope.clients = clientList;
-
 				//Get kids
 				$scope.getKidsForClient(clientList)
 			});
@@ -30,6 +28,17 @@ angular.module('SitterAdvantage.clientControllers', [])
 				}
 			};
 
+	 		$scope.clientClicked = function($index){
+				
+				var client = $scope.clients[$index];
+				
+				$rootScope.segmentIndex = 0;
+				
+				$state.go("tab.client-detail", {
+						clientId: client.clientId,
+					});
+			};
+	 
 			$scope.editClientDescription = function ($index) {
 				// pop up Alert box
 				$scope.data = {};
@@ -57,7 +66,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 									return $scope.selectedClient.clientDesc;
 								}
 							}
-
             }, ]
 
 				});
@@ -178,6 +186,20 @@ angular.module('SitterAdvantage.clientControllers', [])
 		$scope.selectedClient = {};
 		//used stateParams to access clientId which allows us to navigate to each client's detail page.
 
+	  $scope.$on('$ionicView.loaded', function(){
+		  
+		  if (!$rootScope.segmentIndex) {
+
+			$rootScope.segmentIndex = 0;
+		 }
+
+		$scope.selectedIndex = $rootScope.segmentIndex;
+		$scope.setSelectedButton = $scope.selectedIndex;
+		  
+		//Here your view content is fully loaded !!
+		 $scope.updateSelection();
+		 
+	  });
 		//Get Client
 		Clients.getClientById($stateParams.clientId).then(function (client) {
 			if (!client) return;
@@ -203,6 +225,31 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 			$scope.changeDateFormat(tasks);
 		});
+	 
+	 $scope.updateSelection = function () {
+		 
+		    var segmentElement0 = angular.element(document.querySelector('#segment_button_0'));
+			var segment0 = segmentElement0[0];
+
+			var segmentElement1 = angular.element(document.querySelector('#segment_button_1'));
+			var segment1 = segmentElement1[0];
+
+			var segmentElement2 = angular.element(document.querySelector('#segment_button_2'));
+			var segment2 = segmentElement2[0];
+
+			if ($scope.selectedIndex == 0) {
+
+				segment0.classList.value += ' active'; //add class
+
+			} else if ($scope.selectedIndex == 1) {
+				
+				segment1.classList.value += ' active'; //add class
+
+			} else if ($scope.selectedIndex == 2) {
+
+				segment2.classList.value += ' active'; //add class
+			}
+	 }
 
 		$scope.changeDateFormat = function (taskList) {
 
@@ -233,21 +280,15 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 		//create functions to show and hide different subpages based on active segmented controls
 
-		if (!$rootScope.segmentIndex) {
-
-			$rootScope.segmentIndex = 0;
-		}
-
-		$scope.selectedIndex = $rootScope.segmentIndex;
-		$scope.setSelectedButton = $scope.selectedIndex;
+		
 
 		$scope.buttonClicked = function (index) {
 
-			$scope.updateSelection(index);
-
 			$scope.selectedIndex = index;
 			$rootScope.segmentIndex = index;
+			
 			$scope.$apply();
+			//$scope.updateSelection();
 		}
 
 		$scope.taskItemClicked = function ($index) {
@@ -256,38 +297,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 				taskId: $scope.selectedClient.tasks[$index].taskId
 			});
 		}
-
-		$scope.updateSelection = function (index) {
-
-			//alert(index)
-
-			if (index == 0) {
-
-				$scope.selectedParent = true;
-				$scope.selectedKid = false;
-				$scope.selectedTask = false;
-
-			} else if (index == 1) {
-
-				$scope.selectedParent = false;
-				$scope.selectedKid = true;
-				$scope.selectedTask = false;
-
-			} else if (index == 2) {
-
-				$scope.selectedParent = false;
-				$scope.selectedKid = false;
-				$scope.selectedTask = true;
-			}
-
-		}
-
-		$scope.$on('$viewContentLoaded', function () {
-
-			$scope.updateSelection($scope.selectedIndex);
-			$scope.$apply();
-			//Here your view content is fully loaded !!
-		});
 
 		//handler for editing parent information
 		$scope.editParent = function ($index) {
