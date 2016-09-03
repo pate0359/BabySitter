@@ -137,17 +137,17 @@
 
 			<!-- ******************************** Task sub-page ******************************** -->
 			
-			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" ng-click="taskItemClicked($index)">
+			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" >
 
 				<div class="item item-divider item-icon-right">
 					{{startDate}}
 				</div>
 				
-				<div ng-repeat="task in taskItems | orderBy: 'startTime'" class="item item-text-wrap">
+				<ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" class="item item-text-wrap" href="#/tab/tasks_client/{{task.taskId}}">
 					<div style="padding-bottom:10px;">
 						<span style="font-size: 17px">{{task.taskTitle}}</span>
-						<div ng-hide="task.isCompleted == 'true'" class="item-note" >
-							<span>		  
+						<div ng-show="task.isCompleted == 'true'" class="item-note" >
+							<span style="color:green;">		  
 								Completed
 							</span>
 						<br/>
@@ -158,7 +158,7 @@
 						</div>
 											
 					</div>
-				</div>
+				</ion-item>
 			</div>
 
             <div id="task" ng-switch-when="2">
