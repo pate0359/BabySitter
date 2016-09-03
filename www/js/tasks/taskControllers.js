@@ -35,6 +35,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 					newTask.kidId = task.kidId;
 				    newTask.clientDesc = task.clientDesc;
 				  	newTask.isCompleted = task.isCompleted;
+				  	newTask.isNotify = task.isNotify;
 				  
 				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
 				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
@@ -73,6 +74,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		  $scope.isHideClientDescr = true;
 	  }
 
+	 $scope.isNotify = false;
+	  
 	  // client in database
 	  Clients.getClientsList().then(function (clientList) {
 		  if (!clientList) return;
@@ -83,17 +86,19 @@ angular.module('SitterAdvantage.taskControllers', [])
 		  $scope.selectClientOption = $scope.clientArray[0];
 	  });
 
-
-		console.log("im inside new task controller");
 		$scope.cancelNewTask = function () {
 			//$state.go("tab.tasks");
 			
 			$ionicHistory.goBack();
-
 		};
 
 		$scope.newTaskParams = {};
 
+	  $scope.notificationChange = function() {
+		
+		console.log('Push Notification Change', $scope.isNotify);
+	  };
+	  
 		$scope.saveNewTask = function () {
 			// To add Task from Clien detail page
 			
@@ -111,6 +116,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			params.clientId = $scope.selectedClientId;
 			params.kidId = 0;
 			params.isCompleted = false;
+			params.isNotify = $scope.isNotify;
 
 			console.log("params "+params);
 			//Call service function to add new task			
@@ -154,6 +160,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 
 		$scope.pageTitle = "Edit Task";
 	}
+	
+	
 
 	//Get task by id
 	Tasks.getTaskById($stateParams.taskId).then(function (task) {
@@ -166,6 +174,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 					  $scope.task.clientDesc = client.clientDesc;
 				  });
 			});
+	
+	$scope.notificationChange = function() {
+		
+		console.log('Push Notification Change', $scope.task.isNotify);
+	  };
 	
 	$scope.editTaskDetails = function (e) {
 		//$scope.disableEnableForm = function(e){ return true;} 
@@ -186,7 +199,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		param.taskEndDateTime =$filter('date')($scope.task.taskEndDateTime, 'medium');		
 		param.taskNotes = $scope.task.taskNotes;
 		param.clientId = $scope.task.clientId;
-		//param.isCompleted = false;
+		param.isCompleted = $scope.task.isCompleted;
+		param.isNotify = $scope.task.isNotify;
 		
 		console.log("EditTask param : "+param);
 		Tasks.updateTask(param).then(function (task) {
@@ -240,7 +254,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 					param.taskNotes = $scope.task.taskNotes;
 					param.clientId = $scope.task.clientId;
 					param.isCompleted = true;
-
+					param.isNotify = $scope.task.isNotify;
+					
 					console.log("EditTask param : "+param);
 					Tasks.updateTask(param).then(function (task) {
 							  if (!task) return;

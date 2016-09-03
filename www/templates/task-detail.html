@@ -105,19 +105,24 @@
                    
               </div>
             </div>
+			
+			<ion-checkbox ng-disabled = "!toggleVisibility" ng-model="task.isNotify" ng-change="notificationChange()">
+			  Notify me
+			</ion-checkbox>
+			
         </form>
 	
 <!--		ion-item-->
 		
-		<div class="padding" ng-hide="task.isCompleted == 'true' && !toggleVisibility">
-            <button class="button mygreen button-block" ng-click="completeTask()">
+		<div class="padding" ng-hide="toggleVisibility" >
+            <button class="button mygreen button-block" ng-click="completeTask()" ng-hide="task.isCompleted == 'true'">
                 Complete Task
             </button>
         </div>
         
-        <div class="padding" ng-show="toggleVisibility">
+        <div class="padding" ng-hide="!toggleVisibility">
             
-            <button class="button myred button-block" ng-click="deleteTaskDetails()" ng-show="toggleVisibility">
+            <button class="button myred button-block" ng-click="deleteTaskDetails()">
                 Delete Task
             </button>
         </div>
