@@ -106,7 +106,7 @@
               </div>
             </div>
 			
-			<ion-checkbox ng-disabled = "!toggleVisibility" ng-model="task.isNotify" ng-change="notificationChange()">
+			<ion-checkbox ng-hide="task.isCompleted == 'true'" ng-disabled = "!toggleVisibility" ng-model='task.isNotify' ng-change="notificationChange()">
 			  Notify me
 			</ion-checkbox>
 			

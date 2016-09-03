@@ -64,13 +64,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 
   		$ionicNavBarDelegate.showBackButton(false);
 	  
-
 	  if ($stateParams.pageFrom == 1){
 
 	  	$scope.isHideClientDescr = false;
 
 	  }else{
-
 		  $scope.isHideClientDescr = true;
 	  }
 
@@ -125,8 +123,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 				
 				Tasks.getTaskById(taskId).then(function (task) {
 					if (!task) return;
-					//Schedule task
-					//Notification.scheduleNotification(task);
+					
+					if (params.isNotify == 'true'){
+						//Schedule task
+						//Notification.scheduleNotification(task);
+					}					
 					$ionicHistory.goBack();
 				});
 			});
@@ -160,14 +161,18 @@ angular.module('SitterAdvantage.taskControllers', [])
 
 		$scope.pageTitle = "Edit Task";
 	}
-	
-	
 
 	//Get task by id
 	Tasks.getTaskById($stateParams.taskId).then(function (task) {
 				  if (!task) return;
 				  $scope.task = task;
 		
+					if ($scope.task.isNotify == "true" || $scope.task.isNotify === "true"){
+						$scope.task.isNotify = true;
+					}else{
+						$scope.task.isNotify = false;
+					}
+				
 				// client in database
 				  Clients.getClientById($scope.task.clientId).then(function (client) {
 					  if (!client) return;
@@ -207,9 +212,11 @@ angular.module('SitterAdvantage.taskControllers', [])
 				  if (!task) return;
 				  	//$scope.disableEnableForm = function(e){ return false;} 
 			
-					//Update notification
-					//Notification.updateNotification(param);
-			
+					if (param.isNotify == 'true'){
+						//Update notification
+						//Notification.updateNotification(param);
+					}	
+					
 					$scope.disableEnableForm = false;
 					$scope.toggleVisibility = false;
 					$ionicNavBarDelegate.showBackButton(true);
