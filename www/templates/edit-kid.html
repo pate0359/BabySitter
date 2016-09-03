@@ -19,11 +19,10 @@
 			
           <button class="button button-positive button-clear" ng-click="editKidPicture()" ng-hide="toggleVisibility">Edit</button>
       </div>
+          
         <div style="margin-bottom:15px;">
-        <h2>Kid Name</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="kid.kidName" 
+             <input style="padding:0px;"
+                    ng-model="kid.kidName" 
                  class="item-input textDisable" 
                  type="text" 
                  placeholder="Kid Name" 
@@ -31,20 +30,20 @@
                  name="kidName"
                  ng-pattern="stringval"
                  ng-required="true">
-            <p style="color:red;"
+             <p style="color:red;"
                  ng-show="myForm.kidName.$invalid && myForm.kidName.$touched">* This field is required</p>
+        <h2 style="margin-top:5px; margin-bottom:30px;">Kid Name</h2>
         </div>
 
         <div style="margin-bottom:15px;">
-          <h2>Birthday</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-<!--          <input ng-model="kid.kidBirthday" class="item-input textDisable" type="date" placeholder="Birthday" value="{{kid.kidBirthday}}">-->
-			
-			<div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker date id="birthDay" name="birthDay" ng-model="kid.kidBirthdate" required="required" for="birthDate">
-                <p ng-show="kid.kidBirthdate == null">Choose Birthday</p>
+            <div style="padding:0px;" ion-datetime-picker date id="birthDay" name="birthDay" ng-model="kid.kidBirthdate" required="required" for="birthDate">
+                <p ng-show="kid.kidBirthdate == null">Select Birthday</p>
 				<p ng-show="kid.kidBirthdate != null" style="color:black;">{{kid.kidBirthdate | date: 'MMMM dd, yyyy'}}</p>
             </div>
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />          
+          <h2 style="margin-top:5px; margin-bottom:30px;">Birthday</h2>
+
+<!--          <input ng-model="kid.kidBirthday" class="item-input textDisable" type="date" placeholder="Birthday" value="{{kid.kidBirthday}}">-->
 
         </div>
 

@@ -215,4 +215,12 @@ button.button.button-icon {
     margin-bottom:0px;
 }
 
+.tabs-positive > .tabs{
+background-color: red !important;
+}
+.tabs-icon-top .tab-emergency{
+    color:#BF272D;
+    
+}
+
 

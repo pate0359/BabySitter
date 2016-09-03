@@ -14,11 +14,9 @@
 
       <div class="item item-text-wrap">
 
-        <div style="margin-bottom:15px;">
-        <h2>Parent Name</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="parent.parentName"  
+        <div style="margin-bottom:15px; margin-top:20px;">
+            <input style="padding:0px;"
+                   ng-model="parent.parentName"  
                  class="item-input textDisable" 
                  type="text" 
                  placeholder="Parent Name" 
@@ -28,36 +26,38 @@
                  ng-required="true">
                 <p style="color:red;"
                  ng-show="myForm.parentName.$invalid && myForm.parentName.$touched">* This field is required</p>
-            
+            <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+             <h2 style="margin-top:5px; margin-bottom:10px;">Parent Name</h2>
         </div>
           
         <div style="margin-bottom:15px;">
-          <h2>Street</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="parent.parentStreet" class="item-input textDisable" type="text" placeholder="Street" value="{{parent.parentStreet}}">
+            <input style="padding:0px;" 
+                   ng-model="parent.parentStreet"
+                   class="item-input textDisable" 
+                   type="text" placeholder="Street" 
+                   value="{{parent.parentStreet}}">
+            <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+            <h2 style="margin-top:5px; margin-bottom:10px;">Street</h2>
         </div>
-       
+         
         <div style="margin-bottom:15px;">
-          <h2>City</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-
-          <input ng-model="parent.parentCity" 
+            <input style="padding:0px;"
+                   ng-model="parent.parentCity" 
                  class="item-input textDisable" 
                  type="text" 
                  placeholder="City" 
                  value="{{parent.parentCity}}"
                  name="city"
                  ng-pattern="stringval">
-           <p style="color:red;"
+            <p style="color:red;"
                  ng-show="myForm.city.$invalid">* This field must contain letters only</p>
-        
+                        <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+          <h2 style="margin-top:5px; margin-bottom:10px;">City</h2>
         </div>
-
+          
         <div style="margin-bottom:15px;">
-          <h2>State</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="parent.parentState" 
+            <input style="padding:0px;"
+                   ng-model="parent.parentState" 
                  class="item-input textDisable" 
                  type="text" 
                  placeholder="State" 
@@ -66,54 +66,57 @@
                  ng-pattern="stringval">
             <p style="color:red;"
                  ng-show="myForm.state.$invalid">* This field must contain letters only</p>
+                                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+          <h2 style="margin-top:5px; margin-bottom:10px;">State</h2>          
         </div>
 
       <div style="margin-bottom:15px;">
-          <h2>Zip Code</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="parent.parentZipcode" 
+          <input style="padding:0px;"
+                 ng-model="parent.parentZipcode" 
                  class="item-input textDisable" 
                  type="text" 
                  placeholder="Zip Code" 
                  value="{{parent.parentZipcode}}"
                  name="zipcode"
                  ng-pattern="integerval">
-          <p style="color:red;"
-                 ng-show="myForm.zipcode.$invalid">* This field must contain numbers only</p>
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+          <h2 style="margin-top:5px; margin-bottom:10px;">Zip Code</h2>
+          
         </div>
 
       <div style="margin-bottom:15px;">
-          <h2>Primary Phone</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="parent.parentPrimaryphone" 
+           <input style="padding:0px;"
+                  ng-model="parent.parentPrimaryphone" 
                  class="item-input textDisable" 
-                 type="text" 
+                 type="text"
                  placeholder="Primary Phone" 
                  value="{{parent.parentPrimaryphone}}"
                  name="primaryPhone"
                  ng-pattern="integerval">
           <p style="color:red;"
                  ng-show="myForm.primaryPhone.$invalid">* This field must contain numbers only</p>
+                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+          <h2 style="margin-top:5px; margin-bottom:10px;">Primary Phone</h2>
         </div>
 
       <div style="margin-bottom:15px;">
-          <h2>Secondary Phone</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="parent.parentSecondaryphone" 
+          <input style="padding:0px;"
+                 ng-model="parent.parentSecondaryphone" 
                  class="item-input textDisable" 
-                 type="text" 
+                 type="tel" 
                  placeholder="Secondary Phone" 
                  value="{{parent.parentSecondaryphone}}"
                  name="secondaryPhone"
                  ng-pattern="integerval">
           <p style="color:red;"
-                 ng-show="myForm.secondaryPhone.$invalid">* This field must contain numbers only</p>
+                 ng-show="myForm.secondaryPhone.$invalid">* This field must contain numbers only</p>                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+                    <h2 style="margin-top:5px; margin-bottom:10px;">Secondary Phone</h2>
         </div>
 
       <div style="margin-bottom:15px;">
-          <h2>Email</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="parent.parentEmailid" 
+          <input 
+                 style="padding:0px;"
+                 ng-model="parent.parentEmailid" 
                  class="item-input textDisable" 
                  type="email" 
                  placeholder="Email" 
@@ -121,13 +124,20 @@
                  name="email">
           <p style="color:red;"
                  ng-show="myForm.email.$invalid && myForm.email.$touched">* This field must contain a valid email</p>
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />          
+          <h2 style="margin-top:5px; margin-bottom:10px;">Email</h2>
       </div>
+          
         <div style="margin-bottom:15px;">
-          <h2>Notes</h2>
-          <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
-          <input ng-model="parent.parentNotes" class="item-input textDisable" type="text" placeholder="Notes" value="{{parent.parentNotes}}">
+            <input style="padding:0px;"
+                   ng-model="parent.parentNotes" 
+                   class="item-input textDisable" 
+                   type="text" 
+                   placeholder="Notes" 
+                   value="{{parent.parentNotes}}">
+          <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />          
+          <h2 style="margin-top:5px; margin-bottom:30px;">Notes</h2>
         </div>
-
     </div>
     </form>
 
