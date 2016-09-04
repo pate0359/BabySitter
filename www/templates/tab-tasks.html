@@ -1,46 +1,39 @@
 <ion-view cache-view="false" view-title="Tasks">
-<!--    <ion-nav-bar class="myblue">-->
+    <!--    <ion-nav-bar class="myblue">-->
     <ion-nav-buttons side="secondary">
-      <button class="button icon ion-plus" ng-click="addTask()"></button>
+        <button class="button icon ion-plus" ng-click="addTask()"></button>
     </ion-nav-buttons>
-<!--    </ion-nav-bar>-->
-    
-  <ion-content>       
-      <ion-list class="item-icon-right">
-		  
- <div ng-repeat="(startDate, taskItems) in tasks | groupBy: 'startDate'" >
- 
- <div class="item item-divider">
-   {{startDate}}
-  </div>
+    <!--    </ion-nav-bar>-->
 
-  <ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
-      <h2>{{task.clientDesc}}</h2>
-	  <span class="item-note" style="color:green;" ng-show="task.isCompleted == 'true'">		  
+    <ion-content>
+        <ion-list class="item-icon-right">
+
+            <div ng-repeat="(startDate, taskItems) in tasks | groupBy: 'startDate'">
+
+                <div class="item item-divider">
+                    {{startDate}}
+                </div>
+
+                <ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
+                    <p style="font-size:16px;margin-bottom:-18px;color:#272727">{{task.taskTitle}}<p>
+                    <span class="item-note">		  
+								{{task.startTime}}
+						</span>
+                    
+                    <h2>{{task.clientDesc}}</h2>
+                    <span class="item-note" style="color:green;margin-top:-18px;" ng-show="task.isCompleted == 'true'">		  
 								Completed
 							</span>
-<!--
-      <div  >
-							
-						<br/>
-							<span style="font-size: 14px;">{{task.taskDescription}}</span>
-						
-						</div>
--->
-      <div>{{task.taskTitle}}</div>
-	  <span class="item-note">		  
-								{{task.startTime}}
-						</span>	
-      <i class="icon ion-chevron-right icon-accessory"></i>
-    </ion-item>             
- </div>
- 
-</ion-list>
-      <div class="padding">
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </ion-item>
+            </div>
 
-      <button class="button mygreen button-block" ng-click="goToInstructions()">
-        How to Use SitterAdvantage™
-      </button>
-    </div>
-  </ion-content>
+        </ion-list>
+        <div class="padding">
+
+            <button class="button mygreen button-block" ng-click="goToInstructions()">
+                How to Use SitterAdvantage™
+            </button>
+        </div>
+    </ion-content>
 </ion-view>
