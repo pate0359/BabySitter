@@ -15,5 +15,4 @@ angular.module('SitterAdvantage.emergencyServices', [])
 		}
 	}
 		
-})
-;
+});

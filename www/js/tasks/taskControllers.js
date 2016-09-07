@@ -1,5 +1,6 @@
 angular.module('SitterAdvantage.taskControllers', [])
 
+<<<<<<< HEAD
 .controller('TaskCtrl', ["$scope", "Tasks", "$state", "$filter",
       function ($scope, Tasks, $state, $filter) {
 
@@ -61,6 +62,78 @@ angular.module('SitterAdvantage.taskControllers', [])
             $state.go('tab.task-detail' + item.taskId);
         }
       }])
+=======
+.controller('TaskCtrl', ["$scope", "Tasks", "$state","$filter","ResourcesService",
+      function ($scope, Tasks, $state,$filter,ResourcesService) {
+
+		console.log("TaskCtrl is loaded");
+		$scope.tasks = [];		 
+		  
+		  $scope.$on('$ionicView.afterEnter', function(){
+			  // Any thing you can think of			  
+			  // get all task from database
+			  Tasks.getAllTask().then(function (taskList) {
+				  //alert("sucess");
+					if (!taskList) return;
+					console.log(taskList);
+				  //alert("task list loaded");
+				  $scope.changeDateFormat(taskList);
+			   });
+			});
+		  
+		  $scope.changeDateFormat = function(taskList){
+			  
+			  var array = [];
+			  
+			  angular.forEach(taskList, function (task) {
+				  
+				  var newTask = {};
+				  
+				    newTask.taskId = task.taskId;
+					newTask.taskTitle = task.taskTitle;
+					newTask.taskDescription = task.taskDescription;
+					newTask.taskStartDateTime = task.taskStartDateTime;
+					newTask.taskEndDateTime = task.taskEndDateTime;
+					newTask.taskNotes = task.taskNotes;
+					newTask.clientId = task.clientId;
+					newTask.kidId = task.kidId;
+				    newTask.clientDesc = task.clientDesc;
+				  	newTask.isCompleted = task.isCompleted;
+				  	newTask.isNotify = task.isNotify;
+				  newTask.start_dateObj = new Date(task.taskStartDateTime);
+				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
+				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
+				  
+				  array.push(newTask);
+				});
+			  
+			  $scope.tasks = $filter('orderBy')(array, 'start_dateObj');
+		  }
+		  
+		$scope.addTask = function () {
+			$state.go("tab.new-task");
+		}
+		
+		$scope.goToInstructions = function () {
+			$state.go("tab.instructions_tasks");
+		}
+		
+		$scope.taskClicked = function ($index) {
+			var item = $scope.tasks[$index];
+			$state.go('tab.task-detail' + item.taskId);
+		}
+		
+		ResourcesService.getDefaults().then(function (defaults) {
+				
+				 if (!defaults){
+					 
+					 db.transaction(function(tx) {
+						  tx.executeSql("INSERT INTO defaults (message) VALUES (?)", ["I am in trouble! Come home now!"], function(){ }, function(){});
+					 });
+				 }
+		})
+}])
+>>>>>>> origin/master
 
 .controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate", "$ionicHistory", "$filter", "Notification",
   function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate, $ionicHistory, $filter, Notification) {

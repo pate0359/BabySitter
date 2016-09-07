@@ -30,6 +30,14 @@
                  {{ resource.title }}
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </a>
+			
+			<div class="item item-divider">
+				Default Message  
+			</div>
+			<ion-item  class="item item-icon-right" type="item-text-wrap" ng-click="defaultTextMessageClicked()">
+				{{defaultMessage}}
+			</ion-item >
+			
         </ion-list>
 	</ion-content>
 </ion-view>
