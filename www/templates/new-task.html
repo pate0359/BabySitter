@@ -76,13 +76,14 @@
                  class="item-input textDisable" 
                  type="text" placeholder="Notes">
                  <hr class="hrPosition" style="height:1px;border:none;color:#333;background-color:#ddd;" />
-          <h2 style="margin-top:5px; margin-bottom:25px;">Notes</h2>
+          <h2 style="margin-top:5px; margin-bottom:55px;">Notes</h2>
         </div>
 		  
-		  <ion-checkbox ng-model="newTaskParams.isNotify" ng-change="notificationChange()">
-			  Notify me
-			</ion-checkbox>
-          
+          <div style="margin-bottom:0px;margin-top:-10px;">
+            <hr class="hrPosition" style="height:1px;border:none;color:#333;background-color:#ddd;" />
+
+            <ion-toggle style="padding-top:5px;padding-left:0px;font-size:14px;color:#666;margin-bottom:25px;"ng-model="newTaskParams.isNotify" toggle-class="toggle-balanced" ng-change="notificationChange()">Notify me</ion-toggle>
+          </div>
       </form>
     </div>
   </ion-content>

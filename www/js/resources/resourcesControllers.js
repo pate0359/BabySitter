@@ -17,8 +17,14 @@ angular.module('SitterAdvantage.resourcesControllers', [])
 				"url": "http://www.whattodowiththekids.com/activities/"
 			}
 		]
+        
+        var options = {
+          location: 'yes',
+          enableViewportScale: 'yes'
+        };
+        
 		$scope.openWebsite = function(index){
-			    $cordovaInAppBrowser.open($scope.resources[index].url, '_blank')
+			    $cordovaInAppBrowser.open($scope.resources[index].url, '_blank', options)
 			      .then(function(event) {
 			        // success
 			        console.log('success to load openWebsite');
