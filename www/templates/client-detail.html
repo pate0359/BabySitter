@@ -6,19 +6,23 @@
 -->
 	<ion-content class="padding">
 		<ti-segmented-control on-select="buttonClicked($index)" class="padding-bottom">
-			<ti-segmented-control-button id="segment_button_0" class="button-assertive" title="'Parents'">
+			<ti-segmented-control-button id="segment_button_0" class="button-energized" title="'Parents'">
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button id="segment_button_1" class="button-assertive" title="'Kids'" >
+			<ti-segmented-control-button id="segment_button_1" class="button-energized" title="'Kids'" >
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button id="segment_button_2" class="button-assertive" title="'Tasks'" >
+			<ti-segmented-control-button id="segment_button_2" class="button-energized" title="'Tasks'" >
 			</ti-segmented-control-button>
 		</ti-segmented-control>
 
 		<div ng-switch on="selectedIndex">
 
 			<!-- ******************************** Parent sub-page ******************************** -->
+            <div ng-switch-when="0">
+				 <button class="button mygreen button-block" ng-click="addNewParent()" ng-hide="toggleVisibility">Add New Parent</button>
+    		</div>
+            
 			<div id="parent" ng-repeat="parent in selectedClient.parents" class="card" ng-switch-when="0">
 
 
@@ -67,13 +71,11 @@
 				</div>
 
 			</div>
-
-			<div ng-switch-when="0">
-				 <button class="button mygreen button-block" ng-click="addNewParent()" ng-hide="toggleVisibility">Add New Parent</button>
-    		</div>
-
-			
 			<!-- ******************************** Kid sub-page ******************************** -->
+            <div id="kid" ng-switch-when="1">
+				 <button class="button mygreen button-block" ng-click="addNewKid()" ng-hide="toggleVisibility">Add New Kid</button>
+    			</div>
+            
 			<div id="kid" ng-repeat="kid in selectedClient.kids" class="card" ng-switch-when="1">
 				
 				<div class="item item-divider item-icon-right ">
@@ -131,11 +133,11 @@
 				</div>
 						
 			</div>
-			<div id="kid" ng-switch-when="1">
-				 <button class="button mygreen button-block" ng-click="addNewKid()" ng-hide="toggleVisibility">Add New Kid</button>
-    			</div>
-
+			
 			<!-- ******************************** Task sub-page ******************************** -->
+            <div id="task" ng-switch-when="2">
+				 <button class="button mygreen button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
+    		</div>
 			
 			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" >
 
@@ -160,10 +162,6 @@
 					</div>
 				</ion-item>
 			</div>
-
-            <div id="task" ng-switch-when="2">
-				 <button class="button mygreen button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
-    		</div>
             <!-- ******************************** Task sub-page ******************************** -->
 		
 
