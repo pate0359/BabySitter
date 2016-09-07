@@ -220,4 +220,11 @@ background-color: red !important;
     background-color: #3b5998;
 }
 
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 

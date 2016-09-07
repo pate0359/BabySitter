@@ -100,7 +100,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 				  	newTask.isCompleted = task.isCompleted;
 				  	newTask.isNotify = task.isNotify;
 				  newTask.start_dateObj = new Date(task.taskStartDateTime);
-				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
+				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM dd, yyyy');
 				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
 				  
 				  array.push(newTask);
@@ -203,6 +203,7 @@ angular.module('SitterAdvantage.taskControllers', [])
                     if (params.isNotify == 'true') {
                         //Schedule task
                         //Notification.scheduleNotification(task);
+                        
                     }
                     $ionicHistory.goBack();
                 });

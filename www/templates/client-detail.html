@@ -6,13 +6,13 @@
 -->
 	<ion-content class="padding">
 		<ti-segmented-control on-select="buttonClicked($index)" class="padding-bottom">
-			<ti-segmented-control-button id="segment_button_0" class="button-energized" title="'Parents'">
+			<ti-segmented-control-button id="segment_button_0" class="button-assertive" title="'Parents'">
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button id="segment_button_1" class="button-energized" title="'Kids'" >
+			<ti-segmented-control-button id="segment_button_1" class="button-assertive" title="'Kids'" >
 			</ti-segmented-control-button>
 
-			<ti-segmented-control-button id="segment_button_2" class="button-energized" title="'Tasks'" >
+			<ti-segmented-control-button id="segment_button_2" class="button-assertive" title="'Tasks'" >
 			</ti-segmented-control-button>
 		</ti-segmented-control>
 
@@ -30,7 +30,7 @@
 					{{parent.parentName}}
 					
 					<div class="icon">
-						 <button class="button button-icon" style="padding-left:30px;" ng-click="editParent($index)">
+						 <button class="button button-icon myblue editButton" style="padding-left:30px;" ng-click="editParent($index)">
 							<i class = "icon ion-edit"></i>
 						</button>
         			</div>	
@@ -38,7 +38,7 @@
 				</div>
 				<div class="item item-text-wrap">
 					<div style="margin-bottom:15px;">
-							<h2>Address</h2>
+							<h2 style="color:black">Address</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{parent.parentStreet}}</p>
 							<p>{{parent.parentCity +", "+ parent.parentState}}</p>
@@ -46,25 +46,25 @@
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>Primary Phone</h2>
+							<h2 style="color:black">Primary Phone</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{parent.parentPrimaryphone}}</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>Secondary Phone</h2>
+							<h2 style="color:black">Secondary Phone</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{parent.parentSecondaryphone}}</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>Email</h2>
+							<h2 style="color:black">Email</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{parent.parentEmailid}}</p>
 						</div>
 					
 						<div style="margin-bottom:15px;">
-							<h2>Notes</h2>
+							<h2 style="color:black">Notes</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{parent.parentNotes}}</p>
 						</div>
@@ -82,7 +82,7 @@
 					{{kid.kidName}}
 					
 					<div class="icon">
-						 <button class="button button-icon" style="padding-left:30px;" ng-click="editKid($index)">
+						 <button class="button button-icon myblue" style="padding-left:30px;" ng-click="editKid($index)">
 							<i class = "icon ion-edit myblue"></i>
 						</button>
         			</div>										
@@ -103,28 +103,28 @@
 				</h4>
 				</div>
 						<div style="margin-bottom:15px;">
-							<h2>Allergies</h2>
+							<h2 style="color:black">Allergies</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.allergyDescription}}</p>
 							<p ng-show="kid.allergyDescription == undefined || kid.allergyDescription == '' ">None</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>Disabilities</h2>
+							<h2 style="color:black">Disabilities</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.disabilityDescription}}</p>
 							<p ng-show="kid.disabilityDescription == undefined || kid.disabilityDescription == '' ">None</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>Medications</h2>
+							<h2 style="color:black">Medications</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.medicationDescription}}</p>
 							<p ng-show="kid.medicationDescription == undefined || kid.medicationDescription == ''">None</p>
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2>Notes</h2>
+							<h2 style="color:black">Notes</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.kidNotes}}</p>
 							<p ng-show="kid.kidNotes == undefined || kid.kidNotes == ''">None</p>
@@ -136,30 +136,26 @@
 			
 			<!-- ******************************** Task sub-page ******************************** -->
             
-			
+			<div id="task" ng-switch-when="2">
+				 <button class="button mygreen button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
+    			</div>
+            
+        <ion-list class="item-icon-right">
 			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" >
 
-				<div class="item item-divider item-icon-right">
+				<div class="item item-divider">
 					{{startDate}}
 				</div>
 				
-				<ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" class="item item-text-wrap" href="#/tab/tasks_client/{{task.taskId}}">
-					<div style="padding-bottom:10px;">
-						<span style="font-size: 17px">{{task.taskTitle}}</span>
-						<div ng-show="task.isCompleted == 'true'" class="item-note" >
-							<span style="color:green;">		  
-								Completed
-							</span>
-						<br/>
-<!--							<span style="font-size: 14px;">{{task.taskDescription}}</span>-->
-						<span >		  
-								{{task.startTime}}
-						</span>	
-						</div>
-											
-					</div>
-				</ion-item>
-			</div>
+				<ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" type="item-text-wrap" href="#/tab/tasks_client/{{task.taskId}}">
+
+                        <p style="font-size:16px;margin-bottom:-18px;color:black;width:150px;" class="ellipsis">{{task.taskTitle}}<p>
+                        <span style="margin-bottom:20px;"class="item-note">{{task.startTime}}</span> <br>	
+                        <span class="item-note" style="color:green;margin-right:-64px;" ng-show="task.isCompleted == 'true'">Completed</span>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                    </ion-item>
+            </div>
+         </ion-list>
             <!-- ******************************** Task sub-page ******************************** -->
 		
 

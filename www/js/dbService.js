@@ -40,15 +40,15 @@ angular.module('SitterAdvantage.dbService', [])
 	    tx.executeSql("INSERT INTO clients (clientDesc) VALUES (?)", ["The Jetsons Family"], function(){ }, function(){});
 	    //5 parents
 	    tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", 
-	      ["Maria Smith","Primary Guardian – Custody","10 Jones Street","Erie","Pennsylvania","23877","613-574-5893","613-584-6839","maria.smith@gmail.com","1"], function(){ }, function(){});
+	      ["Maria Smith","Primary Guardian – Custody","10 Jones Street","Erie","Pennsylvania","23877","6135745893","6135846839","maria.smith@gmail.com","1"], function(){ }, function(){});
 	    tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", 
-	      ["John Smith","Divorced – allowed contact with kids","77 King Street","Erie","Pennsylvania","23767","287-456-6812","288-433-6691","john.smith@gmail.com.com","1"], function(){ }, function(){});
+	      ["John Smith","Divorced – allowed contact with kids","77 King Street","Erie","Pennsylvania","23767","2874566812","2884336691","john.smith@gmail.com.com","1"], function(){ }, function(){});
 	    tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", 
-	      ["Mack Jones","","100 Arthur Street","Los Angeles","California","90125","623-546-5582","623-543-5571","mack.jones@hotmail.com","2"], function(){}, function(){});
+	      ["Mack Jones","","100 Arthur Street","Los Angeles","California","90125","6235465582","6235435571","mack.jones@hotmail.com","2"], function(){}, function(){});
 	    tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", 
-	      ["Francine Jones","","100 Arthur  Street","Los Angeles","Californa","90125","612-335-5199","614-445-8923","Francine.jones@hotmail.com","2"], function(){}, function(){});
+	      ["Francine Jones","","100 Arthur  Street","Los Angeles","Californa","90125","6123355199","6144458923","Francine.jones@hotmail.com","2"], function(){}, function(){});
 	    tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", 
-	      ["George Jetson","Single Dad - Custody","990 Pluto Drive Street","Denver","Collorado","23567","683-559-2295","165-345-4451","george.jetsen@gmail.com","3"], function(){ }, function(){});
+	      ["George Jetson","Single Dad - Custody","990 Pluto Drive Street","Denver","Collorado","23567","6835592295","1653454451","george.jetsen@gmail.com","3"], function(){ }, function(){});
 	
 	    //6 kids
 	    tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,  allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", 

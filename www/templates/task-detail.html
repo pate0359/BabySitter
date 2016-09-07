@@ -18,7 +18,7 @@
                     <input style="padding:0px;margin-top:15px;"
                            ng-model="task.taskTitle" 
                            ng-show="disableEnableForm" 
-                           class="item-input bar textDisable" 
+                           class="item-input textDisable" 
                            type="text" 
                            placeholder="Task Title" >
                     <p style="font-size:18px;font-weight:200px;color:#3b5998;font-weight:500;margin-top:20px;margin-bottom:5px;" 
@@ -39,7 +39,7 @@
                            ng-model="task.taskDescription" 
                            name="taskDescription" 
                            ng-show="disableEnableForm" 
-                           class="item-input bar textDisable" 
+                           class="item-input  textDisable" 
                            type="text" 
                            placeholder="Description">
                         <p style="color:black; font-size:16px;"
@@ -96,7 +96,7 @@
                             ng-model="task.taskNotes" 
                             name="taskNotes" 
                             ng-show="disableEnableForm" 
-                            class="item-input bar textDisable" 
+                            class="item-input textDisable" 
                             type="text" placeholder="Notes">
                         <p style="color:black; font-size:16px;margin-top:5px;margin-bottom:0px;"
                            ng-show="!disableEnableForm">{{task.taskNotes}}</p>   
@@ -110,18 +110,8 @@
 
                 <ion-toggle style="padding-top:5px;padding-left:0px;font-size:14px;color:#666;margin-bottom:25px;"ng-model='task.isNotify' toggle-class="toggle-balanced" ng-hide="task.isCompleted == 'true'" ng-disabled = "!toggleVisibility" ng-change="notificationChange()">Notify me</ion-toggle>
           </div>		
-            </div>
-	 
-            
-<!--
-			<ion-checkbox ng-hide="task.isCompleted == 'true'" ng-disabled = "!toggleVisibility" ng-model='task.isNotify' ng-change="notificationChange()">
-			  Notify me
-			</ion-checkbox>
--->
-			
+            </div>	
         </form>
-	
-<!--		ion-item-->
 		
 		<div class="padding" ng-hide="toggleVisibility" >
             <button class="button mygreen button-block" ng-click="completeTask()" ng-hide="task.isCompleted == 'true'">
