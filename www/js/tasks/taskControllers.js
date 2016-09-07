@@ -1,7 +1,7 @@
 angular.module('SitterAdvantage.taskControllers', [])
 
-.controller('TaskCtrl', ["$scope", "Tasks", "$state","$filter",
-      function ($scope, Tasks, $state,$filter) {
+.controller('TaskCtrl', ["$scope", "Tasks", "$state","$filter","ResourcesService",
+      function ($scope, Tasks, $state,$filter,ResourcesService) {
 
 		console.log("TaskCtrl is loaded");
 		$scope.tasks = [];		 
@@ -15,7 +15,6 @@ angular.module('SitterAdvantage.taskControllers', [])
 					console.log(taskList);
 				  //alert("task list loaded");
 				  $scope.changeDateFormat(taskList);
-
 			   });
 			});
 		  
@@ -59,8 +58,18 @@ angular.module('SitterAdvantage.taskControllers', [])
 		$scope.taskClicked = function ($index) {
 			var item = $scope.tasks[$index];
 			$state.go('tab.task-detail' + item.taskId);
-		}		
-      }])
+		}
+		
+		ResourcesService.getDefaults().then(function (defaults) {
+				
+				 if (!defaults){
+					 
+					 db.transaction(function(tx) {
+						  tx.executeSql("INSERT INTO defaults (message) VALUES (?)", ["I am in trouble! Come home now!"], function(){ }, function(){});
+					 });
+				 }
+		})
+}])
 
 .controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate","$ionicHistory","$filter","Notification",
   function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate,$ionicHistory,$filter,Notification) {

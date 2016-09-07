@@ -171,10 +171,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 					console.log(error)
 						//error code
 				});
-
-
-			};
-
+			};	 	
 }])
 
 .controller('ClientDetailCtrl', ["$scope", "$stateParams", "$rootScope", "Clients", "$ionicNavBarDelegate", "$state", "$filter",

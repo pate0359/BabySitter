@@ -5,16 +5,18 @@ angular.module('SitterAdvantage.dbService', [])
 	//---------------------- function responsible to create all the tables once ----------------------
 	var createTables = function(){
 	  db.transaction(function(tx) {
-	  	    tx.executeSql("DROP TABLE clients");
-	  	    tx.executeSql("DROP TABLE parents");
-	  	    tx.executeSql("DROP TABLE tasks");
-	  	    tx.executeSql("DROP TABLE kids");         
+//	  	    tx.executeSql("DROP TABLE clients");
+//	  	    tx.executeSql("DROP TABLE parents");
+//	  	    tx.executeSql("DROP TABLE tasks");
+//	  	    tx.executeSql("DROP TABLE kids");
+		  //tx.executeSql("DROP TABLE defaults");
 
 	      tx.executeSql("CREATE TABLE IF NOT EXISTS clients (clientId integer primary key , clientDesc text)",[], function(){}, function(){});
 	      tx.executeSql("CREATE TABLE IF NOT EXISTS parents(parentId integer primary key , parentName text, parentStreet text, parentCity text, parentState text, parentZipcode text, parentPrimaryphone text, parentSecondaryphone text, parentEmailid text, parentNotes text, clientId integer)",[], function(){}, function(){});  
 	      tx.executeSql("CREATE TABLE IF NOT EXISTS tasks(taskId integer primary key , taskTitle text, taskDescription text, taskStartDateTime text, taskEndDateTime text, taskNotes text,clientId integer, kidId integer, isCompleted bool, isNotify bool)" , [], function(){}, function(){});
 	      tx.executeSql("CREATE TABLE IF NOT EXISTS kids(kidId integer primary key, kidName text, kidBirthdate text, kidGender text, kidPicture text, kidNotes text,clientId integer, allergyDescription text,disabilityDescription text, medicationDescription text)" , [], function(){}, function(){});
-          
+		  
+		  tx.executeSql("CREATE TABLE IF NOT EXISTS defaults (message text)",[], function(){}, function(){});      
 	  },
 
 	  function(){

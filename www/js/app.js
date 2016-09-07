@@ -2,7 +2,7 @@ var db = null;
 angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers', 'SitterAdvantage.clientServices',
                 'ti-segmented-control', 'SitterAdvantage.taskServices',
                 'SitterAdvantage.taskControllers', 'SitterAdvantage.emergencyControllers','SitterAdvantage.notificationServices',
-                'SitterAdvantage.emergencyServices', 'SitterAdvantage.resourcesControllers', 'SitterAdvantage.dbService', 'ngCordova','ion-datetime-picker','angular.filter'])
+                'SitterAdvantage.emergencyServices', 'SitterAdvantage.resourcesControllers','SitterAdvantage.resourcesService', 'SitterAdvantage.dbService', 'ngCordova','ion-datetime-picker','angular.filter'])
 
 .run(function (Tasks, Clients, dbService, $ionicPlatform, $cordovaSQLite) {
 
@@ -12,6 +12,12 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 //		setTimeout(function() {
 //			navigator.splashscreen.hide();
 //		}, 2);
+		
+//		$cordovaNativeStorage.setItem("baby_sitter_default_messsage", "I am in trouble! Come home now!").then(function (value) {
+//                console.log("baby_sitter_default_messsage "+value); 
+//            }, function (error) {
+//                console.log("error :"+error);
+//            });
 		
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
@@ -51,9 +57,10 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 			dbService.insertTestData();
 			//Tasks.loadFromDB();
 			//Clients.loadFromDB();
+			
 		} else {
 
-			alert("db not loaded");
+			console.log("db not loaded");
 		}
 	});
 })
