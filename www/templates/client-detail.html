@@ -135,9 +135,7 @@
 			</div>
 			
 			<!-- ******************************** Task sub-page ******************************** -->
-            <div id="task" ng-switch-when="2">
-				 <button class="button mygreen button-block" ng-click="addNewTask()" ng-hide="toggleVisibility">Add New Task</button>
-    		</div>
+            
 			
 			<div id="task" ng-repeat="(startDate, taskItems) in selectedClient.tasks | groupBy: 'startDate'" ng-switch-when="2" >
 

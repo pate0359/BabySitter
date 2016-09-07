@@ -18,10 +18,10 @@
                     <input style="padding:0px;margin-top:15px;"
                            ng-model="task.taskTitle" 
                            ng-show="disableEnableForm" 
-                           class="item-input textDisable" 
+                           class="item-input bar textDisable" 
                            type="text" 
                            placeholder="Task Title" >
-                    <p style="font-size:16px;color:black;margin-top:20px;margin-bottom:5px;" 
+                    <p style="font-size:18px;font-weight:200px;color:#3b5998;font-weight:500;margin-top:20px;margin-bottom:5px;" 
                        ng-show="!disableEnableForm">{{task.taskTitle}}</p>
                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
                     <h2 style="margin-top:5px; margin-bottom:20px;">Task Title</h2>
@@ -39,7 +39,7 @@
                            ng-model="task.taskDescription" 
                            name="taskDescription" 
                            ng-show="disableEnableForm" 
-                           class="item-input textDisable" 
+                           class="item-input bar textDisable" 
                            type="text" 
                            placeholder="Description">
                         <p style="color:black; font-size:16px;"
@@ -96,7 +96,7 @@
                             ng-model="task.taskNotes" 
                             name="taskNotes" 
                             ng-show="disableEnableForm" 
-                            class="item-input textDisable" 
+                            class="item-input bar textDisable" 
                             type="text" placeholder="Notes">
                         <p style="color:black; font-size:16px;margin-top:5px;margin-bottom:0px;"
                            ng-show="!disableEnableForm">{{task.taskNotes}}</p>   

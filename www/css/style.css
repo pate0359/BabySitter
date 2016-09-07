@@ -167,15 +167,11 @@ ion-header-bar.bar.bar-header {
 =======
 
 >>>>>>> Stashed changes
-a.button-energized.button.ti-segmented-control.active {
-    background-color:coral;
-    border-color: coral;
-}
+
 
 a.button-energized.button.ti-segmented-control {
     border-color: coral;
-    color:coral;
-}
+    color:coral;}
 
 a.button-energized.button:target {
     border-color: coral;
