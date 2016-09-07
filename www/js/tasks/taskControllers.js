@@ -1,7 +1,5 @@
 angular.module('SitterAdvantage.taskControllers', [])
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 .controller('TaskCtrl', ["$scope", "Tasks", "$state", "$filter",
       function ($scope, Tasks, $state, $filter) {
 
@@ -63,9 +61,7 @@ angular.module('SitterAdvantage.taskControllers', [])
             $state.go('tab.task-detail' + item.taskId);
         }
       }])
-=======
-=======
->>>>>>> origin/master
+
 .controller('TaskCtrl', ["$scope", "Tasks", "$state","$filter","ResourcesService",
       function ($scope, Tasks, $state,$filter,ResourcesService) {
 
@@ -136,10 +132,6 @@ angular.module('SitterAdvantage.taskControllers', [])
 				 }
 		})
 }])
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 
 .controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate", "$ionicHistory", "$filter", "Notification",
   function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate, $ionicHistory, $filter, Notification) {
