@@ -21,10 +21,14 @@
 						</span>
                     
                     <h2>{{task.clientDesc}}</h2>
-                    <span class="item-note" style="color:green;margin-top:-18px;" ng-show="task.isCompleted == 'true'">		  
+                    <span class="item-note" style="color:green;margin-top:-18px;" ng-show="task.isCompleted == 'true'">	
 								Completed
 							</span>
                     <i class="icon ion-chevron-right icon-accessory"></i>
+                    
+                    <ion-option-button class="myred" ng-click="deleteTask($index)">
+                            Delete
+                    </ion-option-button>
                 </ion-item>
             </div>
 

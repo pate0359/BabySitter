@@ -91,6 +91,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 			//delete client
 			$scope.deleteClient = function ($index) {
+                
 
 				var client = $scope.clients[$index];
 

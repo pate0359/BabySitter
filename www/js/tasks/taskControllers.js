@@ -1,69 +1,7 @@
 angular.module('SitterAdvantage.taskControllers', [])
 
-.controller('TaskCtrl', ["$scope", "Tasks", "$state", "$filter",
-      function ($scope, Tasks, $state, $filter) {
-
-        console.log("TaskCtrl is loaded");
-        $scope.tasks = [];
-
-        $scope.$on('$ionicView.afterEnter', function () {
-            // Any thing you can think of			  
-            // get all task from database
-            Tasks.getAllTask().then(function (taskList) {
-                //alert("sucess");
-                if (!taskList) return;
-                console.log(taskList);
-                //alert("task list loaded");
-                $scope.changeDateFormat(taskList);
-
-            });
-        });
-
-        $scope.changeDateFormat = function (taskList) {
-
-            var array = [];
-
-            angular.forEach(taskList, function (task) {
-
-                var newTask = {};
-
-                newTask.taskId = task.taskId;
-                newTask.taskTitle = task.taskTitle;
-                newTask.taskDescription = task.taskDescription;
-                newTask.taskStartDateTime = task.taskStartDateTime;
-                newTask.taskEndDateTime = task.taskEndDateTime;
-                newTask.taskNotes = task.taskNotes;
-                newTask.clientId = task.clientId;
-                newTask.kidId = task.kidId;
-                newTask.clientDesc = task.clientDesc;
-                newTask.isCompleted = task.isCompleted;
-                newTask.isNotify = task.isNotify;
-                newTask.start_dateObj = new Date(task.taskStartDateTime);
-                newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM dd, yyyy');
-                newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
-
-                array.push(newTask);
-            });
-
-            $scope.tasks = $filter('orderBy')(array, 'start_dateObj');
-        }
-
-        $scope.addTask = function () {
-            $state.go("tab.new-task");
-        }
-
-        $scope.goToInstructions = function () {
-            $state.go("tab.instructions_tasks");
-        }
-
-        $scope.taskClicked = function ($index) {
-            var item = $scope.tasks[$index];
-            $state.go('tab.task-detail' + item.taskId);
-        }
-      }])
-
-.controller('TaskCtrl', ["$scope", "Tasks", "$state","$filter","ResourcesService",
-      function ($scope, Tasks, $state,$filter,ResourcesService) {
+.controller('TaskCtrl', ["$scope", "Tasks", "$state","$filter", "$stateParams","ResourcesService","$ionicPopup", "Notification",
+      function ($scope, Tasks, $state,$filter, $stateParams,    ResourcesService, $ionicPopup,Notification) {
 
 		console.log("TaskCtrl is loaded");
 		$scope.tasks = [];		 
@@ -121,6 +59,40 @@ angular.module('SitterAdvantage.taskControllers', [])
 			var item = $scope.tasks[$index];
 			$state.go('tab.task-detail' + item.taskId);
 		}
+        
+         
+        $scope.deleteTask = function($index){
+            
+            var task = $scope.tasks[$index];
+         var popUp = $ionicPopup.show({
+					title: 'Delete Task',
+                    template: 'Are you sure you want to delete this task?',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'No',
+							type: 'button-light',
+
+                        },
+						{
+							text: '<b>Yes</b>',
+							type: 'button-positive',
+                        }, ]
+
+				});
+            
+            popUp.then(function (res) {
+					if (!res) {
+                        //delete task
+                        Tasks.deleteTask(task.taskId);
+                        $scope.tasks.splice($index, 1);
+                        //Cancel notification
+                        Notification.cancelNotification($scope.task);  
+                        return;
+                    }			
+				});
+            
+        }
 		
 		ResourcesService.getDefaults().then(function (defaults) {
 				
