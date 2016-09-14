@@ -91,7 +91,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 			$scope.deleteClient = function ($index) {
 
 				var client = $scope.clients[$index];
-<<<<<<< HEAD
                 
                   var popUp = $ionicPopup.show({
 					title: 'Delete Client',
@@ -119,7 +118,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 					if (!res) {
                         return;
                     }			
-=======
 				var hideSheet = $ionicActionSheet.show({
 
 					destructiveText: 'Delete Client',
@@ -154,9 +152,9 @@ angular.module('SitterAdvantage.clientControllers', [])
 							hideSheet();
 						});
 					}
->>>>>>> origin/master
 				});
-			};
+			});
+            }
 
 			$scope.addClient = function () {
 
