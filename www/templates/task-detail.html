@@ -24,7 +24,7 @@
                     <p style="font-size:18px;font-weight:200px;color:#3b5998;font-weight:500;margin-top:20px;margin-bottom:5px;" 
                        ng-show="!disableEnableForm">{{task.taskTitle}}</p>
                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
-                    <h2 style="margin-top:5px; margin-bottom:20px;">Task Title</h2>
+                    <h2 style="margin-top:5px; margin-bottom:20px;">Task</h2>
                 </div>
                 
                 
@@ -45,7 +45,7 @@
                         <p style="color:black; font-size:16px;"
                            ng-show="!disableEnableForm">{{task.taskDescription}}</p>
                     <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
-                    <h2 style="margin-top:5px; margin-bottom:20px;">Task Description</h2>
+                    <h2 style="margin-top:5px; margin-bottom:20px;">Description</h2>
                 </div>
                 
                 <div style="margin-bottom:15px;">
@@ -108,14 +108,14 @@
                 <div style="margin-bottom:0px;margin-top:-10px;" >
                 <hr class="hrPosition" style="height:1px;border:none;color:#333;background-color:#ddd;" ng-disabled = "!toggleVisibility"ng-hide="task.isCompleted == 'true'"/>
 
-                <ion-toggle style="padding-top:5px;padding-left:0px;font-size:14px;color:#666;margin-bottom:25px;"ng-model='task.isNotify' toggle-class="toggle-balanced" ng-hide="task.isCompleted == 'true'" ng-disabled = "!toggleVisibility" ng-change="notificationChange()">Notify me</ion-toggle>
+                <ion-toggle style="padding-top:5px;padding-left:0px;font-size:14px;color:#666;margin-bottom:25px;"ng-model='task.isNotify' toggle-class="toggle-balanced" ng-hide="task.isCompleted == 'true'" ng-disabled = "!toggleVisibility" ng-change="notificationChange()">Remind me</ion-toggle>
           </div>		
             </div>	
         </form>
 		
 		<div class="padding" ng-hide="toggleVisibility" >
             <button class="button mygreen button-block" ng-click="completeTask()" ng-hide="task.isCompleted == 'true'">
-                Complete Task
+                Select When Task Completed
             </button>
         </div>
         

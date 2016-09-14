@@ -526,7 +526,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 				targetWidth: 300,
 				targetHeight: 300,
 				popoverOptions: CameraPopoverOptions,
-				saveToPhotoAlbum: false
+				saveToPhotoAlbum: true
 			};
 
 			$cordovaCamera.getPicture(options).then(function (imageData) {

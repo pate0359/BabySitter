@@ -15,7 +15,13 @@ angular.module('SitterAdvantage.resourcesControllers', [])
 				
                 "title": "Activities",
 				"url": "http://www.whattodowiththekids.com/activities/"
+			},
+            {
+				
+                "title": "Register your copy",
+				"url": "http://www.whattodowiththekids.com/sitteradvantage/register/"
 			}
+            
 		]
         
         var options = {

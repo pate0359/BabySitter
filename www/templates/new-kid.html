@@ -27,14 +27,14 @@
                     ng-model="kid.kidName"  
                  class="item-input textDisable" 
                  type="text" 
-                 placeholder="Kid Name"
+                 placeholder="Full Name"
                  name="kidName"
                  ng-pattern="stringval"
                  ng-required="true">
         <p style="color:red;"
              ng-show="myForm.kidName.$invalid && myForm.kidName.$touched">* This field is required.</p>
           <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
-             <h2 style="margin-top:5px; margin-bottom:20px;">Kid Name</h2>
+             <h2 style="margin-top:5px; margin-bottom:20px;">Full Name</h2>
         </div>
 
         <div style="margin-bottom:15px;">
@@ -71,9 +71,9 @@
 
         </div>
         <div style="margin-bottom:15px;">
-            <input ng-model="kid.disabilityDescription" class="item-input textDisable" type="text" placeholder="Disabilities">
+            <input ng-model="kid.disabilityDescription" class="item-input textDisable" type="text" placeholder="Handicaps/Disabilities">
           <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;"  />
-          <h2 style="margin-top:5px; margin-bottom:15px;">Disabilities</h2>
+          <h2 style="margin-top:5px; margin-bottom:15px;">Handicaps/Disabilities</h2>
         </div>
 
         <div style="margin-bottom:15px;">
