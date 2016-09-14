@@ -94,25 +94,33 @@ angular.module('SitterAdvantage.clientControllers', [])
                 
 
 				var client = $scope.clients[$index];
+                
+                  var popUp = $ionicPopup.show({
+					title: 'Delete Client',
+                    template: 'Note: All client details, including parents, kids and tasks will be permanently removed.',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'Cancel',
+							type: 'button-light',
 
-				var hideSheet = $ionicActionSheet.show({
+                        },
+						{
+							text: '<b>Delete</b>',
+							type: 'button-positive',
+                            onTap: function (e) {
+								 Clients.deleteClient(client.clientId);
+                                $scope.clients.splice($index, 1);
+                                return;
+							}
+                        }, ]
 
-					destructiveText: 'Delete Client',
-					cancelText: 'Cancel',
-
-					cancel: function () {
-						hideSheet();
-					},
-
-					destructiveButtonClicked: function () {
-						//Delete client
-
-						Clients.deleteClient(client.clientId).then(function (res) {
-
-							$scope.clients.splice($index, 1);
-							hideSheet();
-						});
-					}
+				});
+            
+            popUp.then(function (res) {
+					if (!res) {
+                        return;
+                    }			
 				});
 			};
 
@@ -351,8 +359,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 }])
 
-.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory", "$ionicActionSheet",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory, $ionicActionSheet) {
+.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state,$ionicPopup, $ionicHistory, $ionicActionSheet) {
 
 
 		//check if the user input is an integer value
@@ -397,31 +405,39 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 
 		$scope.deleteParent = function () {
+                
+                  var popUp = $ionicPopup.show({
+					title: 'Delete Parent',
+                    template: 'Are you sure you want to delete this parent?',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'Cancel',
+							type: 'button-light',
 
-			var hideSheet = $ionicActionSheet.show({
+                        },
+						{
+							text: '<b>Delete</b>',
+							type: 'button-positive',
+                            onTap: function (e) {
+								 Clients.deleteParent($scope.parent.parentId);
+                                $ionicHistory.goBack();
+                                return;
+							}
+                        }, ]
 
-				destructiveText: 'Delete Parent',
-				cancelText: 'Cancel',
-
-				cancel: function () {
-					hideSheet();
-				},
-
-				destructiveButtonClicked: function () {
-
-					Clients.deleteParent($scope.parent.parentId).then(function (res) {
-
-						//Delete parent
-						$ionicHistory.goBack();
-						hideSheet();
-					});
-				}
-			});
+				});
+            
+            popUp.then(function (res) {
+					if (!res) {
+                        return;
+                    }			
+				});
 		}
 }])
 
-.controller('EditKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicActionSheet", "$ionicHistory","$cordovaCamera","$filter",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicActionSheet, $ionicHistory,$cordovaCamera,$filter) {
+.controller('EditKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$ionicPopup", "$state", "$ionicActionSheet", "$ionicHistory","$cordovaCamera","$filter",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $ionicPopup, $state, $ionicActionSheet, $ionicHistory,$cordovaCamera,$filter) {
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
@@ -461,24 +477,52 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 
 		$scope.deleteKid = function () {
-			var hideSheet = $ionicActionSheet.show({
+            
+             var popUp = $ionicPopup.show({
+					title: 'Delete Kid',
+                    template: 'Are you sure you want to delete this kid?',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'Cancel',
+							type: 'button-light',
 
-				destructiveText: 'Delete Kid',
-				cancelText: 'Cancel',
+                        },
+						{
+							text: '<b>Delete</b>',
+							type: 'button-positive',
+                            onTap: function (e) {
+								 Clients.deleteKid($scope.kid.kidId);
+                                $ionicHistory.goBack();
+                                return;
+							}
+                        }, ]
 
-				cancel: function () {
-					hideSheet();
-				},
-
-				destructiveButtonClicked: function () {
-					//Delete kid
-					Clients.deleteKid($scope.kid.kidId).then(function (res) {
-
-						$ionicHistory.goBack();
-						hideSheet();
-					});
-				}
-			});
+				});
+            
+            popUp.then(function (res) {
+					if (!res) {
+                        return;
+                    }			
+				});
+//			var hideSheet = $ionicActionSheet.show({
+//
+//				destructiveText: 'Delete Kid',
+//				cancelText: 'Cancel',
+//
+//				cancel: function () {
+//					hideSheet();
+//				},
+//
+//				destructiveButtonClicked: function () {
+//					//Delete kid
+//					Clients.deleteKid($scope.kid.kidId).then(function (res) {
+//
+//						$ionicHistory.goBack();
+//						hideSheet();
+//					});
+//				}
+//			});
 			//Note: after going to client-details we should land on kid segmented control, (ng-switch when = 2)instead of parent
 		}
 
@@ -586,8 +630,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 }])
 
-.controller('NewKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory", "$ionicActionSheet","$cordovaCamera","$filter",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory, $ionicActionSheet,$cordovaCamera,$filter) {
+.controller('NewKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory", "$cordovaCamera","$ionicPopup", "$filter",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory, $cordovaCamera, $ionicPopup,$filter) {
 
 		$ionicNavBarDelegate.showBackButton(false);
 
@@ -599,37 +643,32 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 		$scope.kid = {};
 		$scope.addPhoto = function () {
+            
+            
+         		var popUp = $ionicPopup.show({
+					title: 'Add New Photo',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'Cancel',
+							type: 'button-light',
 
-			// Show the action sheet
-			var hideSheet = $ionicActionSheet.show({
-				buttons: [
-					{
-						text: 'Camera'
-                 },{
-						text: 'Photo Library'
-                 }
-             ],
-				cancelText: 'Cancel',
+            },
+						{
+							text: '<b>Camera</b>',
+							type: 'button-positive',
+							onTap: function (e) {
+								$scope.openCamera();
+							}
+            }, ]
 
-				cancel: function () {
-					hideSheet();
-				},
-				buttonClicked: function (index) {
-					//code for taking a new photo
-					if (index == 0){
-						$scope.openCamera();						
-					}else if (index == 1){						
-						$scope.openPhotoLibrary();
-					}		
-					
-					return true;
-				},
+				});
 
-				destructiveButtonClicked: function () {
-					hideSheet();
-				}
-			});
-		}
+				popUp.then(function (res) {
+					if (!res) return;
+				});
+			};
+            
 		$scope.saveKid = function () {
 
 			$scope.kid.clientId = $stateParams.clientId;

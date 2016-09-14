@@ -27,13 +27,13 @@
                     ng-model="newTaskParams.taskTitle" 
                     class="item-input textDisable" 
                     type="text" 
-                    placeholder="Task Title" 
+                    placeholder="Task" 
                     ng-required="true"
                    ng-pattern="stringval">
             
             <p style="color:red;" ng-show="myForm.taskTitle.$invalid && myForm.taskTitle.$touched"> * This field is required.</p>
             <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
-            <h2 style="margin-top:5px; margin-bottom:15px;">Task Title</h2>
+            <h2 style="margin-top:5px; margin-bottom:15px;">Task</h2>
         </div>
 
         <div style="margin-bottom:15px;">
@@ -42,9 +42,9 @@
                    class="item-input textDisable" 
                    type="text"
                    name="taskDescription"
-                   placeholder="Task Description">
+                   placeholder="Description">
              <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
-            <h2 style="margin-top:5px; padding-bottom:10px; margin-bottom:0px;">Task Description</h2>
+            <h2 style="margin-top:5px; padding-bottom:10px; margin-bottom:0px;">Description</h2>
         </div>
 
         <div style="margin-bottom:15px;">

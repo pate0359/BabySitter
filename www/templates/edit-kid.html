@@ -17,7 +17,7 @@
 			<img ng-show="imgURI !== undefined && imgURI !== ''" id="profile-image" ng-src="{{imgURI}}">
 			  <img ng-show="imgURI == undefined ||  imgURI == ''"  id="profile-image" ng-src="img/default.png">
 			
-          <button class="button button-positive button-clear" ng-click="editKidPicture()" ng-hide="toggleVisibility">Edit</button>
+          <button class="button button-positive button-clear" ng-click="editKidPicture()" ng-hide="toggleVisibility">Edit Photo </button>
       </div>
           
         <div style="margin-bottom:15px;">
@@ -25,7 +25,7 @@
                     ng-model="kid.kidName" 
                  class="item-input textDisable" 
                  type="text" 
-                 placeholder="Kid Name" 
+                 placeholder="Full Name" 
                  value="{{kid.kidName}}"
                  name="kidName"
                  ng-pattern="stringval"
@@ -33,7 +33,7 @@
              <p style="color:red;"
                  ng-show="myForm.kidName.$invalid && myForm.kidName.$touched">* This field is required</p>
                 <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
-        <h2 style="margin-top:5px; margin-bottom:20px;">Kid Name</h2>
+        <h2 style="margin-top:5px; margin-bottom:20px;">Full Name</h2>
         </div>
 
         <div style="margin-bottom:15px;">

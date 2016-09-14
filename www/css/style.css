@@ -130,7 +130,7 @@ background-color: #a2ddf4;
 text-align: right;
 }
 
-.mygreen, .mygreen.activated {
+.mygreen, .mygreen.activated, .mygreen:hover {
     
     color: white;
     background-color: #28903A;
@@ -141,7 +141,7 @@ text-align: right;
   background-color: #3b5998;
 }
 
-.myred{
+.myred, .myred.activated{
     background-color:#BF272D;
     color:white;
     

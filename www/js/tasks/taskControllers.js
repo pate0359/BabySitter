@@ -64,35 +64,39 @@ angular.module('SitterAdvantage.taskControllers', [])
         $scope.deleteTask = function($index){
             
             var task = $scope.tasks[$index];
-         var popUp = $ionicPopup.show({
+            
+                var popUp = $ionicPopup.show({
 					title: 'Delete Task',
                     template: 'Are you sure you want to delete this task?',
 					scope: $scope,
 					buttons: [
 						{
-							text: 'No',
+							text: 'Cancel',
 							type: 'button-light',
 
                         },
 						{
-							text: '<b>Yes</b>',
+							text: '<b>Delete</b>',
 							type: 'button-positive',
+                            onTap: function (e) {
+								 //Delete Task 
+                                Tasks.deleteTask(task.taskId);
+                                $scope.tasks.splice($index, 1);
+                                //Notification.cancelNotification($scope.task); 
+                                return;
+                                //popUp.close();
+                              
+							}
                         }, ]
 
 				});
             
             popUp.then(function (res) {
 					if (!res) {
-                        //delete task
-                        Tasks.deleteTask(task.taskId);
-                        $scope.tasks.splice($index, 1);
-                        //Cancel notification
-                        Notification.cancelNotification($scope.task);  
                         return;
                     }			
 				});
-            
-        }
+			};     
 		
 		ResourcesService.getDefaults().then(function (defaults) {
 				
@@ -340,28 +344,35 @@ angular.module('SitterAdvantage.taskControllers', [])
     }
 
     $scope.deleteTaskDetails = function () {
+        
+        var popUp = $ionicPopup.show({
+					title: 'Delete Task',
+                    template: 'Are you sure you want to delete this task?',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'Cancel',
+							type: 'button-light',
 
-        var hideSheet = $ionicActionSheet.show({
+                        },
+						{
+							text: '<b>Delete</b>',
+							type: 'button-positive',
+                            onTap: function (e) {
+								 Tasks.deleteTask($scope.task.taskId);
+                                //Cancel notification
+                                //Notification.cancelNotification($scope.task);
+                                $ionicHistory.goBack();
+                                return;
+							}
+                        }, ]
 
-            destructiveText: 'Delete Task',
-            cancelText: 'Cancel',
-
-            cancel: function () {
-                hideSheet();
-            },
-
-            destructiveButtonClicked: function () {
-                //Delete task
-                Tasks.deleteTask($scope.task.taskId).then(function (res) {
-                    if (!res) return;
-
-                    //Cancel notification
-                    Notification.cancelNotification($scope.task);
-
-                    hideSheet();
-                    $ionicHistory.goBack();
-                });
-            }
-        });
+				});
+            
+            popUp.then(function (res) {
+					if (!res) {
+                        return;
+                    }			
+				});
     }
 }]);
