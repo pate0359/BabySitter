@@ -1,66 +1,123 @@
 <ion-view view-title="Emergency" cache-view="false">
-<!--    <ion-nav-bar class="myblue"></ion-nav-bar>-->
-  <ion-content>
-    <div class="item item-divider">
-        In case of Emergency
-    </div>
-    <!-- <ion-list> -->
-	  <ion-item>
-    <div class="padding">
-        <button class="button button-block icon-left myred" ng-click="callNumber(311)">Call (911)</button>        
-    </div>
-	  <div class="padding">
-	  <button class="button button-block mygreen" ng-click="showModal()"> Show My Location </button>
-	  </div>
-		  </ion-item>
-     
-         <div class="item item-divider">
-            Parent info
-            </div>
- <div class="list">
-	 
-	 <!-- ******************************** Parent sub-page ******************************** -->
-	 <div ng-show="parents.lenght == 0">
-		 <p>You dont have any task at this moment!</p>
-	 </div>
+	<!--    <ion-nav-bar class="myblue"></ion-nav-bar>-->
+	<ion-content>
+		<div class="item item-divider">
+			In case of Emergency
+		</div>
+		<!-- <ion-list> -->
+		<ion-item>
+			<div class="padding">
+				<button class="button button-block icon-left myred" ng-click="callNumber(311)">Call (911)</button>
+			</div>
+			<div class="padding">
+				<button class="button button-block mygreen" ng-click="showModal()"> Show My Location </button>
+			</div>
+		</ion-item>
+
+		<div ng-show="currentTasks.lenght == 0">
+			<p>You dont have any task at this moment!</p>
+		</div>
+
+		<div ng-hide="kid == undefined" class="item item-divider">
+			Kid info
+		</div>
+		<div ng-hide="kid == undefined" class="list">
+			<!-- ******************************** Kid Info ******************************** -->
+			<div ng-hide="kid == undefined" id="kid" class="card">
+
+				<div class="item item-divider item-icon-right ">
+					{{kid.kidName}}
+				</div>
+
+				<div class="item item-text-wrap">
+					<!--		 <div id="profile-bg"></div>-->
+					<div id="content">
+						<div id="profile-info">
+							<img ng-show="kid.kidPicture !== undefined && kid.kidPicture !== ''" id="profile-image" ng-src="{{kid.kidPicture}}">
+			  				<img ng-show="kid.kidPicture == undefined ||  kid.kidPicture == ''"  id="profile-image" ng-src="img/default.png">
+							
+							<h4 id="profile-name">
+				  <i class="fa fa-birthday-cake" aria-hidden="true"></i> {{ kid.kidBirthdate}}
+				</h4>
+							<h4 id="profile-name">
+				   {{kid.kidGender}}
+				</h4>
+				</div>
+						<div style="margin-bottom:15px;">
+							<h2 style="color:black">Allergies</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.allergyDescription}}</p>
+							<p ng-show="kid.allergyDescription == undefined || kid.allergyDescription == '' ">None</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2 style="color:black">Disabilities</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.disabilityDescription}}</p>
+							<p ng-show="kid.disabilityDescription == undefined || kid.disabilityDescription == '' ">None</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2 style="color:black">Medications</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.medicationDescription}}</p>
+							<p ng-show="kid.medicationDescription == undefined || kid.medicationDescription == ''">None</p>
+						</div>
+
+						<div style="margin-bottom:15px;">
+							<h2 style="color:black">Notes</h2>
+							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+							<p>{{kid.kidNotes}}</p>
+							<p ng-show="kid.kidNotes == undefined || kid.kidNotes == ''">None</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item item-divider">
+			Parent info
+		</div>
+		<div class="list">
+			<!-- ******************************** Parent Info ******************************** -->
 			<div id="parent" ng-repeat="parent in parents" class="card">
 
 				<div class="item item-divider item-icon-right">
-					{{parent.parentName}}                    
+					{{parent.parentName}}
 					<div class="icon">
-						<a ng-href="sms:13332221111&body={{ sosMessage }}" class="button button-icon" id="parent1"> 
+						<a ng-href="sms:13332221111&body={{ sosMessage }}" class="button button-icon" id="parent1">
 							<!-- ng-click="sendSMS(6138539911)" -->
-              				<i id="position" class="icon ion-ios-chatbubble"></i>
-            			</a>
-						
+							<i id="position" class="icon ion-ios-chatbubble"></i>
+						</a>
+
 						<button class="button button-icon" style="padding-left:30px;" ng-click="callNumber(6138539911)">
-							<i class = "icon ion-ios-telephone"></i>
+							<i class="icon ion-ios-telephone"></i>
 						</button>
-        			</div>	
+					</div>
 				</div>
 				<div class="item item-text-wrap">
 					<div style="margin-bottom:15px;">
-							<h2>Mobile Number</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{parent.parentPrimaryphone}}</p>
-						</div>
+						<h2>Mobile Number</h2>
+						<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+						<p>{{parent.parentPrimaryphone}}</p>
+					</div>
 					<div style="margin-bottom:15px;">
-							<h2>Address</h2>
-							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-							<p>{{parent.parentStreet}}</p>
-							<p>{{parent.parentCity +", "+ parent.parentState}}</p>
-							<p>{{parent.parentZipcode}}</p>
-                    </div>
-                    <div>
-                            <h2>Notes</h2>
-                        <hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd" />
-                        <p>{{parent.parentNotes}}</p>
-                        
-						</div>
+						<h2>Address</h2>
+						<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+						<p>{{parent.parentStreet}}</p>
+						<p>{{parent.parentCity +", "+ parent.parentState}}</p>
+						<p>{{parent.parentZipcode}}</p>
+					</div>
+					<div>
+						<h2>Notes</h2>
+						<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd" />
+						<p>{{parent.parentNotes}}</p>
+
+					</div>
 				</div>
 
 			</div>
-                  
-</div>  
-  </ion-content>
+
+		</div>
+	</ion-content>
 </ion-view>

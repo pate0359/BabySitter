@@ -18,13 +18,12 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 			}
 		});
 
-
 		$scope.settings = {
 			enableFriends: true
 		};
 
 		$scope.currentTasks = [];
-		$scope.parents = [];
+		$scope.parents = [];		
 
 		// get client in database
 		Tasks.getAllTask().then(function (taskList) {
@@ -56,6 +55,12 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 				if (!task.clientId) {
 					return;
 				}
+				
+				Clients.getKidById(task.kidId).then(function (kid) {
+					if (!kid) return;
+					$scope.kid = kid;
+				});
+				
 				Clients.getParentsForClient(task.clientId).then(function (parentList) {
 
 					if (!parentList) return;

@@ -33,7 +33,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 					newTask.taskEndDateTime = task.taskEndDateTime;
 					newTask.taskNotes = task.taskNotes;
 					newTask.clientId = task.clientId;
-					newTask.kidId = task.kidId;				  
+					newTask.kidId = task.kidId;			  
 				  	
 				  	newTask.kidName = task.kidName;
 				  
@@ -357,8 +357,6 @@ angular.module('SitterAdvantage.taskControllers', [])
                        alertPopup.then(function(res) {
                            $ionicHistory.goBack();
                        });
-                
-                    
                 });
             }
         });
