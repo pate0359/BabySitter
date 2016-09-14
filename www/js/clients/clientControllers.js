@@ -1,7 +1,6 @@
 angular.module('SitterAdvantage.clientControllers', [])
-	.controller('ClientsCtrl', ["$scope", "Clients", "$ionicPopup", "$state", "$ionicActionSheet", "$ionicHistory","$rootScope",
- function ($scope, Clients, $ionicPopup, $state, $ionicActionSheet, $ionicHistory,$rootScope) {
-
+	.controller('ClientsCtrl', ["$scope", "Clients", "$ionicPopup", "$state", "$ionicActionSheet", "$ionicHistory","$rootScope","Tasks",
+ function ($scope, Clients, $ionicPopup, $state, $ionicActionSheet, $ionicHistory,$rootScope, Tasks) {
 
 			console.log("ClientsCtrl is loaded");
 			$scope.clients = [];
@@ -85,15 +84,14 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 					$scope.clients[$index] = $scope.selectedClient;
 					//$state.reload();
-
 				});
 			}
 
 			//delete client
 			$scope.deleteClient = function ($index) {
-                
 
 				var client = $scope.clients[$index];
+<<<<<<< HEAD
                 
                   var popUp = $ionicPopup.show({
 					title: 'Delete Client',
@@ -121,6 +119,42 @@ angular.module('SitterAdvantage.clientControllers', [])
 					if (!res) {
                         return;
                     }			
+=======
+				var hideSheet = $ionicActionSheet.show({
+
+					destructiveText: 'Delete Client',
+					cancelText: 'Cancel',
+
+					cancel: function () {
+						hideSheet();
+					},
+
+					destructiveButtonClicked: function () {
+						//Delete client
+
+						Clients.deleteClient(client.clientId).then(function (res) {
+
+							// Delete parents for client
+							Clients.deleteParentsForClient(client.clientId).then(function (res) {
+								console.log("Parents deleted for client");
+							});
+							
+							// Delete Kids for client
+							Clients.deleteKidsForClient(client.clientId).then(function (res) {
+								console.log("Kids deleted for client");
+							});
+							
+							// Delete Tasks for client
+							Tasks.deleteTaskForClient(client.clientId).then(function (res) {
+								console.log("Task deleted for client");
+							});
+							
+							$scope.clients.splice($index, 1);
+							// hide sheet
+							hideSheet();
+						});
+					}
+>>>>>>> origin/master
 				});
 			};
 
@@ -158,7 +192,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 					if (!res) return;
 
 					$scope.insertClient(res);
-
 				});
 			};
 
@@ -174,11 +207,10 @@ angular.module('SitterAdvantage.clientControllers', [])
 						clientId: clientId,
 					});
 
-
 				}, function (error) { //"error" --> deferred.reject(err);
-
-					console.log(error)
-						//error code
+					
+					//error code
+					console.log(error)					
 				});
 			};	 	
 }])

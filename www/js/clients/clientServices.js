@@ -80,13 +80,6 @@ angular.module('SitterAdvantage.clientServices', [])
                 console.log("insert statement for adding a newClient succeeded");
                 console.log(res);
                 console.log(res.insertId);
-
-                //            clients.push({
-                //                'clientId': res.insertId,
-                //                'clientDesc': params,
-                //                'kids': []
-                //            });
-
                 d.resolve(res.insertId);
                 // get client id for new client after adding it.
                 //return res.insertId; // return client id 
@@ -284,6 +277,28 @@ angular.module('SitterAdvantage.clientServices', [])
             dbService.executeStatement(query, [kidId], querySuccessCallback, queryErrorCallback);
             return d.promise;
         },
+		
+		//Delete kid for "client"    
+        deleteKidsForClient: function (clientId) {
+
+            var d = $q.defer();
+
+            var query = "DELETE FROM kids where clientId = ?";
+            var queryErrorCallback = function (err) {
+                console.error(err);
+                d.resolve(err);
+            }
+            var querySuccessCallback = function (tx, res) {
+                console.log("delete cleint succeeded");
+                console.log(res);
+                //tasks = $filter('filter')(tasks, {taskId: '!taskId'})  
+                d.resolve(res);
+            };
+
+            dbService.executeStatement(query, [clientId], querySuccessCallback, queryErrorCallback);
+
+            return d.promise;
+        },
 
         //// ********************* Parents  ********************* ////
 
@@ -395,6 +410,28 @@ angular.module('SitterAdvantage.clientServices', [])
             };
 
             dbService.executeStatement(query, [parentId], querySuccessCallback, queryErrorCallback);
+
+            return d.promise;
+        },
+		
+		//Delete parent for "client"    
+        deleteParentsForClient: function (clientId) {
+
+            var d = $q.defer();
+
+            var query = "DELETE FROM parents where clientId = ?";
+            var queryErrorCallback = function (err) {
+                console.error(err);
+                d.resolve(err);
+            }
+            var querySuccessCallback = function (tx, res) {
+                console.log("delete parents for client succeeded");
+                console.log(res);
+                //tasks = $filter('filter')(tasks, {taskId: '!taskId'})  
+                d.resolve(res);
+            };
+
+            dbService.executeStatement(query, [clientId], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },
