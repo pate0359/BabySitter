@@ -204,6 +204,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 				if (!kids) return;
 				$scope.kidsArray = kids;
 				$scope.selectKidOption = $scope.kidsArray[0];
+				$scope.selectedKidId = $scope.selectKidOption.kidId;
 			});
         };
 	  
