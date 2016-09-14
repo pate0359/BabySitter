@@ -289,7 +289,7 @@ angular.module('SitterAdvantage.clientServices', [])
                 d.resolve(err);
             }
             var querySuccessCallback = function (tx, res) {
-                console.log("delete cleint succeeded");
+                console.log("delete client succeeded");
                 console.log(res);
                 //tasks = $filter('filter')(tasks, {taskId: '!taskId'})  
                 d.resolve(res);

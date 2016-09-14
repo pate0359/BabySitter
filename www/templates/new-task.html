@@ -20,6 +20,13 @@
                 </select>
           </label>
            <p style="color: red;" class="error" ng-show="myForm.selectClientOption.$invalid && myForm.selectClientOption.$touched">Family name is required.</p>
+		  
+		  <label ng-hide="isHideClientDescr" style="padding-left:0px; margin-bottom:30px;margin-top:25px;border-top:0px" class="item item-input item-select">
+             <h2>Kid Name</h2>
+                <select name="selectKidOption" ng-model="selectKidOption"  ng-required="true" ng-options="kid as kid.kidName for kid in kidsArray" ng-change="getSelectedValueForKid(selectKidOption)" required>  
+                </select>
+          </label>
+           <p style="color: red;" class="error" ng-show="myForm.selectKidOption.$invalid && myForm.selectKidOption.$touched">Kid name is required.</p>
 
         <div style="margin-bottom:15px;">
              <input style="padding:0px;"

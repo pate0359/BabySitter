@@ -23,7 +23,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			  var array = [];
 			  
 			  angular.forEach(taskList, function (task) {
-				  
+				  				  
 				  var newTask = {};
 				  
 				    newTask.taskId = task.taskId;
@@ -33,7 +33,10 @@ angular.module('SitterAdvantage.taskControllers', [])
 					newTask.taskEndDateTime = task.taskEndDateTime;
 					newTask.taskNotes = task.taskNotes;
 					newTask.clientId = task.clientId;
-					newTask.kidId = task.kidId;
+					newTask.kidId = task.kidId;				  
+				  	
+				  	newTask.kidName = task.kidName;
+				  
 				    newTask.clientDesc = task.clientDesc;
 				  	newTask.isCompleted = task.isCompleted;
 				  	newTask.isNotify = task.isNotify;
@@ -130,13 +133,20 @@ angular.module('SitterAdvantage.taskControllers', [])
 
             console.log(clientList);
             $scope.clientArray = clientList;
-
             $scope.selectClientOption = $scope.clientArray[0];
+			$scope.selectedClientId = $scope.selectClientOption.clientId;
+			
+			// get kids for client
+			Clients.getKidsForClientWithID($scope.selectClientOption.clientId).then(function (kids) {
+				if (!kids) return;
+				$scope.kidsArray = kids;
+				$scope.selectKidOption = $scope.kidsArray[0];
+				$scope.selectedKidId = $scope.selectKidOption.kidId;
+			});
         });
-
+	  
         $scope.cancelNewTask = function () {
             //$state.go("tab.tasks");
-
             $ionicHistory.goBack();
         };
 
@@ -164,7 +174,7 @@ angular.module('SitterAdvantage.taskControllers', [])
             params.taskEndDateTime = $filter('date')($scope.newTaskParams.enddatetimeValue, 'medium');
             params.taskNotes = $scope.newTaskParams.taskNotes;
             params.clientId = $scope.selectedClientId;
-            params.kidId = 0;
+            params.kidId = $scope.selectedKidId;
             params.isCompleted = false;
             params.isNotify = $scope.newTaskParams.isNotify;
 
@@ -179,7 +189,6 @@ angular.module('SitterAdvantage.taskControllers', [])
                     if (params.isNotify == 'true') {
                         //Schedule task
                         //Notification.scheduleNotification(task);
-                        
                     }
                     $ionicHistory.goBack();
                 });
@@ -189,6 +198,18 @@ angular.module('SitterAdvantage.taskControllers', [])
         $scope.getSelectedValue = function (client) {
             //alert("scope - "+ client.clientDesc);
             $scope.selectedClientId = client.clientId;
+			
+			 // get kids for client
+			Clients.getKidsForClientWithID(client.clientId).then(function (kids) {
+				if (!kids) return;
+				$scope.kidsArray = kids;
+				$scope.selectKidOption = $scope.kidsArray[0];
+			});
+        };
+	  
+	  $scope.getSelectedValueForKid = function (kid) {
+            //alert("scope - "+ client.clientDesc);
+            $scope.selectedKidId = kid.kidId;
         };
   }])
 
