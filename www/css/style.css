@@ -230,3 +230,12 @@ background-color: red !important;
 	color: red;
 }
 
+#map {
+  width: 100%;
+  height: 250px;
+}
+
+.scroll {
+  height: 100%;
+}
+

@@ -11,6 +11,9 @@
 			</div>
 			<div class="padding">
 				<button class="button button-block mygreen" ng-click="showModal()"> Show My Location </button>
+				<p ng-hide="latitude == ''">latitude : {{latitude}} </p> 
+				<p ng-hide="latitude == ''"> longitude : {{longitude}}</p>
+				<p>address : {{address}}</p>
 			</div>
 		</ion-item>
 
