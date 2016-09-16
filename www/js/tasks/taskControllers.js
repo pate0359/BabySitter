@@ -85,7 +85,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 								 //Delete Task 
                                 Tasks.deleteTask(task.taskId);
                                 $scope.tasks.splice($index, 1);
-                                //Notification.cancelNotification($scope.task); 
+                                Notification.cancelNotification($scope.task); 
                                 return;
                                 //popUp.close();
                               
@@ -186,9 +186,9 @@ angular.module('SitterAdvantage.taskControllers', [])
                 Tasks.getTaskById(taskId).then(function (task) {
                     if (!task) return;
 
-                    if (params.isNotify == 'true') {
+                    if (params.isNotify == true || params.isNotify == 'true') {
                         //Schedule task
-                        //Notification.scheduleNotification(task);
+                        Notification.scheduleNotification(task);
                     }
                     $ionicHistory.goBack();
                 });
@@ -287,9 +287,9 @@ angular.module('SitterAdvantage.taskControllers', [])
             if (!task) return;
             //$scope.disableEnableForm = function(e){ return false;} 
 
-            if (param.isNotify == 'true') {
+            if ((param.isNotify == true || param.isNotify == 'true')) {
                 //Update notification
-                //Notification.updateNotification(param);
+                Notification.updateNotification(param);
             }
 
             $scope.disableEnableForm = false;
@@ -343,7 +343,7 @@ angular.module('SitterAdvantage.taskControllers', [])
                     if (!task) return;
 
                     //Cancel notification
-                    //Notification.cancelNotification(param);
+                    Notification.cancelNotification(param);
 
                     hideSheet();
                        var alertPopup = $ionicPopup.alert({
@@ -381,7 +381,7 @@ angular.module('SitterAdvantage.taskControllers', [])
                             onTap: function (e) {
 								 Tasks.deleteTask($scope.task.taskId);
                                 //Cancel notification
-                                //Notification.cancelNotification($scope.task);
+                                Notification.cancelNotification($scope.task);
                                 $ionicHistory.goBack();
                                 return;
 							}
