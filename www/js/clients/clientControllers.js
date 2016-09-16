@@ -304,6 +304,15 @@ angular.module('SitterAdvantage.clientControllers', [])
 				newTask.kidId = task.kidId;
 				newTask.clientDesc = task.clientDesc;
 				newTask.isCompleted = task.isCompleted;
+				
+				newTask.start_dateObj = new Date(task.taskStartDateTime);
+				
+				 if (newTask.start_dateObj < new Date()){
+					  
+					  newTask.isPending = true;
+				  }else{
+					  newTask.isPending = false;
+				  }
 
 
 				newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');

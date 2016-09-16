@@ -226,5 +226,7 @@ background-color: red !important;
     text-overflow: ellipsis;
 }
 
-
+.pending{
+	color: red;
+}
 
