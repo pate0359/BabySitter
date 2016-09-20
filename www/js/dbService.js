@@ -31,13 +31,13 @@ angular.module('SitterAdvantage.dbService', [])
 
 				tx.executeSql("SELECT * FROM clients", [], function (tx, res) {
 
+					//Delete all test data
+//					tx.executeSql("DELETE FROM clients", []);
+//					tx.executeSql("DELETE FROM parents", []);
+//					tx.executeSql("DELETE FROM kids", []);
+//					tx.executeSql("DELETE FROM tasks", []);
+					
 					if (res.rows.length < 1) {
-
-						//Delete all test data
-//						tx.executeSql("DELETE FROM clients", []);
-//						tx.executeSql("DELETE FROM parents", []);
-//						tx.executeSql("DELETE FROM kids", []);
-//						tx.executeSql("DELETE FROM tasks", []);
 
 						//3 clients
 						tx.executeSql("INSERT INTO clients (clientDesc) VALUES (?)", ["The Smith Family"], function () {}, function () {});

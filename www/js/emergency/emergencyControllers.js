@@ -5,9 +5,38 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 	$scope.latitude = "";
 	$scope.longitude = "";
 
-	console.log("entering emergency");
+	//Get default text message
+	ResourcesService.getDefaults().then(function (defaults) {
+
+		if (defaults) {
+			console.log("defaults :" + defaults.message);
+			$scope.sosMessage = defaults.message;
+		} else {
+			$scope.sosMessage = "";
+		}
+	});
+
+	$scope.settings = {
+		enableFriends: true
+	};
+
+	$scope.$on("$ionicView.enter", function (event, data) {
+
+		$scope.currentTasks = [];
+		$scope.parents = [];
+
+		// get client in database
+		Tasks.getAllTask().then(function (taskList) {
+			if (!taskList) return;
+			$scope.getCurrentTask(taskList);
+		});
+	});
 
 	$scope.$on("$ionicView.loaded", function (event, data) {
+
+		console.log("entering emergency");
+
+		$scope.address = "Getting address..."
 
 		if (navigator.geolocation) {
 
@@ -24,30 +53,6 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 		}
 	});
 
-	//Get default text message
-	ResourcesService.getDefaults().then(function (defaults) {
-
-		if (defaults) {
-			console.log("defaults :" + defaults.message);
-			$scope.sosMessage = defaults.message;
-		} else {
-			$scope.sosMessage = "";
-		}
-	});
-
-	$scope.settings = {
-		enableFriends: true
-	};
-
-	$scope.currentTasks = [];
-	$scope.parents = [];
-
-	// get client in database
-	Tasks.getAllTask().then(function (taskList) {
-		if (!taskList) return;
-		$scope.getCurrentTask(taskList);
-	});
-
 	$scope.getCurrentTask = function (taskList) {
 
 		angular.forEach(taskList, function (task) {
@@ -61,8 +66,16 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 				$scope.currentTasks.push(task);
 			}
 		});
-
-		$scope.getParentsForCurrentTasks();
+		
+		
+		if ($scope.currentTasks.length == 0){
+			
+			$scope.kid = undefined;
+			$scope.parents = [];
+		}else{
+		
+			$scope.getParentsForCurrentTasks();
+		}
 	};
 
 	$scope.getParentsForCurrentTasks = function () {
@@ -111,14 +124,6 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
 		$scope.showStaticMap();
 	};
-
-	// Handle geolocation errors 
-	//		$scope.handleLocationError = function (browserHasGeolocation, infoWindow, mapCoords) {
-	//			infoWindow.setPosition($scope.mapCoords);
-	//			infoWindow.setContent(browserHasGeolocation ?
-	//				'Error: The Geolocation service failed.' :
-	//				'Error: Your browser doesn\'t support geolocation.');
-	//		}
 
 	// Sends an SMS message to the contact parents
 	$scope.sendSMS = function (number) {
@@ -170,15 +175,15 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 			var mapEle = document.getElementById("map");
 			console.log("mapEle : " + mapEle);
 
-			if (!mapEle) return;
+			//if (!mapEle) return;
 
 			$scope.loading = $ionicLoading.show({
 				content: 'Getting current location...',
 				showBackdrop: false
 			});
 
-			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-			$scope.map = map;
+			var map = new google.maps.Map(mapEle, mapOptions);
+			//$scope.map = map;
 
 			navigator.geolocation.getCurrentPosition(function (pos) {
 
@@ -190,7 +195,7 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 				$scope.latitude = parseFloat(pos.coords.latitude.toFixed(6));
 				$scope.longitude = parseFloat(pos.coords.longitude.toFixed(6));
 
-				$scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+				map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
 				var myLocation = new google.maps.Marker({
 					position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
 					map: map,
@@ -198,36 +203,35 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 				});
 
 				//Get addess from lat long
-				$scope.getAddress(pos.coords.latitude, pos.coords.longitude);				
+				$scope.getAddress(pos.coords.latitude, pos.coords.longitude);
 
 				$ionicLoading.hide();
-
 			});
 		}
 	};
-	
+
 	$scope.getAddress = function (lat, long) {
-		
+
 		var geocoder = new google.maps.Geocoder();
-				var latlng = new google.maps.LatLng(lat, long);
+		var latlng = new google.maps.LatLng(lat, long);
 
-				geocoder.geocode({
-					'latLng': latlng
-				}, function (results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						if (results[1]) {
+		geocoder.geocode({
+			'latLng': latlng
+		}, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[1]) {
 
-							console.log(results[1].formatted_address); // details address
-							$scope.address = results[1].formatted_address;
-							$scope.$apply();
-							
-						} else {
-							console.log('Location not found');
-						}
-					} else {
-						console.log('Geocoder failed due to: ' + status);
-					}
-				});
+					console.log(results[1].formatted_address); // details address
+					$scope.address = results[1].formatted_address;
+					$scope.$apply();
+
+				} else {
+					console.log('Location not found');
+				}
+			} else {
+				console.log('Geocoder failed due to: ' + status);
+			}
+		});
 	};
-	
-    }]);
+
+			}]);
