@@ -264,26 +264,21 @@ angular.module('SitterAdvantage.clientControllers', [])
 	 
 	 $scope.updateSelection = function () {
 		 
-		    var segmentElement0 = angular.element(document.querySelector('#segment_button_0'));
-			var segment0 = segmentElement0[0];
-
-			var segmentElement1 = angular.element(document.querySelector('#segment_button_1'));
-			var segment1 = segmentElement1[0];
-
-			var segmentElement2 = angular.element(document.querySelector('#segment_button_2'));
-			var segment2 = segmentElement2[0];
+		 	$scope.active_class1 = [];
+		 	$scope.active_class2 = [];
+		 	$scope.active_class3 = [];		  
 
 			if ($scope.selectedIndex == 0) {
 
-				segment0.classList.value += ' active'; //add class
+				$scope.active_class1.push('active');
 
 			} else if ($scope.selectedIndex == 1) {
 				
-				segment1.classList.value += ' active'; //add class
+				$scope.active_class2.push('active');
 
 			} else if ($scope.selectedIndex == 2) {
 
-				segment2.classList.value += ' active'; //add class
+				$scope.active_class3.push('active');
 			}
 	 }
 
