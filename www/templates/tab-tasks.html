@@ -16,7 +16,7 @@
 
                 <ion-item ng-repeat="task in taskItems | orderBy: 'startTime'" type="item-text-wrap" href="#/tab/tasks/{{task.taskId}}">
                     <p style="font-size:17px;margin-bottom:-18px;color:#272727;width:150px;">{{task.taskTitle}}<p>
-                    <span ng-class="{pending : task.isPending == true}" class="item-note">		  
+                    <span ng-class="{pending : (task.isPending == true && task.isCompleted != 'true') }" class="item-note">		  
 								{{task.startTime}}
 						</span>
 					
