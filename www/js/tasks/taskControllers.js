@@ -75,7 +75,6 @@ angular.module('SitterAdvantage.taskControllers', [])
         $scope.deleteTask = function($index){
             
             var task = $scope.tasks[$index];
-            
                 var popUp = $ionicPopup.show({
 					title: 'Delete Task',
                     template: 'Are you sure you want to delete this task?',
@@ -84,7 +83,6 @@ angular.module('SitterAdvantage.taskControllers', [])
 						{
 							text: 'Cancel',
 							type: 'button-light',
-
                         },
 						{
 							text: '<b>Delete</b>',
@@ -93,10 +91,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 								 //Delete Task 
                                 Tasks.deleteTask(task.taskId);
                                 $scope.tasks.splice($index, 1);
-                                Notification.cancelNotification($scope.task); 
+                                Notification.cancelNotification(task); 
                                 return;
-                                //popUp.close();
-                              
 							}
                         }, ]
 
