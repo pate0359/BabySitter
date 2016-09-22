@@ -42,12 +42,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 				  	newTask.isNotify = task.isNotify;
 				  newTask.start_dateObj = new Date(task.taskStartDateTime);
 				  
-				  if (newTask.start_dateObj < new Date()){
-					  
-					  newTask.isPending = true;
-				  }else{
-					  newTask.isPending = false;
-				  }
+                  
+
 				  
 				  newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM dd, yyyy');
 				  newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
@@ -116,8 +112,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		})
 }])
 
-.controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate", "$ionicHistory", "$filter", "Notification",
-  function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate, $ionicHistory, $filter, Notification) {
+.controller('NewTaskCtrl', ["$scope", "Tasks", "Clients", "$state", "$stateParams", "$ionicNavBarDelegate", "$ionicHistory", "$filter", "Notification","$timeout",
+  function ($scope, Tasks, Clients, $state, $stateParams, $ionicNavBarDelegate, $ionicHistory, $filter, Notification,$timeout) {
 
         $ionicNavBarDelegate.showBackButton(false);
 
@@ -162,9 +158,91 @@ angular.module('SitterAdvantage.taskControllers', [])
 
             console.log('Push Notification Change', $scope.isNotify);
         };
-
+      
+      $scope.callAtTimeout = function () {
+          
+           $scope.errorStartDateTime = "";
+           $scope.titleError = "";
+            $scope.errorEndDateTime = "";
+      }
         $scope.saveNewTask = function () {
-            // To add Task from Clien detail page
+            
+        //////////////////////////////Validations for new task////////////////////////////////////////
+            
+            //check if any of the fields are null and set them to None
+//            
+//            for (var i = 0; i < $scope.newTaskParams.length; i++) { 
+//                if($scope.newTaskParams[i] == null){
+//                    alert("hi");
+//                }
+//                }
+            
+             //check if the task title is empty
+            if($scope.newTaskParams.taskTitle == null){
+                $scope.titleError = "* Task title is required."
+                $timeout($scope.callAtTimeout, 4000);
+                return;
+            }
+            else{
+					  $scope.titleError = "";
+				  }
+            
+                  
+            //check if start date/time is greater than end date/time
+				  if ($scope.newTaskParams.startdatetimeValue >= $scope.newTaskParams.enddatetimeValue){
+					  
+                      $scope.errorStartDateTime = "* Start Date/Time shoule not be greater than or equal to End Date/Time.";
+                      
+                      $timeout($scope.callAtTimeout, 4000);
+                      
+                      return;
+				  }
+           
+                else{
+					  $scope.errorStartDateTime = "";
+				  }
+      
+                 //check if start date/time is null
+				  if ($scope.newTaskParams.startdatetimeValue == null){
+					  
+                      $scope.errorStartDateTime = "* Start Date and Time is required.";
+                      
+                      $timeout($scope.callAtTimeout, 4000);
+                      
+                      return;
+				  }
+           
+                else{
+					  $scope.errorStartDateTime = "";
+				  }
+            
+            
+             //check if end date/time is null
+				  if ($scope.newTaskParams.enddatetimeValue == null){
+					  
+                      $scope.errorEndDateTime = "* End Date and Time is required.";
+                      
+                      $timeout($scope.callAtTimeout, 4000);
+                      
+                      return;
+				  }
+           
+                else{
+					  $scope.errorEndDateTime = "";
+				  }
+            
+            
+      
+      
+            
+            
+           
+            
+            
+            
+                
+            
+            // To add Task from Client detail page
 
             if ($stateParams.pageFrom == 2) {
                 $scope.selectedClientId = $stateParams.clientId;

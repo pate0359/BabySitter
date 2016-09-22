@@ -636,8 +636,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 }])
 
-.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory) {
+.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate","$timeout", "$state", "$ionicHistory",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $timeout, $state, $ionicHistory) {
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
@@ -648,8 +648,39 @@ angular.module('SitterAdvantage.clientControllers', [])
 		$ionicNavBarDelegate.showBackButton(false);
 
 		$scope.params = {};
+     
+     
+      $scope.callAtTimeout = function () {
+          
+           $scope.parentNameError = "";
+          $scope.parentPrimaryPhoneError = "";
+          $scope.kidNameError = "";
+      }
 
 		$scope.saveParent = function () {
+            
+            //////////////////////Validations for New Parent Page//////////////////////////////
+            //check if parent title is null
+            if($scope.params.parentName == null){
+                $scope.parentNameError = "* Parent name is required."
+                $timeout($scope.callAtTimeout, 4000);
+                return;
+            }
+            else{
+					  $scope.parentNameError = "";
+				  }
+            
+            //check if the primary phone is empty
+             if($scope.params.parentPrimaryphone == null){
+                $scope.parentPrimaryPhoneError = "* Primary phone number is required."
+                $timeout($scope.callAtTimeout, 4000);
+                return;
+            }
+            else{
+					  $scope.parentPrimaryPhoneError = "";
+				  }
+            
+            
 
 			$scope.params.clientId = $stateParams.clientId;
 			Clients.addParentForClient($scope.params).then(function (parentId) {
@@ -664,11 +695,21 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 }])
 
-.controller('NewKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory", "$cordovaCamera","$ionicPopup", "$filter",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory, $cordovaCamera, $ionicPopup,$filter) {
+.controller('NewKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate","$timeout", "$state", "$ionicHistory", "$cordovaCamera","$ionicPopup", "$filter",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $timeout, $state, $ionicHistory, $cordovaCamera, $ionicPopup,$filter) {
+     
+     
+     $scope.callAtTimeout = function () {
+          
+          $scope.kidNameError = "";
+         $scope.kidBirthDateError = "";
+         $scope.kidGenderError = "";
+
+      }
 
 		$ionicNavBarDelegate.showBackButton(false);
 
+     
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
 
@@ -676,6 +717,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 		$scope.stringval = /^[a-zA-Z\s]*$/;
 
 		$scope.kid = {};
+     
 		$scope.addPhoto = function () {
             
             
@@ -704,6 +746,49 @@ angular.module('SitterAdvantage.clientControllers', [])
 			};
             
 		$scope.saveKid = function () {
+            
+            
+            ////////////////////validaitons for new kid page//////////////////
+        //check if the kid name is empty
+        if($scope.kid.kidName == null){
+                $scope.kidNameError = "* Kid name is required."
+                $timeout($scope.callAtTimeout, 4000);
+                return;
+            }
+            else{
+					  $scope.kidNameError = "";
+				  }
+            //check if the kid birthdate is empty
+        if($scope.kid.kidBirthdate == null){
+                $scope.kidBirthDateError = "* Kid Date of Birth is required."
+                $timeout($scope.callAtTimeout, 4000);
+                return;
+            }
+            else{
+					  $scope.kidBirthDateError = "";
+				  }
+            
+//            //check if the kid date if birth is greater than current date
+//             var date = new Date();
+//             if($scope.kid.kidBirthdate < date){
+//                 alert($scope.kid.kidBirthdate);
+//                $scope.kidBirthDateError = "* Kid Date of Birth is not valid."
+//                $timeout($scope.callAtTimeout, 4000);
+//                return;
+//            }
+//            else{
+//					  $scope.kidBirthDateError = "";
+//				  }
+            
+            //check if the kid gender is empty
+            if($scope.kid.kidGender == null){
+                $scope.kidGenderError = "* Kid Gender is required."
+                $timeout($scope.callAtTimeout, 4000);
+                return;
+            }
+            else{
+					  $scope.kidGenderError = "";
+				  }
 
 			$scope.kid.clientId = $stateParams.clientId;
 			if (!$scope.imgURI){

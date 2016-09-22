@@ -7,13 +7,11 @@
 		<!-- <ion-list> -->
 		<ion-item>
 			<div class="padding">
-				<button class="button button-block icon-left myred" ng-click="callNumber(311)">Call (911)</button>
+				<button class="button button-block icon-left myred" ng-click="callNumber(911)">Call 911</button>
 			</div>
 			<div class="padding">
 				<button class="button button-block mygreen" ng-click="showModal()"> Show My Location </button>
-				<p ng-hide="latitude == ''">latitude : {{latitude}} </p> 
-				<p ng-hide="latitude == ''"> longitude : {{longitude}}</p>
-				<p>address : {{address}}</p>
+				
 			</div>
 		</ion-item>
 
@@ -89,11 +87,10 @@
 					{{parent.parentName}}
 					<div class="icon">
 						<a ng-href="sms:13332221111&body={{ sosMessage }}" class="button button-icon" id="parent1">
-							<!-- ng-click="sendSMS(6138539911)" -->
 							<i id="position" class="icon ion-ios-chatbubble"></i>
 						</a>
 
-						<button class="button button-icon" style="padding-left:30px;" ng-click="callNumber(6138539911)">
+						<button class="button button-icon" style="padding-left:30px;" ng-click="callNumber(parent.parentPrimaryphone)">
 							<i class="icon ion-ios-telephone"></i>
 						</button>
 					</div>

@@ -21,8 +21,7 @@
                  placeholder="Full Name" 
                  ng-required="true" 
                  ng-pattern="stringval">
-            <p style="color: red;"  
-               ng-show="myForm.parentName.$invalid && myForm.parentName.$touched"> * This field is required.</p>
+            <p id="myParagraph" style="color:red;">{{parentNameError}}</p>
             <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
                         <h2 style="margin-top:5px; margin-bottom:10px;">Full Name</h2>
         </div>
@@ -84,9 +83,11 @@
                  type="number" 
                  name="primaryPhone"
                  placeholder="Primary Phone"
-                 ng-pattern="integerval">
+                 ng-pattern="integerval"
+                 ng-maxlength="10">
           <p style="color:red;"
-             ng-show="myForm.primaryPhone.$invalid">* This field must contain numbers only</p>
+             ng-show="myForm.primaryPhone.$invalid">* This field must contain numbers only (max 10 characters).</p>
+          <p style="color:red;">{{parentPrimaryPhoneError}}</p>
           <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
           <h2 style="margin-top:5px; margin-bottom:10px;">Primary Phone</h2>
         </div>
@@ -95,7 +96,7 @@
           <input style="padding:0px;"
                  ng-model="params.parentSecondaryphone" 
                  class="item-input textDisable" 
-                 type="number   " 
+                 type="number" 
                  placeholder="Secondary Phone"
                  name="secondaryPhone"
                  ng-pattern="integerval">

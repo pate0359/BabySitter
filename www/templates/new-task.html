@@ -36,9 +36,9 @@
                     type="text" 
                     placeholder="Task" 
                     ng-required="true"
-                   ng-pattern="stringval">
+                   ng-pattern="stringval" required>
             
-            <p style="color:red;" ng-show="myForm.taskTitle.$invalid && myForm.taskTitle.$touched"> * This field is required.</p>
+            <p id="myParagraph" style="color:red;">{{titleError}}</p>
             <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
             <h2 style="margin-top:5px; margin-bottom:15px;">Task</h2>
         </div>
@@ -55,9 +55,16 @@
         </div>
 
         <div style="margin-bottom:15px;">
-            <div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="start_date_time" name="start_date_time" ng-model="newTaskParams.startdatetimeValue" required="required" for="startDate">
-                <p style="color: #c7c7c7;font-size:16px; margin-top:-5px;"ng-show="newTaskParams.startdatetimeValue == null">Pick Start Date and Time</p>
+            <div style="margin-top:10px;margin-bottom:25px;" 
+                 ion-datetime-picker am-pm  
+                 only-valid="{'after': 'today', 'inclusive': true}" 
+                 id="start_date_time" name="start_date_time"
+                 ng-model="newTaskParams.startdatetimeValue" 
+                 required="required" for="startDate">
+                <p style="color: #c7c7c7;font-size:16px; margin-top:-5px;"
+                   ng-show="newTaskParams.startdatetimeValue == null">Pick Start Date and Time</p>
 				<p ng-show="newTaskParams.startdatetimeValue != null" style="color:black;font-size:16px; margin-bottom:5px;">{{newTaskParams.startdatetimeValue| date: 'medium'}}</p>
+                <p id="myParagraph" style="color:red;">{{errorStartDateTime}}</p>
                 <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
           <h2 style="margin-top:5px; margin-bottom:20px;">Start Date and Time</h2>
           
@@ -71,6 +78,7 @@
                 <p style="font-size:16px;color: #c7c7c7;margin-top:-5px;" ng-show="newTaskParams.enddatetimeValue == null">Pick End Date and Time</p>
 				<p ng-show="newTaskParams.enddatetimeValue != null" style="color:black;font-size:16px; margin-bottom:5px;">
                     {{newTaskParams.enddatetimeValue| date: "medium"}}</p>
+                <p id="myParagraph" style="color:red;">{{errorEndDateTime}}</p>
                 <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
                  <h2 style="margin-top:5px;">End Date and Time</h2>		
             </div>  	
