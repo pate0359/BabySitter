@@ -38,19 +38,19 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
 		$scope.address = "Getting address..."
 
-		if (navigator.geolocation) {
-
-			navigator.geolocation.getCurrentPosition(function (pos) {
-
-				$scope.latitude = parseFloat(pos.coords.latitude.toFixed(6));
-				$scope.longitude = parseFloat(pos.coords.longitude.toFixed(6));
-
-				//Get addess from lat long
-				$scope.getAddress(pos.coords.latitude, pos.coords.longitude);
-
-				$scope.$apply();
-			});
-		}
+//		if (navigator.geolocation) {
+//
+//			navigator.geolocation.getCurrentPosition(function (pos) {
+//
+//				$scope.latitude = parseFloat(pos.coords.latitude.toFixed(6));
+//				$scope.longitude = parseFloat(pos.coords.longitude.toFixed(6));
+//
+//				//Get addess from lat long
+//				$scope.getAddress(pos.coords.latitude, pos.coords.longitude);
+//
+//				$scope.$apply();
+//			});
+//		}
 	});
 
 	$scope.getCurrentTask = function (taskList) {
@@ -95,6 +95,11 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
 				if (!parentList) return;
 				$scope.parents = parentList;
+				
+				if ($scope.parents.length != 0){
+				
+					$scope.selectedParent = $scope.parents[0];
+				}				
 			});
 		});
 	};

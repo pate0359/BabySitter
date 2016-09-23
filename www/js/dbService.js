@@ -5,14 +5,15 @@ angular.module('SitterAdvantage.dbService', [])
 	//---------------------- function responsible to create all the tables once ----------------------
 	var createTables = function () {
 		db.transaction(function (tx) {
-				//	  	    tx.executeSql("DROP TABLE clients");
-				//	  	    tx.executeSql("DROP TABLE parents");
-				//	  	    tx.executeSql("DROP TABLE tasks");
-				//	  	    tx.executeSql("DROP TABLE kids");
-				//tx.executeSql("DROP TABLE defaults");
+//					  	    tx.executeSql("DROP TABLE clients");
+//					  	    tx.executeSql("DROP TABLE parents");
+//					  	    tx.executeSql("DROP TABLE tasks");
+//					  	    tx.executeSql("DROP TABLE kids");
+//				tx.executeSql("DROP TABLE defaults");
 
 				tx.executeSql("CREATE TABLE IF NOT EXISTS clients (clientId integer primary key , clientDesc text)", [], function () {}, function () {});
-				tx.executeSql("CREATE TABLE IF NOT EXISTS parents(parentId integer primary key , parentName text, parentStreet text, parentCity text, parentState text, parentZipcode text, parentPrimaryphone text, parentSecondaryphone text, parentEmailid text, parentNotes text, clientId integer)", [], function () {}, function () {});
+				tx.executeSql("CREATE TABLE IF NOT EXISTS parents(parentId integer primary key , parentName text, parentStreet text, parentCity text, parentState text, parentZipcode text, parentPrimaryphone text, parentSecondaryphone text, parentEmailid text, parentNotes text, clientId integer,isParentJobAddress bool,parentStreetJob text,parentCityJob text,parentStateJob text,parentZipcodeJob text)", [], function () {}, function () {});			
+
 				tx.executeSql("CREATE TABLE IF NOT EXISTS tasks(taskId integer primary key , taskTitle text, taskDescription text, taskStartDateTime text, taskEndDateTime text, taskNotes text,clientId integer, kidId integer, isCompleted bool, isNotify bool)", [], function () {}, function () {});
 				tx.executeSql("CREATE TABLE IF NOT EXISTS kids(kidId integer primary key, kidName text, kidBirthdate text, kidGender text, kidPicture text, kidNotes text,clientId integer, allergyDescription text,disabilityDescription text, medicationDescription text)", [], function () {}, function () {});
 
@@ -30,7 +31,7 @@ angular.module('SitterAdvantage.dbService', [])
 		db.transaction(function (tx) {
 
 				tx.executeSql("SELECT * FROM clients", [], function (tx, res) {
-
+					
 					//Delete all test data
 //					tx.executeSql("DELETE FROM clients", []);
 //					tx.executeSql("DELETE FROM parents", []);
@@ -44,11 +45,11 @@ angular.module('SitterAdvantage.dbService', [])
 						tx.executeSql("INSERT INTO clients (clientDesc) VALUES (?)", ["The Jones Family"], function () {}, function () {});
 						tx.executeSql("INSERT INTO clients (clientDesc) VALUES (?)", ["The Jetsons Family"], function () {}, function () {});
 						//5 parents
-						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", ["Maria Smith", "Primary Guardian – Custody", "10 Jones Street", "Erie", "Pennsylvania", "23877", "6135745893", "6135846839", "maria.smith@gmail.com", "1"], function () {}, function () {});
-						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", ["John Smith", "Divorced – allowed contact with kids", "77 King Street", "Erie", "Pennsylvania", "23767", "2874566812", "2884336691", "john.smith@gmail.com.com", "1"], function () {}, function () {});
-						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", ["Mack Jones", "", "100 Arthur Street", "Los Angeles", "California", "90125", "6235465582", "6235435571", "mack.jones@hotmail.com", "2"], function () {}, function () {});
-						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", ["Francine Jones", "", "100 Arthur  Street", "Los Angeles", "Californa", "90125", "6123355199", "6144458923", "Francine.jones@hotmail.com", "2"], function () {}, function () {});
-						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)", ["George Jetson", "Single Dad - Custody", "990 Pluto Drive Street", "Denver", "Collorado", "23567", "6835592295", "1653454451", "george.jetsen@gmail.com", "3"], function () {}, function () {});
+						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId,isParentJobAddress,parentStreetJob,parentCityJob,parentStateJob,parentZipcodeJob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ["Maria Smith", "Primary Guardian – Custody", "10 Jones Street", "Erie", "Pennsylvania", "23877", "6135745893", "6135846839", "maria.smith@gmail.com", "1",false,"new 10 Jones Street", "new Erie", "new Pennsylvania", "1223877"], function () {}, function () {});
+						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId,isParentJobAddress,parentStreetJob,parentCityJob,parentStateJob,parentZipcodeJob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ["John Smith", "Divorced – allowed contact with kids", "77 King Street", "Erie", "Pennsylvania", "23767", "2874566812", "2884336691", "john.smith@gmail.com.com", "1",false,"new 10 Jones Street", "new Erie", "new Pennsylvania", "1223877"], function () {}, function () {});
+						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId,isParentJobAddress,parentStreetJob,parentCityJob,parentStateJob,parentZipcodeJob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ["Mack Jones", "", "100 Arthur Street", "Los Angeles", "California", "90125", "6235465582", "6235435571", "mack.jones@hotmail.com", "2",false,"new 10 Jones Street", "new Erie", "new Pennsylvania", "1223877"], function () {}, function () {});
+						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId,isParentJobAddress,parentStreetJob,parentCityJob,parentStateJob,parentZipcodeJob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ["Francine Jones", "", "100 Arthur  Street", "Los Angeles", "Californa", "90125", "6123355199", "6144458923", "Francine.jones@hotmail.com", "2",true,"", "", "", ""], function () {}, function () {});
+						tx.executeSql("INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId,isParentJobAddress,parentStreetJob,parentCityJob,parentStateJob,parentZipcodeJob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ["George Jetson", "Single Dad - Custody", "990 Pluto Drive Street", "Denver", "Collorado", "23567", "6835592295", "1653454451", "george.jetsen@gmail.com", "3",true,"", "", "", ""], function () {}, function () {});
 
 						//6 kids
 						tx.executeSql("INSERT INTO kids (kidName, kidBirthdate, kidGender, kidNotes, kidPicture, clientId,  allergyDescription,disabilityDescription, medicationDescription) VALUES (?,?,?,?,?,?,?,?,?)", ["Rohn Smith", "2011-03-12", "Male", "No iPads or phones allowed", "", "1", "", "", ""], function () {}, function () {});

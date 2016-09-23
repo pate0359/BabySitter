@@ -138,6 +138,49 @@
           <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />          
           <h2 style="margin-top:5px; margin-bottom:30px;">Notes</h2>
         </div>
+		  
+		  <div style="margin-bottom:15px;">
+			  
+			  <ion-checkbox ng-model="parent.isParentJobAddress">Job address is same as parent address.</ion-checkbox>
+<!--
+					<div class="item item-checkbox">
+						Job address is same as parent address.
+						<label class="checkbox">
+							<input type="checkbox" ng-checked="parent.isParentJobAddress" ng-model="parent.isParentJobAddress">
+						</label>
+					</div>
+-->
+				</div>
+		  
+				<div ng-hide="parent.isParentJobAddress == 'true' || parent.isParentJobAddress == true">
+
+					<h3 style="margin-top:5px; padding-bottom:10px; font-size:15px;">Enter Job Address</h3>
+					<div style="margin-bottom:15px;">
+						<input style="padding:0px;" ng-model="parent.parentStreetJob" class="item-input textDisable" type="text" placeholder="Street">
+						<hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+						<h2 style="margin-top:5px; margin-bottom:10px;">Street</h2>
+					</div>
+
+					<div style="margin-bottom:15px;">
+						<input style="padding:0px;" ng-model="parent.parentCityJob" class="item-input textDisable" type="text" placeholder="CityJob" name="cityJob" ng-pattern="stringval">
+						<p style="color:red;" ng-show="myForm.cityJob.$invalid">* This field must contain letters only</p>
+						<hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+						<h2 style="margin-top:5px; margin-bottom:10px;">City</h2>
+					</div>
+
+					<div style="margin-bottom:15px;">
+						<input style="padding:0px;" ng-model="parent.parentStateJob" class="item-input textDisable" type="text" placeholder="StateJob" name="stateJob" ng-pattern="stringval">
+						<p style="color:red;" ng-show="myForm.stateJob.$invalid">* This field must contain letters only</p>
+						<hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+						<h2 style="margin-top:5px; margin-bottom:10px;">State</h2>
+					</div>
+
+					<div style="margin-bottom:15px;">
+						<input style="padding:0px;" ng-model="parent.parentZipcodeJob" class="item-input textDisable" type="text" placeholder="Zip Code" name="zipCodeJob" ng-pattern="integerval">
+						<hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+						<h2 style="margin-top:5px; margin-bottom:10px;">Zip Code</h2>
+					</div>
+				</div>
     </div>
     </form>
 

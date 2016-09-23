@@ -352,9 +352,9 @@ angular.module('SitterAdvantage.clientServices', [])
 
         addParentForClient: function (params) {
 
-            var d = $q.defer();
+			var d = $q.defer();
 
-            var query = "INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            var query = "INSERT INTO parents (parentName, parentNotes, parentStreet, parentCity, parentState, parentZipcode, parentPrimaryphone, parentSecondaryphone, parentEmailid, clientId,isParentJobAddress,parentStreetJob,parentCityJob,parentStateJob,parentZipcodeJob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             var queryErrorCallback = function (err) {
                 console.error(err);
                 d.resolve(err);
@@ -366,7 +366,7 @@ angular.module('SitterAdvantage.clientServices', [])
                 d.resolve(res.insertId);
             };
 
-            dbService.executeStatement(query, [params.parentName, params.parentNotes, params.parentStreet, params.parentCity, params.parentState, params.parentZipcode, params.parentPrimaryphone, params.parentSecondaryphone, params.parentEmailid, params.clientId], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [params.parentName, params.parentNotes, params.parentStreet, params.parentCity, params.parentState, params.parentZipcode, params.parentPrimaryphone, params.parentSecondaryphone, params.parentEmailid, params.clientId,params.isParentJobAddress,params.parentStreetJob,params.parentCityJob,params.parentStateJob,params.parentZipcodeJob], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },
@@ -376,7 +376,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
             var id = parentInfo.parentId;
-            var query = 'UPDATE parents SET parentName = ?, parentNotes = ?, parentStreet = ?, parentCity = ?, parentState = ?, parentZipcode = ?, parentPrimaryphone = ?, parentSecondaryphone = ?, parentEmailid = ?, clientId = ? WHERE parentId=?';
+            var query = 'UPDATE parents SET parentName = ?, parentNotes = ?, parentStreet = ?, parentCity = ?, parentState = ?, parentZipcode = ?, parentPrimaryphone = ?, parentSecondaryphone = ?, parentEmailid = ?, clientId = ?, isParentJobAddress = ? ,parentStreetJob = ?,parentCityJob = ?,parentStateJob = ?,parentZipcodeJob = ? WHERE parentId=?';
             
             var queryErrorCallback = function (err) {
                 console.log(err);
@@ -388,7 +388,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
                 d.resolve(res);
             };
-            dbService.executeStatement(query, [parentInfo.parentName, parentInfo.parentNotes, parentInfo.parentStreet,  parentInfo.parentCity, parentInfo.parentState, parentInfo.parentZipcode, parentInfo.parentPrimaryphone, parentInfo.parentSecondaryphone, parentInfo.parentEmailid, parentInfo.clientId, id], querySuccessCallback, queryErrorCallback);
+            dbService.executeStatement(query, [parentInfo.parentName, parentInfo.parentNotes, parentInfo.parentStreet,  parentInfo.parentCity, parentInfo.parentState, parentInfo.parentZipcode, parentInfo.parentPrimaryphone, parentInfo.parentSecondaryphone, parentInfo.parentEmailid, parentInfo.clientId,parentInfo.isParentJobAddress,parentInfo.parentStreetJob,parentInfo.parentCityJob,parentInfo.parentStateJob,parentInfo.parentZipcodeJob ,id], querySuccessCallback, queryErrorCallback);
 
             return d.promise;
         },

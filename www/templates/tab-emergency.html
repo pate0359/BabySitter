@@ -11,9 +11,25 @@
 			</div>
 			<div class="padding">
 				<button class="button button-block mygreen" ng-click="showModal()"> Show My Location </button>
-				<p ng-hide="latitude == ''">latitude : {{latitude}} </p> 
-				<p ng-hide="latitude == ''"> longitude : {{longitude}}</p>
-				<p>address : {{address}}</p>
+
+				<div ng-hide="selectedParent == undefined" style="margin-bottom:15px;">
+					<h2 style="color:black">Job Address</h2>
+					<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
+					
+					<div ng-show="selectedParent.isParentJobAddress == 'true' || selectedParent.isParentJobAddress == true">
+						<p>{{selectedParent.parentStreet}}</p>
+						<p>{{selectedParent.parentCity +", "+ selectedParent.parentState}}</p>
+						<p>{{selectedParent.parentZipcode}}</p>
+					</div>
+
+					<div ng-hide="selectedParent.isParentJobAddress == 'true' || selectedParent.isParentJobAddress == true">
+						<p>{{selectedParent.parentStreetJob}}</p>
+						<p>{{selectedParent.parentCityJob +", "+ selectedParent.parentStateJob}}</p>
+						<p>{{selectedParent.parentZipcodeJob}}</p>
+					</div>
+
+				</div>
+
 			</div>
 		</ion-item>
 
@@ -37,15 +53,15 @@
 					<div id="content">
 						<div id="profile-info">
 							<img ng-show="kid.kidPicture !== undefined && kid.kidPicture !== ''" id="profile-image" ng-src="{{kid.kidPicture}}">
-			  				<img ng-show="kid.kidPicture == undefined ||  kid.kidPicture == ''"  id="profile-image" ng-src="img/default.png">
-							
+							<img ng-show="kid.kidPicture == undefined ||  kid.kidPicture == ''" id="profile-image" ng-src="img/default.png">
+
 							<h4 id="profile-name">
 				  <i class="fa fa-birthday-cake" aria-hidden="true"></i> {{ kid.kidBirthdate}}
 				</h4>
 							<h4 id="profile-name">
 				   {{kid.kidGender}}
 				</h4>
-				</div>
+						</div>
 						<div style="margin-bottom:15px;">
 							<h2 style="color:black">Allergies</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
