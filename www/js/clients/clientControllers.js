@@ -393,9 +393,15 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 }])
 
-.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state,$ionicPopup, $ionicHistory, $ionicActionSheet) {
+.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate",  "$timeout", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $timeout, $state,$ionicPopup, $ionicHistory, $ionicActionSheet) {
+     
+      $scope.callAtTimeout = function () {
+          
+          $scope.parentPrimaryPhoneError = "";
 
+      }
+ 
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
@@ -422,6 +428,18 @@ angular.module('SitterAdvantage.clientControllers', [])
 		});
 
 		$scope.saveParent = function () {
+            ///////////////////////vaidation on parent detail page///////////////////
+            //check if parent primary phone is required
+            if($scope.parent.parentPrimaryphone == null){
+                $scope.parentPrimaryPhoneError = "* Parent Primary Phone is required."
+                $timeout($scope.callAtTimeout, 4000);
+                return;
+            }
+            else{
+					  $scope.parentPrimaryPhoneError = "";
+				  }
+            
+            
 
 			//$scope.params.clientId = $stateParams.clientId;
 			Clients.editParentInfo($scope.parent).then(function (parentId) {

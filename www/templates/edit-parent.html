@@ -88,13 +88,15 @@
            <input style="padding:0px;"
                   ng-model="parent.parentPrimaryphone" 
                  class="item-input textDisable" 
-                 type="text"
+                 type="number"
                  placeholder="Primary Phone" 
                  value="{{parent.parentPrimaryphone}}"
                  name="primaryPhone"
+                 ng-maxlength="10"
                  ng-pattern="integerval">
           <p style="color:red;"
-                 ng-show="myForm.primaryPhone.$invalid">* This field must contain numbers only</p>
+                 ng-show="myForm.primaryPhone.$invalid">* This field must contain numbers only (max 10 characters)</p>
+          <p style="color:red;">{{parentPrimaryPhoneError}}</p>
                     <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
           <h2 style="margin-top:5px; margin-bottom:10px;">Primary Phone</h2>
         </div>
@@ -103,13 +105,14 @@
           <input style="padding:0px;"
                  ng-model="parent.parentSecondaryphone" 
                  class="item-input textDisable" 
-                 type="tel" 
+                 type="number" 
                  placeholder="Secondary Phone" 
                  value="{{parent.parentSecondaryphone}}"
                  name="secondaryPhone"
+                 ng-maxlength="10"
                  ng-pattern="integerval">
           <p style="color:red;"
-                 ng-show="myForm.secondaryPhone.$invalid">* This field must contain numbers only</p>                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
+                 ng-show="myForm.secondaryPhone.$invalid">* This field must contain numbers only (max 10 characters)</p>                    <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
                     <h2 style="margin-top:5px; margin-bottom:10px;">Secondary Phone</h2>
         </div>
 
