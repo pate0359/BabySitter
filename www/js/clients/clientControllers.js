@@ -432,8 +432,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 }])
 
-.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory) {
+.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate",  "$state", "$ionicHistory","$timeout",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory,$timeout) {
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;

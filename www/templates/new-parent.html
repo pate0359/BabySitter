@@ -15,7 +15,7 @@
 
 				<div style="margin-bottom:15px; margin-top:20px;">
 					<input style="padding:0px;" name="parentName" ng-model="params.parentName" class="item-input textDisable" type="text" placeholder="Full Name" ng-required="true" ng-pattern="stringval">
-					<p style="color: red;" ng-show="myForm.parentName.$invalid && myForm.parentName.$touched"> * This field is required.</p>
+					<p style="color: red;" >{{parentNameError}}</p>
 					<hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
 					<h2 style="margin-top:5px; margin-bottom:10px;">Full Name</h2>
 				</div>

@@ -1,4 +1,4 @@
-<ion-view view-title="Emergency" cache-view="true">
+<ion-view view-title="Emergency" cache-view="false">
 	<!--    <ion-nav-bar class="myblue"></ion-nav-bar>-->
 	<ion-content>
 		<div class="item item-divider">
@@ -104,11 +104,11 @@
 				<div class="item item-divider item-icon-right">
 					{{parent.parentName}}
 					<div class="icon">
-						<a ng-href="sms:13332221111&body={{ sosMessage }}" class="button button-icon" id="parent1">
+						<a ng-href="sms:13332221111&body={{ sosMessage }}" class="button button-icon myblue" id="parent1">
 							<i id="position" class="icon ion-ios-chatbubble"></i>
 						</a>
 
-						<button class="button button-icon" style="padding-left:30px;" ng-click="callNumber(parent.parentPrimaryphone)">
+						<button class="button button-icon myblue" style="padding-left:30px;" ng-click="callNumber(parent.parentPrimaryphone)">
 							<i class="icon ion-ios-telephone"></i>
 						</button>
 					</div>

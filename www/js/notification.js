@@ -12,7 +12,8 @@ angular.module('SitterAdvantage.notificationServices', [])
 				id: task.taskId,
 				date: new Date(task.taskStartDateTime),
 				text: task.taskTitle,
-				title: 'Sitter Advantage'
+				title: '',
+                badge: app.badgeCount,
 			}).then(function () {
 				console.log("Notification set");
 			});
@@ -26,7 +27,7 @@ angular.module('SitterAdvantage.notificationServices', [])
 
 					$cordovaLocalNotification.update({
 						id: task.taskId,
-						title: 'Sitter Advantage',
+						title: '',
 						text: task.taskTitle
 					}).then(function (result) {
 						console.log('Updated Notification Text');
@@ -39,7 +40,7 @@ angular.module('SitterAdvantage.notificationServices', [])
 						id: task.taskId,
 						date: new Date(task.taskStartDateTime),
 						text: task.taskTitle,
-						title: 'Sitter Advantage'
+						title: ''
 					}).then(function () {
 						console.log("Notification set");
 					});
