@@ -390,9 +390,9 @@ angular.module('SitterAdvantage.clientControllers', [])
 				clientId: $stateParams.clientId
 			});
 		}
-
 }])
 
+<<<<<<< HEAD
 .controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate",  "$timeout", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet",
  function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $timeout, $state,$ionicPopup, $ionicHistory, $ionicActionSheet) {
      
@@ -402,6 +402,10 @@ angular.module('SitterAdvantage.clientControllers', [])
 
       }
  
+=======
+.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory) {
+>>>>>>> origin/master
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
@@ -411,6 +415,39 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 		$ionicNavBarDelegate.showBackButton(false);
 
+		$scope.params = {};
+	 //Default : job address is same as parent address
+	 	$scope.params.isParentJobAddress = true;
+	 
+	  $scope.pushNotificationChange = function() {
+    		console.log('Push Notification Change', $scope.checked);
+  		};
+
+		$scope.saveParent = function () {
+
+			$scope.params.clientId = $stateParams.clientId;
+
+			Clients.addParentForClient($scope.params).then(function (parentId) {
+				if (!parentId) return;
+
+				$ionicHistory.goBack();
+			});
+		}
+
+		$scope.cancelParent = function () {
+			$ionicHistory.goBack();
+		}
+}])
+
+.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state,$ionicPopup, $ionicHistory, $ionicActionSheet) {
+		//check if the user input is an integer value
+		$scope.integerval = /^\d*$/;
+
+		//check if the user input is a string value
+		$scope.stringval = /^[a-zA-Z\s]*$/;
+
+		$ionicNavBarDelegate.showBackButton(false);
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
@@ -418,13 +455,19 @@ angular.module('SitterAdvantage.clientControllers', [])
 		//check if the user input is a string value
 		$scope.stringval = /^[a-zA-Z\s]*$/;
 
-
-
 		//$scope.params = {};
 
 		Clients.getParentById($stateParams.parentId).then(function (parent) {
 			if (!parent) return;
-			$scope.parent = parent;
+			$scope.parent = parent;	
+			
+			if ($scope.parent.isParentJobAddress == 'true' || $scope.parent.isParentJobAddress == "true"){
+			
+				$scope.parent.isParentJobAddress = true;
+			}
+			
+			//alert($scope.parent.isParentJobAddress);
+			console.log("parent.isParentJobAddress "+parent.isParentJobAddress);
 		});
 
 		$scope.saveParent = function () {
@@ -441,7 +484,6 @@ angular.module('SitterAdvantage.clientControllers', [])
             
             
 
-			//$scope.params.clientId = $stateParams.clientId;
 			Clients.editParentInfo($scope.parent).then(function (parentId) {
 				if (!parentId) return;
 
@@ -453,7 +495,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 			$ionicHistory.goBack();
 			$ionicNavBarDelegate.showBackButton(true);
-
 		}
 
 		$scope.deleteParent = function () {
@@ -477,15 +518,114 @@ angular.module('SitterAdvantage.clientControllers', [])
                                 return;
 							}
                         }, ]
-
 				});
-            
             popUp.then(function (res) {
 					if (!res) {
                         return;
                     }			
 				});
 		}
+}])
+
+.controller('NewKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory", "$cordovaCamera","$ionicPopup", "$filter",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory, $cordovaCamera, $ionicPopup,$filter) {
+
+		$ionicNavBarDelegate.showBackButton(false);
+
+		//check if the user input is an integer value
+		$scope.integerval = /^\d*$/;
+
+		//check if the user input is a string value
+		$scope.stringval = /^[a-zA-Z\s]*$/;
+
+		$scope.kid = {};
+		$scope.addPhoto = function () {
+            
+            
+         		var popUp = $ionicPopup.show({
+					title: 'Add New Photo',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'Cancel',
+							type: 'button-light',
+
+            },
+						{
+							text: '<b>Camera</b>',
+							type: 'button-positive',
+							onTap: function (e) {
+								$scope.openCamera();
+							}
+            }, ]
+
+				});
+
+				popUp.then(function (res) {
+					if (!res) return;
+				});
+			};
+            
+		$scope.saveKid = function () {
+
+			$scope.kid.clientId = $stateParams.clientId;
+			if (!$scope.imgURI){
+				$scope.imgURI = "";
+			}			
+			$scope.kid.kidPicture = $scope.imgURI;
+			$scope.kid.kidBirthdate = $filter('date')($scope.kid.kidBirthdate, 'MMMM dd, yyyy');
+			
+			Clients.addkidForClient($scope.kid).then(function (res) {
+				if (!res) return;
+				$ionicHistory.goBack();
+			});
+
+		}
+
+		$scope.cancelKid = function () {
+			$ionicHistory.goBack();
+		}
+
+		$scope.openCamera = function () {
+			var options = {
+				quality: 75,
+				destinationType: Camera.DestinationType.DATA_URL,
+				sourceType: Camera.PictureSourceType.CAMERA,
+				allowEdit: true,
+				encodingType: Camera.EncodingType.JPEG,
+				targetWidth: 300,
+				targetHeight: 300,
+				popoverOptions: CameraPopoverOptions,
+				saveToPhotoAlbum: false
+			};
+
+			$cordovaCamera.getPicture(options).then(function (imageData) {
+				$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			}, function (err) {
+				// An error occured. Show a message to the user
+			});
+		}
+
+		$scope.openPhotoLibrary = function () {
+			var options = {
+				quality: 75,
+				destinationType: Camera.DestinationType.DATA_URL,
+				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+				allowEdit: true,
+				encodingType: Camera.EncodingType.JPEG,
+				targetWidth: 300,
+				targetHeight: 300,
+				popoverOptions: CameraPopoverOptions,
+				saveToPhotoAlbum: false
+			};
+
+			$cordovaCamera.getPicture(options).then(function (imageData) {
+				$scope.imgURI = "data:image/jpeg;base64," + imageData;
+			}, function (err) {
+				// An error occured. Show a message to the user
+			});
+		}
+
 }])
 
 .controller('EditKidCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$ionicPopup", "$state", "$ionicActionSheet", "$ionicHistory","$cordovaCamera","$filter",
@@ -653,6 +793,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 
 }])
+<<<<<<< HEAD
 
 .controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate","$timeout", "$state", "$ionicHistory",
  function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $timeout, $state, $ionicHistory) {
@@ -867,3 +1008,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 
 }]);
+=======
+;
+>>>>>>> origin/master
