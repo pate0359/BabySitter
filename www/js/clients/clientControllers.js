@@ -678,26 +678,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 					if (!res) {
 						return;
 					}
-				});
-				//			var hideSheet = $ionicActionSheet.show({
-				//
-				//				destructiveText: 'Delete Kid',
-				//				cancelText: 'Cancel',
-				//
-				//				cancel: function () {
-				//					hideSheet();
-				//				},
-				//
-				//				destructiveButtonClicked: function () {
-				//					//Delete kid
-				//					Clients.deleteKid($scope.kid.kidId).then(function (res) {
-				//
-				//						$ionicHistory.goBack();
-				//						hideSheet();
-				//					});
-				//				}
-				//			});
-				//Note: after going to client-details we should land on kid segmented control, (ng-switch when = 2)instead of parent
+				});				
 			}
 
 			$scope.editKidPicture = function () {
@@ -794,6 +775,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 			$scope.stringval = /^[a-zA-Z\s]*$/;
 
 			$scope.kid = {};
+	 
+	 		$scope.kid.kidGender = "Male";
 
 			$scope.addPhoto = function () {
 

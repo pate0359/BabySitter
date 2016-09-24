@@ -104,7 +104,7 @@
 				<div class="item item-divider item-icon-right">
 					{{parent.parentName}}
 					<div class="icon">
-						<a ng-href="sms:13332221111&body={{ sosMessage }}" class="button button-icon myblue" id="parent1">
+						<a ng-href="sms:{{parent.parentPrimaryphone}}&body={{ sosMessage }}" class="button button-icon myblue" id="parent1">
 							<i id="position" class="icon ion-ios-chatbubble"></i>
 						</a>
 
@@ -115,19 +115,19 @@
 				</div>
 				<div class="item item-text-wrap">
 					<div style="margin-bottom:15px;">
-						<h2>Mobile Number</h2>
+						<h2 style="color:black">Mobile Number</h2>
 						<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 						<p>{{parent.parentPrimaryphone}}</p>
 					</div>
 					<div style="margin-bottom:15px;">
-						<h2>Address</h2>
+						<h2 style="color:black">Address</h2>
 						<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 						<p>{{parent.parentStreet}}</p>
 						<p>{{parent.parentCity +", "+ parent.parentState}}</p>
 						<p>{{parent.parentZipcode}}</p>
 					</div>
 					<div>
-						<h2>Notes</h2>
+						<h2 style="color:black">Notes</h2>
 						<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd" />
 						<p>{{parent.parentNotes}}</p>
 

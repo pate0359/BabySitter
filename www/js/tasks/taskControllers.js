@@ -42,9 +42,6 @@ angular.module('SitterAdvantage.taskControllers', [])
 				newTask.isNotify = task.isNotify;
 				newTask.start_dateObj = new Date(task.taskStartDateTime);
 
-
-
-
 				newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM dd, yyyy');
 				newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
 
@@ -52,6 +49,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			});
 
 			$scope.tasks = $filter('orderBy')(array, 'start_dateObj');
+			$scope.$apply();			
 		}
 
 		$scope.addTask = function () {
@@ -68,9 +66,9 @@ angular.module('SitterAdvantage.taskControllers', [])
 		}
 
 
-		$scope.deleteTask = function ($index) {
+		$scope.deleteTask = function (task) {
 
-			var task = $scope.tasks[$index];
+			//var task = $scope.tasks[$index];
 			var popUp = $ionicPopup.show({
 				title: 'Delete Task',
 				template: 'Are you sure you want to delete this task?',
@@ -86,7 +84,10 @@ angular.module('SitterAdvantage.taskControllers', [])
 						onTap: function (e) {
 							//Delete Task 
 							Tasks.deleteTask(task.taskId);
-							$scope.tasks.splice($index, 1);
+
+							$scope.tasks = $scope.tasks.filter(function (item) {
+								return item.taskId !== task.taskId;
+							});
 							Notification.cancelNotification(task);
 							return;
 						}
@@ -278,7 +279,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		};
   }])
 
-.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$ionicPopup", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients", "$ionicHistory", "$ionicActionSheet", "Notification", "$filter", function ($scope, Tasks, $stateParams, $ionicPopup, $state, $rootScope, $ionicNavBarDelegate, Clients, $ionicHistory, $ionicActionSheet, Notification, $filter) {
+.controller('TasksDetailCtrl', ["$scope", "Tasks", "$stateParams", "$ionicPopup", "$state", "$rootScope", "$ionicNavBarDelegate", "Clients", "$ionicHistory", "$ionicActionSheet", "Notification", "$filter", "$ionicPopup", function ($scope, Tasks, $stateParams, $ionicPopup, $state, $rootScope, $ionicNavBarDelegate, Clients, $ionicHistory, $ionicActionSheet, Notification, $filter, $ionicPopup) {
 
 	if ($stateParams.pageFrom == 1) {
 
@@ -393,51 +394,52 @@ angular.module('SitterAdvantage.taskControllers', [])
 
 	$scope.completeTask = function () {
 
-		var hideSheet = $ionicActionSheet.show({
 
-			destructiveText: 'Complete Task',
-			cancelText: 'Cancel',
-			cancel: function () {
-				hideSheet();
-			},
+		//var task = $scope.tasks[$index];
+		var popUp = $ionicPopup.show({
+			title: 'Complete Task',
+			template: 'Are you sure you want to complete this task?',
+			scope: $scope,
+			buttons: [
+				{
+					text: 'Cancel',
+					type: 'button-light',
+                        },
+				{
+					text: '<b>Complete</b>',
+					type: 'button-positive',
+					onTap: function (e) {
+						// update task with new params
+						var param = {};
+						param.taskId = $scope.task.taskId;
+						param.taskTitle = $scope.task.taskTitle;
+						param.taskDescription = $scope.task.taskDescription;
+						param.taskStartDateTime = $scope.task.taskStartDateTime;
+						param.taskEndDateTime = $scope.task.taskEndDateTime;
+						param.taskNotes = $scope.task.taskNotes;
+						param.clientId = $scope.task.clientId;
+						param.isCompleted = true;
+						param.isNotify = $scope.task.isNotify;
 
-			destructiveButtonClicked: function () {
-				// update task with new params
-				var param = {};
-				param.taskId = $scope.task.taskId;
-				param.taskTitle = $scope.task.taskTitle;
-				param.taskDescription = $scope.task.taskDescription;
-				param.taskStartDateTime = $scope.task.taskStartDateTime;
-				param.taskEndDateTime = $scope.task.taskEndDateTime;
-				param.taskNotes = $scope.task.taskNotes;
-				param.clientId = $scope.task.clientId;
-				param.isCompleted = true;
-				param.isNotify = $scope.task.isNotify;
+						console.log("EditTask param : " + param);
+						Tasks.updateTask(param).then(function (task) {
+							if (!task) return;
 
-				console.log("EditTask param : " + param);
-				Tasks.updateTask(param).then(function (task) {
-					if (!task) return;
+							//Cancel notification
+							Notification.cancelNotification(param);
+							$ionicHistory.goBack();							
+						});
+					}
+                        }, ]
 
-					//Cancel notification
-					Notification.cancelNotification(param);
+		});
 
-					hideSheet();
-					var alertPopup = $ionicPopup.alert({
-						title: 'Task is Completed!',
-						buttons: [
-							{
-								text: 'OK',
-								type: 'button-positive'
-                               }
-                           ]
-					});
-
-					alertPopup.then(function (res) {
-						$ionicHistory.goBack();
-					});
-				});
+		popUp.then(function (res) {
+			if (!res) {
+				return;
 			}
 		});
+
 	}
 
 	$scope.deleteTaskDetails = function () {

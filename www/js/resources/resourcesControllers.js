@@ -70,7 +70,7 @@ angular.module('SitterAdvantage.resourcesControllers', [])
 			// pop up Alert box
 				var popUp = $ionicPopup.show({
 					template: '<input type="text" ng-model="data.defaultMessage" />',
-					title: 'Default Message',
+					title: 'Edit Default Message',
 					scope: $scope,
 					buttons: [
 						{

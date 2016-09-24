@@ -38,7 +38,7 @@
 
         <div style="margin-bottom:15px;">
             <div style="padding:0px;" ion-datetime-picker date id="birthDay" name="birthDay" 
-                 ng-model="kid.kidBirthdate" required="required" for="birthDate">
+                 ng-model="kid.kidBirthdate" required="required" for="birthDate" only-valid="{'before': 'today', 'inclusive': true}" >
                 <p style="color: #c7c7c7;font-size:16px; margin-top:0px;" ng-show="kid.kidBirthdate == null">Select Date of Birth</p>
                 <p style="color:red;">{{kidBirthDateError}}</p>
 				<p ng-show="kid.kidBirthdate != null" style="color:black;font-size:16px;margin-bottom:5px;">{{kid.kidBirthdate | date: 'dd MMMM, yyyy'}}</p>
