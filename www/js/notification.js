@@ -12,8 +12,7 @@ angular.module('SitterAdvantage.notificationServices', [])
 				id: task.taskId,
 				date: new Date(task.taskStartDateTime),
 				text: task.taskTitle,
-				title: '',
-                badge: app.badgeCount,
+				title: ''                
 			}).then(function () {
 				console.log("Notification set");
 			});

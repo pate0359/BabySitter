@@ -182,10 +182,10 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
 			//if (!mapEle) return;
 
-			$scope.loading = $ionicLoading.show({
-				content: 'Getting current location...',
-				showBackdrop: false
-			});
+//			$scope.loading = $ionicLoading.show({
+//				content: 'Getting current location...',
+//				showBackdrop: false
+//			});
 
 			var map = new google.maps.Map(mapEle, mapOptions);
 			//$scope.map = map;
@@ -210,7 +210,7 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 				//Get addess from lat long
 				$scope.getAddress(pos.coords.latitude, pos.coords.longitude);
 
-				$ionicLoading.hide();
+				//$ionicLoading.hide();
 			});
 		}
 	};

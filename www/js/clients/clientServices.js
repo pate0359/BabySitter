@@ -95,7 +95,7 @@ angular.module('SitterAdvantage.clientServices', [])
 
             var d = $q.defer();
 
-            var description = clientInfo.description;
+            var description = clientInfo.clientDesc;
             var id = clientInfo.clientId;
             var query = 'UPDATE clients SET clientDesc= ? WHERE clientId=?';
             var queryErrorCallback = function (err) {

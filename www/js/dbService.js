@@ -5,11 +5,11 @@ angular.module('SitterAdvantage.dbService', [])
 	//---------------------- function responsible to create all the tables once ----------------------
 	var createTables = function () {
 		db.transaction(function (tx) {
-//					  	    tx.executeSql("DROP TABLE clients");
-//					  	    tx.executeSql("DROP TABLE parents");
-//					  	    tx.executeSql("DROP TABLE tasks");
-//					  	    tx.executeSql("DROP TABLE kids");
-//				tx.executeSql("DROP TABLE defaults");
+					  	    tx.executeSql("DROP TABLE clients");
+					  	    tx.executeSql("DROP TABLE parents");
+					  	    tx.executeSql("DROP TABLE tasks");
+					  	    tx.executeSql("DROP TABLE kids");
+				tx.executeSql("DROP TABLE defaults");
 
 				tx.executeSql("CREATE TABLE IF NOT EXISTS clients (clientId integer primary key , clientDesc text)", [], function () {}, function () {});
 				tx.executeSql("CREATE TABLE IF NOT EXISTS parents(parentId integer primary key , parentName text, parentStreet text, parentCity text, parentState text, parentZipcode text, parentPrimaryphone text, parentSecondaryphone text, parentEmailid text, parentNotes text, clientId integer,isParentJobAddress bool,parentStreetJob text,parentCityJob text,parentStateJob text,parentZipcodeJob text)", [], function () {}, function () {});			
@@ -38,7 +38,7 @@ angular.module('SitterAdvantage.dbService', [])
 //					tx.executeSql("DELETE FROM kids", []);
 //					tx.executeSql("DELETE FROM tasks", []);
 					
-					if (res.rows.length < 1) {
+/*					if (res.rows.length < 1) {
 
 						//3 clients
 						tx.executeSql("INSERT INTO clients (clientDesc) VALUES (?)", ["The Smith Family"], function () {}, function () {});
@@ -72,7 +72,9 @@ angular.module('SitterAdvantage.dbService', [])
 						tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId,isCompleted,isNotify) VALUES (?,?,?,?,?,?,?,?,?)", ["Play time for Judy", "Help Judy decorate her dollhouse", "Aug 27, 2016 8:09:00 PM", "Aug 27, 2016 8:09:00 PM", "Ask her to bring all her furniture for dollhouse", "3", "5", false, true], function () {}, function () {});
 						tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId,isCompleted,isNotify) VALUES (?,?,?,?,?,?,?,?,?)", ["Babysit Robert", "Give him dinner and put him to sleep", "Aug 27, 2016 8:09:00 PM", "Aug 27, 2016 8:09:00 PM", "Do not let Robert fall asleep on the sofa.", "3", "6", false, false], function () {}, function () {});
 						tx.executeSql("INSERT INTO tasks (taskTitle, taskDescription, taskStartDateTime, taskEndDateTime, taskNotes, clientId,kidId,isCompleted,isNotify) VALUES (?,?,?,?,?,?,?,?,?)", ["iPad game time for Fred", "Give iPad to Fred for 1 hour to play a game.", "Aug 27, 2016 8:09:00 PM", "Aug 27, 2016 8:09:00 PM", "Make sure he has finished his dinner and monitor the time", "2", "4", false, true], function () {}, function () {});
-					}
+					} */
+							  
+							  
 
 				}, function () {})
 

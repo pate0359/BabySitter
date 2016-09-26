@@ -1,7 +1,7 @@
 angular.module('SitterAdvantage.taskControllers', [])
 
-.controller('TaskCtrl', ["$scope", "Tasks", "$state", "$filter", "$stateParams", "ResourcesService", "$ionicPopup", "Notification",
-      function ($scope, Tasks, $state, $filter, $stateParams, ResourcesService, $ionicPopup, Notification) {
+.controller('TaskCtrl', ["$scope", "Tasks", "$state", "$filter", "$stateParams", "ResourcesService", "$ionicPopup", "Notification", "Clients",
+      function ($scope, Tasks, $state, $filter, $stateParams, ResourcesService, $ionicPopup, Notification, Clients) {
 
 		console.log("TaskCtrl is loaded");
 		$scope.tasks = [];
@@ -49,11 +49,39 @@ angular.module('SitterAdvantage.taskControllers', [])
 			});
 
 			$scope.tasks = $filter('orderBy')(array, 'start_dateObj');
-			$scope.$apply();			
+			$scope.$apply();
 		}
 
 		$scope.addTask = function () {
-			$state.go("tab.new-task");
+
+			Clients.getClientsList().then(function (clientList) {
+				if (!clientList) return;
+				console.log(clientList);
+
+				if (!clientList || clientList.length == 0) {
+
+					//var task = $scope.tasks[$index];
+					var popUp = $ionicPopup.show({
+						title: 'Please Add Client First.',
+						template: '',
+						scope: $scope,
+						buttons: [
+							{
+								text: '<b>OK</b>',
+								type: 'button-positive',
+								onTap: function (e) {
+									//Delete Task 							
+								}
+                        }, ]
+
+					});
+
+					return;
+				} else {
+
+					$state.go("tab.new-task");
+				}
+			});
 		}
 
 		$scope.goToInstructions = function () {
@@ -107,7 +135,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 			if (!defaults) {
 
 				db.transaction(function (tx) {
-					tx.executeSql("INSERT INTO defaults (message) VALUES (?)", ["I am in trouble! Come home now!"], function () {}, function () {});
+					tx.executeSql("INSERT INTO defaults (message) VALUES (?)", ["There is an emergency.  Call me!"], function () {}, function () {});
 				});
 			}
 		})
@@ -427,7 +455,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 
 							//Cancel notification
 							Notification.cancelNotification(param);
-							$ionicHistory.goBack();							
+							$ionicHistory.goBack();
 						});
 					}
                         }, ]
