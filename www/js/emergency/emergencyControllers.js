@@ -1,6 +1,6 @@
 angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
-.controller('EmergencyCtrl', ["$scope", "$ionicModal", "$cordovaSms", "GPSMap", "Clients", "Tasks", "ResourcesService", "$ionicLoading", function ($scope, $ionicModal, $cordovaSms, GPSMap, Clients, Tasks, ResourcesService, $ionicLoading) {
+.controller('EmergencyCtrl', ["$scope", "$ionicModal", "$cordovaSms", "GPSMap", "Clients", "Tasks", "ResourcesService", "$ionicLoading","$rootScope", function ($scope, $ionicModal, $cordovaSms, GPSMap, Clients, Tasks, ResourcesService, $ionicLoading,$rootScope) {
 
 	$scope.latitude = "";
 	$scope.longitude = "";
@@ -22,76 +22,29 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
 	$scope.$on("$ionicView.enter", function (event, data) {
 
-		$scope.currentTasks = [];
+		$scope.kids = [];
 		$scope.parents = [];
-
-		// get client in database
-		Tasks.getAllTask().then(function (taskList) {
-			if (!taskList) return;
-			$scope.getCurrentTask(taskList);
-		});
-	});
-
-	$scope.$on("$ionicView.loaded", function (event, data) {
-
-		console.log("entering emergency");
-
-		$scope.address = "Getting address..."
-
-//		if (navigator.geolocation) {
-//
-//			navigator.geolocation.getCurrentPosition(function (pos) {
-//
-//				$scope.latitude = parseFloat(pos.coords.latitude.toFixed(6));
-//				$scope.longitude = parseFloat(pos.coords.longitude.toFixed(6));
-//
-//				//Get addess from lat long
-//				$scope.getAddress(pos.coords.latitude, pos.coords.longitude);
-//
-//				$scope.$apply();
-//			});
-//		}
-	});
-
-	$scope.getCurrentTask = function (taskList) {
-
-		angular.forEach(taskList, function (task) {
-
-			var startDateTime = new Date(task.taskStartDateTime)
-			var endDateTime = new Date(task.taskEndDateTime)
-			var now = new Date();
-
-			if (now >= startDateTime && now < endDateTime) { // Task is running
-
-				$scope.currentTasks.push(task);
-			}
-		});
 		
-		
-		if ($scope.currentTasks.length == 0){
+		if ($rootScope.selectedClientId != undefined){
 			
-			$scope.kid = undefined;
-			$scope.parents = [];
+			$scope.getParentsAndKidsForClient();
+			
 		}else{
-		
-			$scope.getParentsForCurrentTasks();
+			
+			$scope.kids = [];
+			$scope.parents = [];
 		}
-	};
+	});
 
-	$scope.getParentsForCurrentTasks = function () {
-
-		angular.forEach($scope.currentTasks, function (task) {
-
-			if (!task.clientId) {
-				return;
-			}
-
-			Clients.getKidById(task.kidId).then(function (kid) {
-				if (!kid) return;
-				$scope.kid = kid;
+	$scope.getParentsAndKidsForClient = function () {
+		
+		Clients.getKidsForClientWithID($rootScope.selectedClientId).then(function (kids) {
+				
+				if (!kids) return;
+				$scope.kids = kids;
 			});
-
-			Clients.getParentsForClient(task.clientId).then(function (parentList) {
+			
+			Clients.getParentsForClient($rootScope.selectedClientId).then(function (parentList) {
 
 				if (!parentList) return;
 				$scope.parents = parentList;
@@ -101,8 +54,7 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 					$scope.selectedParent = $scope.parents[0];
 				}				
 			});
-		});
-	};
+	}
 
 
 	var showGPS = "Show my location";

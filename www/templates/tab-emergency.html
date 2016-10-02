@@ -37,12 +37,12 @@
 			<p>You dont have any task at this moment!</p>
 		</div>
 
-		<div ng-hide="kid == undefined" class="item item-divider">
+		<div class="item item-divider">
 			Kid info
 		</div>
-		<div ng-hide="kid == undefined" class="list">
+		<div class="list">
 			<!-- ******************************** Kid Info ******************************** -->
-			<div ng-hide="kid == undefined" id="kid" class="card">
+			<div ng-repeat="kid in kids" id="kid" class="card">
 
 				<div class="item item-divider item-icon-right ">
 					{{kid.kidName}}

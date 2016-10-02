@@ -4,6 +4,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 			console.log("ClientsCtrl is loaded");
 			$scope.clients = [];
+	 
+	 		$rootScope.selectedClientId = undefined;
 
 			// Insert client in database
 			Clients.getClientsList().then(function (clientList) {
@@ -30,8 +32,10 @@ angular.module('SitterAdvantage.clientControllers', [])
 			$scope.clientClicked = function ($index) {
 
 				var client = $scope.clients[$index];
-
+				
 				$rootScope.segmentIndex = 0;
+				
+				$rootScope.selectedClientId = client.clientId;
 
 				$state.go("tab.client-detail", {
 					clientId: client.clientId,
