@@ -47,15 +47,15 @@
 				</div>
 
 				<div style="margin-bottom:15px;">
-					<input style="padding:0px;" ng-model="params.parentPrimaryphone" class="item-input  textDisable" type="text" name="primaryPhone" placeholder="Primary Phone" ng-pattern="integerval">
-					<p style="color:red;" ng-show="myForm.primaryPhone.$invalid">* This field must contain numbers only</p>
+					<input style="padding:0px;" ng-model="params.parentPrimaryphone" class="item-input  textDisable" type="text" name="primaryPhone" placeholder="Primary Phone">
+					<p style="color:red;">{{parentPrimaryPhoneError}}</p>
 					<hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
 					<h2 style="margin-top:5px; margin-bottom:10px;">Primary Phone</h2>
 				</div>
 
 				<div style="margin-bottom:15px;">
-					<input style="padding:0px;" ng-model="params.parentSecondaryphone" class="item-input textDisable" type="text" placeholder="Secondary Phone" name="secondaryPhone" ng-pattern="integerval">
-					<p style="color:red;" ng-show="myForm.secondaryPhone.$invalid">* This field must contain numbers only</p>
+					<input style="padding:0px;" ng-model="params.parentSecondaryphone" class="item-input textDisable" type="text" placeholder="Secondary Phone" name="secondaryPhone">
+					<p style="color:red;">{{parentSecondaryPhoneError}}</p>
 					<hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
 					<h2 style="margin-top:5px; margin-bottom:10px;">Secondary Phone</h2>
 				</div>

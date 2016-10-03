@@ -9,7 +9,7 @@ angular.module('SitterAdvantage.dbService', [])
 //					  	    tx.executeSql("DROP TABLE parents");
 //					  	    tx.executeSql("DROP TABLE tasks");
 //					  	    tx.executeSql("DROP TABLE kids");
-//				tx.executeSql("DROP TABLE defaults");
+//				tx.executeSql("DROP TABLE defaults"); iiiii
 
 				tx.executeSql("CREATE TABLE IF NOT EXISTS clients (clientId integer primary key , clientDesc text)", [], function () {}, function () {});
 				tx.executeSql("CREATE TABLE IF NOT EXISTS parents(parentId integer primary key , parentName text, parentStreet text, parentCity text, parentState text, parentZipcode text, parentPrimaryphone text, parentSecondaryphone text, parentEmailid text, parentNotes text, clientId integer,isParentJobAddress bool,parentStreetJob text,parentCityJob text,parentStateJob text,parentZipcodeJob text)", [], function () {}, function () {});			

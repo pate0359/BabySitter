@@ -456,6 +456,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 			$scope.parentNameError = "";
 			$scope.parentPrimaryPhoneError = "";
 			$scope.kidNameError = "";
+			$scope.parentSecondaryPhoneError = "";
 		}
 
 		$scope.pushNotificationChange = function () {
@@ -466,7 +467,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 			//////////////////////Validations for New Parent Page//////////////////////////////
 			//check if parent title is null
-			if ($scope.params.parentName == null) {
+			if ($scope.params.parentName == null || $scope.params.parentName == undefined) {
 				$scope.parentNameError = "* Parent name is required."
 				$timeout($scope.callAtTimeout, 4000);
 				return;
@@ -475,13 +476,44 @@ angular.module('SitterAdvantage.clientControllers', [])
 			}
 
 			//check if the primary phone is empty
-			if ($scope.params.parentPrimaryphone == null) {
-				$scope.parentPrimaryPhoneError = "* Primary phone number is required."
+			if ($scope.params.parentPrimaryphone == null || $scope.params.parentPrimaryphone == undefined) {
+								
+				$scope.parentPrimaryPhoneError = "* Primary phone number is required.";
 				$timeout($scope.callAtTimeout, 4000);
 				return;
 			} else {
 				$scope.parentPrimaryPhoneError = "";
+				
+				if (isNaN($scope.params.parentPrimaryphone)){
+					
+					$scope.parentPrimaryPhoneError = "* Primary phone number is incorrect.";
+					$timeout($scope.callAtTimeout, 4000);
+					return;
+					
+				}else if ($scope.params.parentPrimaryphone.length != 10){
+				
+					$scope.parentPrimaryPhoneError = "* Primary phone number must be 10 digits.";
+					$timeout($scope.callAtTimeout, 4000);
+					return;
+				}
 			}
+			
+			//check if the parentSecondaryphone phone is empty
+			if ($scope.params.parentSecondaryphone != "" && $scope.params.parentSecondaryphone != undefined ) {
+				
+				if (isNaN($scope.params.parentSecondaryphone)){
+					
+					$scope.parentSecondaryPhoneError = "* Secondary phone number is incorrect.";
+					
+				}else if ($scope.params.parentSecondaryphone.length != 10){
+				
+					$scope.parentSecondaryPhoneError = "* Secondary phone number must be 10 digits.";
+				}
+				
+				$timeout($scope.callAtTimeout, 4000);
+				return;
+			}
+			
 
 			$scope.params.clientId = $stateParams.clientId;
 
@@ -518,7 +550,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 		$scope.callAtTimeout = function () {
 
 			$scope.parentPrimaryPhoneError = "";
-
 		}
 
 		Clients.getParentById($stateParams.parentId).then(function (parent) {
