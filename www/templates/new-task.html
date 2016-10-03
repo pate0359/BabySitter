@@ -63,7 +63,7 @@
                  required="required" for="startDate">
                 <p style="color: #c7c7c7;font-size:16px; margin-top:-5px;"
                    ng-show="newTaskParams.startdatetimeValue == null">Pick Start Date and Time</p>
-				<p ng-show="newTaskParams.startdatetimeValue != null" style="color:black;font-size:16px; margin-bottom:5px;">{{newTaskParams.startdatetimeValue| date: 'medium'}}</p>
+				<p ng-show="newTaskParams.startdatetimeValue != null" style="color:black;font-size:16px; margin-bottom:5px;">{{newTaskParams.startdatetimeValue| date: 'MMM dd,yyyy hh:mm a'}}</p>
                 <p id="myParagraph" style="color:red;">{{errorStartDateTime}}</p>
                 <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
           <h2 style="margin-top:5px; margin-bottom:20px;">Start Date and Time</h2>
@@ -74,11 +74,10 @@
           <p style="color:red;">{{errMessage2}}</p>
           
         <div style="margin-bottom:15px;">
-            <div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="end_date_time" name="end_date_time" ng-model="newTaskParams.enddatetimeValue" required="required" ng-change="checkErr(newTaskParams.startdatetimeValue,newTaskParams.enddatetimeValue)" for="endDate">
+            <div style="margin-top:10px;margin-bottom:25px;" ion-datetime-picker am-pm  only-valid="{'after': 'today', 'inclusive': true}" id="end_date_time" name="end_date_time" ng-model="newTaskParams.enddatetimeValue"  for="endDate">
                 <p style="font-size:16px;color: #c7c7c7;margin-top:-5px;" ng-show="newTaskParams.enddatetimeValue == null">Pick End Date and Time</p>
 				<p ng-show="newTaskParams.enddatetimeValue != null" style="color:black;font-size:16px; margin-bottom:5px;">
-                    {{newTaskParams.enddatetimeValue| date: "medium"}}</p>
-                <p id="myParagraph" style="color:red;">{{errorEndDateTime}}</p>
+                    {{newTaskParams.enddatetimeValue| date: "MMM dd,yyyy hh:mm a"}}</p>                
                 <hr style="height:1px;margin-top:5px;margin-bottom:0px;border:none;color:#333;background-color:#ddd;" />
                  <h2 style="margin-top:5px;">End Date and Time</h2>		
             </div>  	

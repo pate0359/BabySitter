@@ -63,11 +63,11 @@
                           required="required" for="startDate">
 
                         <p style="color:#c7c7c7; font-size:16px;"ng-show="task.taskStartDateTime == null">Select Start Date  and Time</p>
-                        <p style="color:black; font-size:16px; padding:0px;margin-bottom:-20px;"ng-show="task.taskStartDateTime != null" >{{task.taskStartDateTime | date: 'medium'}}</p>
+                        <p style="color:black; font-size:16px; padding:0px;margin-bottom:-20px;"ng-show="task.taskStartDateTime != null" >{{task.taskStartDateTime | date: 'MMM dd,yyyy hh:mm a'}}</p>
                     </div>
                     
                         <div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="start_date_time"  name="start_date_time" ng-model="task.taskStartDateTime" required="required" for="startDate">		
-                            <p style="color:black; font-size:16px; padding:0px; margin-bottom:-20px;" >{{task.taskStartDateTime | date: 'medium'}}</p>		
+                            <p style="color:black; font-size:16px; padding:0px; margin-bottom:-20px;" >{{task.taskStartDateTime | date: 'MMM dd,yyyy hh:mm a'}}</p>		
                         </div>
                     
                             <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />
@@ -85,11 +85,11 @@
                           required="required" for="endDate">
 
                         <p style="color:#c7c7c7; font-size:16px;"ng-show="task.taskEndDateTime == null">Select End Date  and Time</p>
-                        <p style="color:black; font-size:16px; padding:0px;margin-bottom:-20px;"ng-show="task.taskEndDateTime != null" >{{task.taskEndDateTime | date: 'medium'}}</p>
+                        <p style="color:black; font-size:16px; padding:0px;margin-bottom:-20px;"ng-show="task.taskEndDateTime != null" >{{task.taskEndDateTime | date: 'MMM dd,yyyy hh:mm a'}}</p>
                     </div>
                     
                         <div ng-show="!disableEnableForm" style="margin-top:10px;margin-bottom:25px;" id="end_date_time"  name="end_date_time" ng-model="task.taskEndDateTime" required="required" for="endDate">		
-                            <p style="color:black; font-size:16px; padding:0px; margin-bottom:-20px;" >{{task.taskEndDateTime | date: 'medium'}}</p>		
+                            <p style="color:black; font-size:16px; padding:0px; margin-bottom:-20px;" >{{task.taskEndDateTime | date: 'MMM dd,yyyy hh:mm a'}}</p>		
                         </div>
                     
                             <hr class="hrPosition" style="height:1px;border:none;background-color:#ddd;" />

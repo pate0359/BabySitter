@@ -4,15 +4,15 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
                 'SitterAdvantage.taskControllers', 'SitterAdvantage.emergencyControllers','SitterAdvantage.notificationServices',
                 'SitterAdvantage.emergencyServices', 'SitterAdvantage.resourcesControllers','SitterAdvantage.resourcesService', 'SitterAdvantage.dbService', 'ngCordova','ion-datetime-picker','angular.filter'])
 
-.run(function (Tasks, Clients, dbService, $ionicPlatform, $cordovaSQLite) {
+.run(function (Tasks, Clients, dbService, $ionicPlatform, $cordovaSQLite,$cordovaSplashscreen) {
 
 	$ionicPlatform.ready(function () {
         
          // Hide splash screen
 //		setTimeout(function() {
-//			navigator.splashscreen.hide();
-//		}, 2);
-		
+//			$cordovaSplashscreen.splashscreen.hide();
+//		}, 100);
+//		
 //		$cordovaNativeStorage.setItem("baby_sitter_default_messsage", "I am in trouble! Come home now!").then(function (value) {
 //                console.log("baby_sitter_default_messsage "+value); 
 //            }, function (error) {

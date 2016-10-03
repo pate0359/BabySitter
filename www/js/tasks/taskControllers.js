@@ -180,6 +180,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		};
 
 		$scope.newTaskParams = {};
+	  	$scope.newTaskParams.isNotify = true;
 
 		//newTaskParams.isNotify = false;
 
@@ -197,14 +198,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		$scope.saveNewTask = function () {
 
 			//////////////////////////////Validations for new task////////////////////////////////////////
-
-			//check if any of the fields are null and set them to None
-			//            
-			//            for (var i = 0; i < $scope.newTaskParams.length; i++) { 
-			//                if($scope.newTaskParams[i] == null){
-			//                    alert("hi");
-			//                }
-			//                }
+		
 
 			//check if the task title is empty
 			if ($scope.newTaskParams.taskTitle == null) {
@@ -240,19 +234,6 @@ angular.module('SitterAdvantage.taskControllers', [])
 				$scope.errorStartDateTime = "";
 			}
 
-
-			//check if end date/time is null
-			if ($scope.newTaskParams.enddatetimeValue == null) {
-
-				$scope.errorEndDateTime = "* End Date and Time is required.";
-
-				$timeout($scope.callAtTimeout, 4000);
-
-				return;
-			} else {
-				$scope.errorEndDateTime = "";
-			}
-
 			// To add Task from Client detail page
 
 			if ($stateParams.pageFrom == 2) {
@@ -263,8 +244,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 
 			params.taskTitle = $scope.newTaskParams.taskTitle;
 			params.taskDescription = $scope.newTaskParams.taskDesc;
-			params.taskStartDateTime = $filter('date')($scope.newTaskParams.startdatetimeValue, 'medium');
-			params.taskEndDateTime = $filter('date')($scope.newTaskParams.enddatetimeValue, 'medium');
+			params.taskStartDateTime = $filter('date')($scope.newTaskParams.startdatetimeValue, 'MMM dd,yyyy hh:mm a');
+			params.taskEndDateTime = $filter('date')($scope.newTaskParams.enddatetimeValue, 'MMM dd,yyyy hh:mm a');
 			params.taskNotes = $scope.newTaskParams.taskNotes;
 			params.clientId = $scope.selectedClientId;
 			params.kidId = $scope.selectedKidId;
@@ -282,9 +263,10 @@ angular.module('SitterAdvantage.taskControllers', [])
 					if (params.isNotify == true || params.isNotify == 'true') {
 						//Schedule task
 						Notification.scheduleNotification(task);
-					}
-					$ionicHistory.goBack();
+					}					
 				});
+				
+				$ionicHistory.goBack();
 			});
 		};
 
@@ -380,8 +362,8 @@ angular.module('SitterAdvantage.taskControllers', [])
 		param.taskId = $scope.task.taskId;
 		param.taskTitle = $scope.task.taskTitle;
 		param.taskDescription = $scope.task.taskDescription;
-		param.taskStartDateTime = $filter('date')($scope.task.taskStartDateTime, 'medium');
-		param.taskEndDateTime = $filter('date')($scope.task.taskEndDateTime, 'medium');
+		param.taskStartDateTime = $filter('date')($scope.task.taskStartDateTime, 'MMM dd,yyyy hh:mm a');
+		param.taskEndDateTime = $filter('date')($scope.task.taskEndDateTime, 'MMM dd,yyyy hh:mm a');
 		param.taskNotes = $scope.task.taskNotes;
 		param.clientId = $scope.task.clientId;
 		param.isCompleted = $scope.task.isCompleted;
