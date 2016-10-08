@@ -49,9 +49,23 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 				if (!parentList) return;
 				$scope.parents = parentList;
 				
-				if ($scope.parents.length != 0){
 				
-					$scope.selectedParent = $scope.parents[0];
+				for (var i = 0; i < $scope.parents.length; i++) {
+					
+					var parent = $scope.parents[i];
+					if (parent.isParentJobAddress == "true" || parent.isParentJobAddress == 'true' || parent.isParentJobAddress == true){
+					
+						$scope.selectedParent = parent;
+						break;
+					}					
+				}
+				
+				if ($scope.selectedParent == undefined){
+					
+					if(parentList.length != 0){
+					
+						$scope.selectedParent = parentList[0];
+					}					
 				}				
 			});
 	}

@@ -436,8 +436,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 }])
 
-.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate",  "$state", "$ionicHistory","$timeout",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory,$timeout) {
+.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate",  "$state", "$ionicHistory","$timeout","$rootScope",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory,$timeout,$rootScope) {
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
@@ -449,7 +449,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 		$scope.params = {};
 		//Default : job address is same as parent address
-		$scope.params.isParentJobAddress = true;
+		$scope.params.isParentJobAddress = false;
 
 		$scope.callAtTimeout = function () {
 
@@ -514,13 +514,24 @@ angular.module('SitterAdvantage.clientControllers', [])
 				return;
 			}
 			
-
 			$scope.params.clientId = $stateParams.clientId;
 
 			Clients.addParentForClient($scope.params).then(function (parentId) {
 				if (!parentId) return;
+				
+				//Update default job address
+				if ($scope.params.isParentJobAddress === 'true' || $scope.params.isParentJobAddress == true){
+									
+					Clients.updateDefaultJobAddressForClient(parentId,$rootScope.selectedClientId).then(function (res) {
+						if (!res) return;
+						console.log(res)
 
-				$ionicHistory.goBack();
+						$ionicHistory.goBack();
+					});
+				}else{
+					
+					$ionicHistory.goBack();
+				}				
 			});
 		}
 
@@ -529,8 +540,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 }])
 
-.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicPopup, $ionicHistory, $ionicActionSheet) {
+.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet","$rootScope",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicPopup, $ionicHistory, $ionicActionSheet,$rootScope) {
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
 
@@ -587,13 +598,22 @@ angular.module('SitterAdvantage.clientControllers', [])
 			} else {
 				$scope.parentPrimaryPhoneError = "";
 			}
-
-
-
+			
 			Clients.editParentInfo($scope.parent).then(function (parentId) {
 				if (!parentId) return;
+				
+				//Update default job address
+				if ($scope.parent.isParentJobAddress === 'true' || $scope.parent.isParentJobAddress == true){
+					Clients.updateDefaultJobAddressForClient($scope.parent.parentId,$rootScope.selectedClientId).then(function (res) {
+						if (!res) return;
+						console.log(res)
 
-				$ionicHistory.goBack();
+						$ionicHistory.goBack();
+					});
+				}else{
+					
+					$ionicHistory.goBack();
+				}
 			});
 		}
 
@@ -841,7 +861,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 			};
 
 			$scope.saveKid = function () {
-
 
 				////////////////////validaitons for new kid page//////////////////
 				//check if the kid name is empty

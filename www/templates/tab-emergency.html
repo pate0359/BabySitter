@@ -16,17 +16,19 @@
 					<h2 style="color:black">Job Address</h2>
 					<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 					
-					<div ng-show="selectedParent.isParentJobAddress == 'true' || selectedParent.isParentJobAddress == true">
+					<div>
 						<p>{{selectedParent.parentStreet}}</p>
 						<p>{{selectedParent.parentCity +", "+ selectedParent.parentState}}</p>
 						<p>{{selectedParent.parentZipcode}}</p>
 					</div>
 
+<!--
 					<div ng-hide="selectedParent.isParentJobAddress == 'true' || selectedParent.isParentJobAddress == true">
 						<p>{{selectedParent.parentStreetJob}}</p>
 						<p>{{selectedParent.parentCityJob +", "+ selectedParent.parentStateJob}}</p>
 						<p>{{selectedParent.parentZipcodeJob}}</p>
 					</div>
+-->
 
 				</div>
 

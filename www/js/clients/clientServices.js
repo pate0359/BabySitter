@@ -413,6 +413,25 @@ angular.module('SitterAdvantage.clientServices', [])
 
             return d.promise;
         },
+		//update "parent" job address
+        updateDefaultJobAddressForClient: function (parentId, clientId) {
+
+            var d = $q.defer();
+			var query = 'UPDATE parents SET isParentJobAddress = "false" WHERE parentId != ? AND clientId = ?';
+			var queryErrorCallback = function (err) {
+                console.error(err);
+                d.resolve(err);
+            }
+            var querySuccessCallback = function (tx, res) {
+                console.log("delete parent succeeded");
+                console.log(res);
+                d.resolve(res);
+            };
+
+            dbService.executeStatement(query, [parentId,clientId], querySuccessCallback, queryErrorCallback);
+
+            return d.promise;
+        },
 		
 		//Delete parent for "client"    
         deleteParentsForClient: function (clientId) {

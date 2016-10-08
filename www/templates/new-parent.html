@@ -75,14 +75,17 @@
 
 				<div style="margin-bottom:15px;">
 					<div class="item item-checkbox">
-						Job address is same as parent address.
+						
+						{{(params.isParentJobAddress === 'true' || params.isParentJobAddress == true) ? "Job will take place here" : "Will the job be at this location?"}}
+						
 						<label style="margin-left:0px;padding-left:0px;" class="checkbox">
 							<input type="checkbox" ng-model="params.isParentJobAddress">
 						</label>
 					</div>
 				</div>
 
-				<div ng-hide="params.isParentJobAddress == 'true' || params.isParentJobAddress == true">
+<!--
+					<div ng-hide="params.isParentJobAddress == 'true' || params.isParentJobAddress == true">
 
 					<h3 style="margin-top:5px; padding-bottom:10px; font-size:15px;">Enter Job Address</h3>
 					<div style="margin-bottom:15px;">
@@ -112,6 +115,8 @@
 					</div>
 
 				</div>
+				-->
+				
 			</div>
 		</form>
 
