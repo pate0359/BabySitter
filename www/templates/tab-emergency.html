@@ -103,8 +103,8 @@
 
 				<div class="item item-divider item-icon-right">
 					{{parent.parentName}}
-					<div class="icon">
-						<a ng-href="sms:{{parent.parentPrimaryphone}}&body={{ sosMessage }}" class="button button-icon myblue" id="parent1">
+					<div class="icon"> 
+						<a ng-click="sendSMS(parent.parentPrimaryphone)" class="button button-icon myblue" id="parent1">
 							<i id="position" class="icon ion-ios-chatbubble"></i>
 						</a>
 

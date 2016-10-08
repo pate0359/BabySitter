@@ -149,7 +149,7 @@ angular.module('SitterAdvantage', ['ionic', 'SitterAdvantage.clientControllers',
 	.state('tab.task-detail_client', {
 		url: '/tasks_client/:taskId',
 		params: {
-			pageFrom: 1 // from client
+			pageFrom: 2 // from client
 		},
 		views: {
 			'tab-clients': {

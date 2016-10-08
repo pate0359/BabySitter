@@ -38,13 +38,13 @@ angular.module('SitterAdvantage.taskServices', [])
 
             var d = $q.defer();
 			 
-            var query = "SELECT * FROM tasks t INNER JOIN kids k ON t.clientId = k.clientId WHERE t.taskId = ?";
+            var query = "SELECT * FROM tasks WHERE taskId = ?";
             var queryErrorCallback = function (err) {
                 console.error(err);
                 d.resolve(err);
             }
             var querySuccessCallback = function (tx, res) {
-                console.log(res.rows.item(0));
+                console.log(res.rows.item);
                 
                 var task = res.rows.item(0);
                 d.resolve(task);

@@ -340,6 +340,16 @@ angular.module('SitterAdvantage.taskControllers', [])
 			if (!client) return;
 			$scope.task.clientDesc = client.clientDesc;
 		});
+		
+		if ($scope.task.kidId && $scope.task.kidId != "undefined"){
+		
+			// get kid in database
+			Clients.getKidById($scope.task.kidId).then(function (kid) {
+				if (!kid) return;
+
+				$scope.task.kidName = kid.kidName;
+			});
+		}
 	});
 
 	$scope.notificationChange = function () {
@@ -408,7 +418,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 		//var task = $scope.tasks[$index];
 		var popUp = $ionicPopup.show({
 			title: 'Complete Task',
-			template: 'Are you sure you want to complete this task?',
+			template: 'Are you sure this task was completed?',
 			scope: $scope,
 			buttons: [
 				{
@@ -416,7 +426,7 @@ angular.module('SitterAdvantage.taskControllers', [])
 					type: 'button-light',
                         },
 				{
-					text: '<b>Complete</b>',
+					text: '<b>Completed</b>',
 					type: 'button-positive',
 					onTap: function (e) {
 						// update task with new params

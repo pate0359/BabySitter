@@ -354,7 +354,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 				}
 
 
-				newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM, dd yyyy');
+				newTask.startDate = $filter('date')(new Date(task.taskStartDateTime), 'MMM dd, yyyy');
 				newTask.startTime = $filter('date')(new Date(task.taskStartDateTime), 'hh:mm:a');
 
 				$scope.selectedClient.tasks.push(newTask);
@@ -910,7 +910,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 					targetWidth: 300,
 					targetHeight: 300,
 					popoverOptions: CameraPopoverOptions,
-					saveToPhotoAlbum: false
+					saveToPhotoAlbum: true
 				};
 
 				$cordovaCamera.getPicture(options).then(function (imageData) {

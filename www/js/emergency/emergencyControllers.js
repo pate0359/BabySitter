@@ -101,17 +101,7 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 			}
 		}
 
-		var gpsURL = "";
-
-		// If there is a location for the babysitter, send it to the parents  
-		if ($scope.mapCoords.lat != 0 && $scope.mapCoords.lng != 0) {
-			gpsURL = "http://maps.google.com/maps?f=q&amp;geocode=&amp;q=" + $scope.latitude + "," + $scope.longitude + "&z=14";
-
-			$scope.sosMessage += "Map: " + gpsURL;
-		} else {
-			gpsURL = "";
-		}
-		sms.send(number, $scope.sosMessage, options, success, error);
+		$cordovaSms.send(number, $scope.sosMessage, options, success, error);
 	};
 	$scope.callNumber = function (number) {
 		window.open('tel:' + number, '_system');
