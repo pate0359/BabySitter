@@ -1,73 +1,79 @@
 angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
-.controller('EmergencyCtrl', ["$scope", "$ionicModal", "$cordovaSms", "GPSMap", "Clients", "Tasks", "ResourcesService", "$ionicLoading","$rootScope", function ($scope, $ionicModal, $cordovaSms, GPSMap, Clients, Tasks, ResourcesService, $ionicLoading,$rootScope) {
+.controller('EmergencyCtrl', ["$scope", "$ionicModal", "$cordovaSms", "GPSMap", "Clients", "Tasks", "ResourcesService", "$ionicLoading", "$rootScope", function ($scope, $ionicModal, $cordovaSms, GPSMap, Clients, Tasks, ResourcesService, $ionicLoading, $rootScope) {
 
 	$scope.latitude = "";
 	$scope.longitude = "";
-
-	//Get default text message
-	ResourcesService.getDefaults().then(function (defaults) {
-
-		if (defaults) {
-			console.log("defaults :" + defaults.message);
-			$scope.sosMessage = defaults.message;
-		} else {
-			$scope.sosMessage = "";
-		}
-	});
 
 	$scope.settings = {
 		enableFriends: true
 	};
 
-	$scope.$on("$ionicView.enter", function (event, data) {
-
+	$scope.$on("$ionicView.afterEnter", function (event, data) {
+		
 		$scope.kids = [];
 		$scope.parents = [];
-		
-		if ($rootScope.selectedClientId != undefined){
-			
+
+		if ($rootScope.selectedClientId != undefined) {
+
 			$scope.getParentsAndKidsForClient();
-			
-		}else{
-			
+
+		} else {
+
+			$scope.selectedParent = undefined
 			$scope.kids = [];
 			$scope.parents = [];
+			$scope.$apply();
 		}
-	});
+	});			   
+			   
+//	$scope.$on("$ionicView.enter", function (event, data) {
+//	});
 
 	$scope.getParentsAndKidsForClient = function () {
-		
-		Clients.getKidsForClientWithID($rootScope.selectedClientId).then(function (kids) {
-				
-				if (!kids) return;
-				$scope.kids = kids;
-			});
-			
-			Clients.getParentsForClient($rootScope.selectedClientId).then(function (parentList) {
 
-				if (!parentList) return;
-				$scope.parents = parentList;
-				
-				
-				for (var i = 0; i < $scope.parents.length; i++) {
-					
-					var parent = $scope.parents[i];
-					if (parent.isParentJobAddress == "true" || parent.isParentJobAddress == 'true' || parent.isParentJobAddress == true){
-					
-						$scope.selectedParent = parent;
-						break;
-					}					
+		Clients.getKidsForClientWithID($rootScope.selectedClientId).then(function (kids) {
+
+			if (!kids) return;
+			$scope.kids = kids;
+		});
+
+		Clients.getParentsForClient($rootScope.selectedClientId).then(function (parentList) {
+
+			if (!parentList) return;
+			$scope.parents = parentList;
+
+			for (var i = 0; i < $scope.parents.length; i++) {
+
+				var parent = $scope.parents[i];
+				if (parent.isParentJobAddress == "true" || parent.isParentJobAddress == 'true' || parent.isParentJobAddress == true) {
+
+					$scope.selectedParent = parent;
+					break;
 				}
-				
-				if ($scope.selectedParent == undefined){
-					
-					if(parentList.length != 0){
-					
-						$scope.selectedParent = parentList[0];
-					}					
-				}				
-			});
+			}
+
+			if ($scope.selectedParent == undefined) {
+
+				if (parentList.length != 0) {
+
+					$scope.selectedParent = parentList[0];
+				}
+			}
+
+			// Put "None" if no value
+			for (var k in $scope.selectedParent) {
+				if ($scope.selectedParent.hasOwnProperty(k)) {
+					var val = $scope.selectedParent[k];
+					if (!val || val == 'undefined') {
+						$scope.selectedParent[k] = "None";
+					}
+				} else {
+					$scope.selectedParent[k] = "None";
+				}
+			}
+
+		});
 	}
 
 
@@ -99,23 +105,36 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 	// Sends an SMS message to the contact parents
 	$scope.sendSMS = function (number) {
 
-		var success = function () {
-			console.log('Message sent successfully');
-		};
-		var error = function (e) {
-			//alert('Message Failed:' + e + ". Check your phone connection."); 
-			// change the phone number to the number stored in database
-			document.getElementById("parent1").href = "sms:6138539911&body=" + $scope.sosMessage;
-		};
-		var options = {
-			replaceLineBreaks: true, // true to replace \n by a new line, false by default
-			android: {
-				intent: 'INTENT' // send SMS with the native android SMS messaging
-					//intent: '' // send SMS without open any other app
-			}
-		}
+		//Get default text message
+		ResourcesService.getDefaults().then(function (defaults) {
 
-		$cordovaSms.send(number, $scope.sosMessage, options, success, error);
+			if (defaults) {
+				console.log("defaults :" + defaults.message);
+				$scope.sosMessage = defaults.message;
+
+			} else {
+				$scope.sosMessage = "";
+			}
+
+			var success = function () {
+				console.log('Message sent successfully');
+			};
+			var error = function (e) {
+				//alert('Message Failed:' + e + ". Check your phone connection."); 
+				// change the phone number to the number stored in database
+				document.getElementById("parent1").href = "sms:6138539911&body=" + $scope.sosMessage;
+			};
+			var options = {
+				replaceLineBreaks: true, // true to replace \n by a new line, false by default
+				android: {
+					intent: 'INTENT' // send SMS with the native android SMS messaging
+						//intent: '' // send SMS without open any other app
+				}
+			}
+
+			$cordovaSms.send(number, $scope.sosMessage, options, success, error);
+		});
+
 	};
 	$scope.callNumber = function (number) {
 		window.open('tel:' + number, '_system');
@@ -138,10 +157,10 @@ angular.module('SitterAdvantage.emergencyControllers', ['ngCordova'])
 
 			//if (!mapEle) return;
 
-//			$scope.loading = $ionicLoading.show({
-//				content: 'Getting current location...',
-//				showBackdrop: false
-//			});
+			//			$scope.loading = $ionicLoading.show({
+			//				content: 'Getting current location...',
+			//				showBackdrop: false
+			//			});
 
 			var map = new google.maps.Map(mapEle, mapOptions);
 			//$scope.map = map;

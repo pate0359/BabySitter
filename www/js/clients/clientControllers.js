@@ -4,8 +4,13 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 			console.log("ClientsCtrl is loaded");
 			$scope.clients = [];
-	 
-	 		$rootScope.selectedClientId = undefined;
+
+
+			$scope.$on("$ionicView.afterEnter", function (event, data) {
+
+				$rootScope.selectedClientId = undefined;
+
+			});
 
 			// Insert client in database
 			Clients.getClientsList().then(function (clientList) {
@@ -32,9 +37,9 @@ angular.module('SitterAdvantage.clientControllers', [])
 			$scope.clientClicked = function ($index) {
 
 				var client = $scope.clients[$index];
-				
+
 				$rootScope.segmentIndex = 0;
-				
+
 				$rootScope.selectedClientId = client.clientId;
 
 				$state.go("tab.client-detail", {
@@ -104,15 +109,32 @@ angular.module('SitterAdvantage.clientControllers', [])
 						{
 							text: 'Cancel',
 							type: 'button-light',
-
                         },
 						{
 							text: '<b>Delete</b>',
 							type: 'button-positive',
 							onTap: function (e) {
-								Clients.deleteClient(client.clientId);
-								$scope.clients.splice($index, 1);
-								return;
+								//Delete client
+
+								Clients.deleteClient(client.clientId).then(function (res) {
+
+									// Delete parents for client
+									Clients.deleteParentsForClient(client.clientId).then(function (res) {
+										console.log("Parents deleted for client");
+									});
+
+									// Delete Kids for client
+									Clients.deleteKidsForClient(client.clientId).then(function (res) {
+										console.log("Kids deleted for client");
+									});
+
+									// Delete Tasks for client
+									Tasks.deleteTaskForClient(client.clientId).then(function (res) {
+										console.log("Task deleted for client");
+									});
+
+									$scope.clients.splice($index, 1);
+								});
 							}
                         }, ]
 
@@ -122,41 +144,6 @@ angular.module('SitterAdvantage.clientControllers', [])
 					if (!res) {
 						return;
 					}
-					var hideSheet = $ionicActionSheet.show({
-
-						destructiveText: 'Delete Client',
-						cancelText: 'Cancel',
-
-						cancel: function () {
-							hideSheet();
-						},
-
-						destructiveButtonClicked: function () {
-							//Delete client
-
-							Clients.deleteClient(client.clientId).then(function (res) {
-
-								// Delete parents for client
-								Clients.deleteParentsForClient(client.clientId).then(function (res) {
-									console.log("Parents deleted for client");
-								});
-
-								// Delete Kids for client
-								Clients.deleteKidsForClient(client.clientId).then(function (res) {
-									console.log("Kids deleted for client");
-								});
-
-								// Delete Tasks for client
-								Tasks.deleteTaskForClient(client.clientId).then(function (res) {
-									console.log("Task deleted for client");
-								});
-
-								$scope.clients.splice($index, 1);
-								// hide sheet
-								hideSheet();
-							});
-						}
-					});
 				});
 			}
 
@@ -204,6 +191,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 					if (!clientId) return;
 					console.log(clientId)
 
+					$rootScope.selectedClientId = clientId;
 
 					$state.go("tab.client-detail", {
 						clientId: clientId,
@@ -436,8 +424,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 }])
 
-.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate",  "$state", "$ionicHistory","$timeout","$rootScope",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory,$timeout,$rootScope) {
+.controller('NewParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicHistory", "$timeout", "$rootScope",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicHistory, $timeout, $rootScope) {
 
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
@@ -477,61 +465,61 @@ angular.module('SitterAdvantage.clientControllers', [])
 
 			//check if the primary phone is empty
 			if ($scope.params.parentPrimaryphone == null || $scope.params.parentPrimaryphone == undefined) {
-								
+
 				$scope.parentPrimaryPhoneError = "* Primary phone number is required.";
 				$timeout($scope.callAtTimeout, 4000);
 				return;
 			} else {
 				$scope.parentPrimaryPhoneError = "";
-				
-				if (isNaN($scope.params.parentPrimaryphone)){
-					
+
+				if (isNaN($scope.params.parentPrimaryphone)) {
+
 					$scope.parentPrimaryPhoneError = "* Primary phone number is incorrect.";
 					$timeout($scope.callAtTimeout, 4000);
 					return;
-					
-				}else if ($scope.params.parentPrimaryphone.length != 10){
-				
+
+				} else if ($scope.params.parentPrimaryphone.length != 10) {
+
 					$scope.parentPrimaryPhoneError = "* Primary phone number must be 10 digits.";
 					$timeout($scope.callAtTimeout, 4000);
 					return;
 				}
 			}
-			
+
 			//check if the parentSecondaryphone phone is empty
-			if ($scope.params.parentSecondaryphone != "" && $scope.params.parentSecondaryphone != undefined ) {
-				
-				if (isNaN($scope.params.parentSecondaryphone)){
-					
+			if ($scope.params.parentSecondaryphone != "" && $scope.params.parentSecondaryphone != undefined) {
+
+				if (isNaN($scope.params.parentSecondaryphone)) {
+
 					$scope.parentSecondaryPhoneError = "* Secondary phone number is incorrect.";
-					
-				}else if ($scope.params.parentSecondaryphone.length != 10){
-				
+
+				} else if ($scope.params.parentSecondaryphone.length != 10) {
+
 					$scope.parentSecondaryPhoneError = "* Secondary phone number must be 10 digits.";
 				}
-				
+
 				$timeout($scope.callAtTimeout, 4000);
 				return;
 			}
-			
+
 			$scope.params.clientId = $stateParams.clientId;
 
 			Clients.addParentForClient($scope.params).then(function (parentId) {
 				if (!parentId) return;
-				
+
 				//Update default job address
-				if ($scope.params.isParentJobAddress === 'true' || $scope.params.isParentJobAddress == true){
-									
-					Clients.updateDefaultJobAddressForClient(parentId,$rootScope.selectedClientId).then(function (res) {
+				if ($scope.params.isParentJobAddress === 'true' || $scope.params.isParentJobAddress == true) {
+
+					Clients.updateDefaultJobAddressForClient(parentId, $rootScope.selectedClientId).then(function (res) {
 						if (!res) return;
 						console.log(res)
 
 						$ionicHistory.goBack();
 					});
-				}else{
-					
+				} else {
+
 					$ionicHistory.goBack();
-				}				
+				}
 			});
 		}
 
@@ -540,8 +528,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 		}
 }])
 
-.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet","$rootScope",
- function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicPopup, $ionicHistory, $ionicActionSheet,$rootScope) {
+.controller('EditParentCtrl', ["$scope", "$stateParams", "Clients", "$ionicNavBarDelegate", "$state", "$ionicPopup", "$ionicHistory", "$ionicActionSheet", "$rootScope",
+ function ($scope, $stateParams, Clients, $ionicNavBarDelegate, $state, $ionicPopup, $ionicHistory, $ionicActionSheet, $rootScope) {
 		//check if the user input is an integer value
 		$scope.integerval = /^\d*$/;
 
@@ -577,7 +565,16 @@ angular.module('SitterAdvantage.clientControllers', [])
 				if ($scope.parent.hasOwnProperty(k)) {
 					var val = $scope.parent[k];
 					if (!val || val == 'undefined') {
-						$scope.parent[k] = "None";
+
+						if (k == "parentPrimaryphone" || k == "parentSecondaryphone") {
+
+							$scope.parent[k] = "";
+						} else {
+
+							$scope.parent[k] = "None";
+						}
+
+						//$scope.parent[k] = "None";
 					}
 				} else {
 					$scope.parent[k] = "None";
@@ -598,20 +595,20 @@ angular.module('SitterAdvantage.clientControllers', [])
 			} else {
 				$scope.parentPrimaryPhoneError = "";
 			}
-			
+
 			Clients.editParentInfo($scope.parent).then(function (parentId) {
 				if (!parentId) return;
-				
+
 				//Update default job address
-				if ($scope.parent.isParentJobAddress === 'true' || $scope.parent.isParentJobAddress == true){
-					Clients.updateDefaultJobAddressForClient($scope.parent.parentId,$rootScope.selectedClientId).then(function (res) {
+				if ($scope.parent.isParentJobAddress === 'true' || $scope.parent.isParentJobAddress == true) {
+					Clients.updateDefaultJobAddressForClient($scope.parent.parentId, $rootScope.selectedClientId).then(function (res) {
 						if (!res) return;
 						console.log(res)
 
 						$ionicHistory.goBack();
 					});
-				}else{
-					
+				} else {
+
 					$ionicHistory.goBack();
 				}
 			});
@@ -733,7 +730,7 @@ angular.module('SitterAdvantage.clientControllers', [])
 					if (!res) {
 						return;
 					}
-				});				
+				});
 			}
 
 			$scope.editKidPicture = function () {
@@ -830,8 +827,8 @@ angular.module('SitterAdvantage.clientControllers', [])
 			$scope.stringval = /^[a-zA-Z\s]*$/;
 
 			$scope.kid = {};
-	 
-	 		$scope.kid.kidGender = "Male";
+
+			$scope.kid.kidGender = "Male";
 
 			$scope.addPhoto = function () {
 

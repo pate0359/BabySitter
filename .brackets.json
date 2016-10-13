@@ -1,5 +1,6 @@
 {
     "jscodehints.detectedExclusions": [
-        "/Nignesh/MyWorkSpace/BabySitterAdvantage/BabySitter/platforms/android/build/intermediates/assets/debug/www/cordova-js-src/android/promptbasednativeapi.js"
+        "/Nignesh/MyWorkSpace/BabySitterAdvantage/BabySitter/platforms/android/build/intermediates/assets/debug/www/cordova-js-src/android/promptbasednativeapi.js",
+        "/Nignesh/MyWorkSpace/BabySitterAdvantage/BabySitter/platforms/android/build/intermediates/assets/debug/www/js/dbService.js"
     ]
 }

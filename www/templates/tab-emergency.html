@@ -1,4 +1,4 @@
-<ion-view view-title="Emergency" cache-view="false">
+<ion-view view-title="Emergency" cache-view="true">
 	<!--    <ion-nav-bar class="myblue"></ion-nav-bar>-->
 	<ion-content>
 		<div class="item item-divider">
@@ -12,24 +12,15 @@
 			<div class="padding">
 				<button class="button button-block mygreen" ng-click="showModal()"> Show My Location </button>
 
-				<div ng-hide="selectedParent == undefined" style="margin-bottom:15px;">
+				<div ng-hide="selectedParent == undefined" style="margin-bottom:5px; margin-top:15px;">
 					<h2 style="color:black">Job Address</h2>
 					<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
-					
+
 					<div>
 						<p>{{selectedParent.parentStreet}}</p>
 						<p>{{selectedParent.parentCity +", "+ selectedParent.parentState}}</p>
 						<p>{{selectedParent.parentZipcode}}</p>
 					</div>
-
-<!--
-					<div ng-hide="selectedParent.isParentJobAddress == 'true' || selectedParent.isParentJobAddress == true">
-						<p>{{selectedParent.parentStreetJob}}</p>
-						<p>{{selectedParent.parentCityJob +", "+ selectedParent.parentStateJob}}</p>
-						<p>{{selectedParent.parentZipcodeJob}}</p>
-					</div>
--->
-
 				</div>
 
 			</div>
@@ -72,7 +63,7 @@
 						</div>
 
 						<div style="margin-bottom:15px;">
-							<h2 style="color:black">Disabilities</h2>
+							<h2 style="color:black">Handicaps/Disabilities</h2>
 							<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 							<p>{{kid.disabilityDescription}}</p>
 							<p ng-show="kid.disabilityDescription == undefined || kid.disabilityDescription == '' ">None</p>
@@ -103,20 +94,22 @@
 			<!-- ******************************** Parent Info ******************************** -->
 			<div id="parent" ng-repeat="parent in parents" class="card">
 
-				<div class="item item-divider item-icon-right">
+				<div class="item item-divider item-icon-right ">
 					{{parent.parentName}}
-					<div class="icon"> 
-						<a ng-click="sendSMS(parent.parentPrimaryphone)" class="button button-icon myblue" id="parent1">
-							<i id="position" class="icon ion-ios-chatbubble"></i>
-						</a>
-
-						<button class="button button-icon myblue" style="padding-left:30px;" ng-click="callNumber(parent.parentPrimaryphone)">
-							<i class="icon ion-ios-telephone"></i>
+					
+					<div class="icon">
+						 <button class="button button-icon myblue" style="padding-right:40px;" ng-click="sendSMS(parent.parentPrimaryphone)">
+							<i class = "icon ion-ios-chatbubble myblue"></i>
 						</button>
-					</div>
+						<button class="button button-icon myblue" style="padding-left:40px;" ng-click="callNumber(parent.parentPrimaryphone)">
+							<i class = "icon ion-ios-telephone myblue"></i>
+						</button>
+        			</div>										
 				</div>
+
 				<div class="item item-text-wrap">
 					<div style="margin-bottom:15px;">
+
 						<h2 style="color:black">Mobile Number</h2>
 						<hr style="height:1px;margin-top:5px;border:none;color:#333;background-color:#ddd;" />
 						<p>{{parent.parentPrimaryphone}}</p>

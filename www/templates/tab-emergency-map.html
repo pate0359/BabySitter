@@ -1,23 +1,27 @@
 <meta content="initial-scale=1, maximum-scale=1, user-scalable=no, width=500px">
 
 <ion-modal-view>
-  <ion-header-bar id="hello">
-    <h1 class="title" style="color:white;">Your Location</h1>
-    <div class="buttons">
-      <button style="color:white;"class="button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>    
-<!--      <div class="list">-->
-         <div class="card" id="map" data-tap-disabled="true"></div>
-          <div class="padding">
-              <p style="font-size:14px;color:#3b5998;" ><strong>Latitude:</strong> {{mapCoords.lat}}</p>
-              <p style="font-size:14px;color:#3b5998;"  ><strong>Longitude:</strong> {{mapCoords.lng}}<p>
-              <p style="font-size:14px;color:#3b5998;" ><strong>Address:</strong> {{address}}</p>
-          </div>
-<!--      </div>-->
+	<ion-header-bar id="hello">
+		<h1 class="title" style="color:white;">Your Location</h1>
+		<div class="buttons">
+			<button style="color:white;" class="button-clear" ng-click="closeLogin()">Close</button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+
+		<div class="card">
+			<div style="margin:0px;padding:0px;" id="map" data-tap-disabled="true">
+			</div>
+		</div>
 		<div class="padding">
-          <button class="button button-block mygreen" ng-click="showStaticMap()">Update Location</button>
-        </div>
-  </ion-content>
+			<p style="font-size:14px;color:#3b5998;"><strong>Latitude:</strong> {{mapCoords.lat}}</p>
+			<p style="font-size:14px;color:#3b5998;"><strong>Longitude:</strong> {{mapCoords.lng}}
+				<p>
+					<p style="font-size:14px;color:#3b5998;"><strong>Address:</strong> {{address}}</p>
+		</div>
+
+		<div class="padding">
+			<button class="button button-block mygreen" ng-click="showStaticMap()">Update Location</button>
+		</div>
+	</ion-content>
 </ion-modal-view>
