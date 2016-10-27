@@ -30,7 +30,7 @@ angular.module('SitterAdvantage.resourcesControllers', [])
         };
         
 		$scope.openWebsite = function(index){
-			    $cordovaInAppBrowser.open($scope.resources[index].url, '_blank', options)
+			    $cordovaInAppBrowser.open($scope.resources[index].url, '_system', options)
 			      .then(function(event) {
 			        // success
 			        console.log('success to load openWebsite');
